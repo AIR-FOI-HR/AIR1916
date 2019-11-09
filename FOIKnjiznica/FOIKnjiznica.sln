@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29503.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FOIKnjiznica.Android", "FOIKnjiznica\FOIKnjiznica.Android\FOIKnjiznica.Android.csproj", "{8C00DF57-7576-4630-89EC-0EE90D6992DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FOIKnjiznica", "FOIKnjiznica\FOIKnjiznica\FOIKnjiznica.csproj", "{FFED30D8-4D6B-472A-A1C6-90E0B9A0795A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8C00DF57-7576-4630-89EC-0EE90D6992DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C00DF57-7576-4630-89EC-0EE90D6992DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C00DF57-7576-4630-89EC-0EE90D6992DD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{8C00DF57-7576-4630-89EC-0EE90D6992DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C00DF57-7576-4630-89EC-0EE90D6992DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C00DF57-7576-4630-89EC-0EE90D6992DD}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{FFED30D8-4D6B-472A-A1C6-90E0B9A0795A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFED30D8-4D6B-472A-A1C6-90E0B9A0795A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFED30D8-4D6B-472A-A1C6-90E0B9A0795A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFED30D8-4D6B-472A-A1C6-90E0B9A0795A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {73F056A9-B956-48F3-A28D-F9772A4207FD}
+	EndGlobalSection
+EndGlobal
