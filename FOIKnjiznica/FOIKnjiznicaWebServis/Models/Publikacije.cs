@@ -17,25 +17,29 @@ namespace FOIKnjiznicaWebServis.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Publikacije()
         {
+            this.Kopija_Publikacije = new HashSet<Kopija_Publikacije>();
             this.Autori = new HashSet<Autori>();
             this.Clanovi = new HashSet<Clanovi>();
         }
     
         public int id { get; set; }
+        public string naziv { get; set; }
         public string isbn { get; set; }
         public string udk { get; set; }
         public string signatura { get; set; }
         public string jezik { get; set; }
         public int stranice { get; set; }
         public string sadrzaj { get; set; }
-        public string slika_url { get; set; }
-        public byte[] godina_izdanja { get; set; }
+        public int godina_izdanja { get; set; }
         public string izdanje { get; set; }
-        public int Kategorijeid { get; set; }
-        public int Izdavaciid { get; set; }
+        public int KategorijeId { get; set; }
+        public int IzdavacId { get; set; }
+        public string slika_url { get; set; }
     
         public virtual Izdavaci Izdavaci { get; set; }
         public virtual Kategorije Kategorije { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Kopija_Publikacije> Kopija_Publikacije { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Autori> Autori { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

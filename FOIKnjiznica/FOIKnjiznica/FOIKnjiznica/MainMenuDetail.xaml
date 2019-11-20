@@ -53,5 +53,28 @@
                 <Button BackgroundColor="#ae2323" Text="Filtriraj" TextColor="White" WidthRequest="100" HeightRequest="40" CornerRadius="13" x:Name="filter_button"></Button>
             </StackLayout>
         </StackLayout>
+
+        <!-- Ispis publikacije na zaslon -->
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <ListView x:Name="ListaPublikacije">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="100">
+                            <StackLayout>
+                                <Label Text="{Binding naziv}"></Label>
+                                <Label Text="{Binding isbn}"></Label>
+                                <Label Text="{Binding udk}"></Label>
+                                <Label Text="{Binding signatura}"></Label>
+                                <Label Text="{Binding jezik}"></Label>
+                                <Label Text="{Binding stranice}"></Label>
+                                <Label Text="{Binding sadrzaj}"></Label>
+                                <Label Text="{Binding godina_izdanja}"></Label>
+                                <Label Text="{Binding izdanje}"></Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
     </StackLayout>
 </ContentPage>
