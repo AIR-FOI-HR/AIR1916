@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FOIKnjiznica.MainMenuDetail"
+             Title="Matej Lipovača">
+    
+    <!-- Glavni StackLayout -->
+    <StackLayout>
+        
+        <!-- Pretraga bar -->
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <StackLayout Orientation="Vertical" HorizontalOptions="Center" Margin="0, 10, 0, 0">
+                <Label Text="&#xf002;" FontSize="25" HorizontalOptions="Center" TextColor="#696969">
+                    <Label.FontFamily>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <On Platform="Android" Value="FontAwesome5Solid.otf#FontAwesome5Solid" />
+                        </OnPlatform>
+                    </Label.FontFamily>
+                </Label>
+            </StackLayout>
+            <StackLayout Orientation="Vertical" HorizontalOptions="Center" Grid.Column="1">
+                <Entry x:Name="search_bar" Placeholder="Pretraži" WidthRequest="200"></Entry>
+            </StackLayout>
+        </StackLayout>
+        
+        <!-- Sortiranje literature / Filtriranje literature -->
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0, 30, 0, 0">
+            <StackLayout Orientation="Vertical" HorizontalOptions="Center" Margin="0, 2, 5, 0">
+                <Label x:Name="sort_label" Text="&#xf15d;" FontSize="30" HorizontalOptions="Center" TextColor="#696969">
+                    <Label.FontFamily>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <On Platform="Android" Value="FontAwesome5Solid.otf#FontAwesome5Solid" />
+                        </OnPlatform>
+                    </Label.FontFamily>
+                </Label>
+            </StackLayout>
+            <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+                <Button BackgroundColor="#ae2323" Text="Sortiraj" TextColor="White" WidthRequest="100" HeightRequest="40" CornerRadius="13" x:Name="sort_button"></Button>
+            </StackLayout>
+            <StackLayout Orientation="Vertical" HorizontalOptions="Center" Margin="30, 5, 0, 0">
+                <Label x:Name="filter_label" Text="&#xf0b0;" FontSize="25" HorizontalOptions="Center" TextColor="#696969">
+                    <Label.FontFamily>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <On Platform="Android" Value="FontAwesome5Solid.otf#FontAwesome5Solid" />
+                        </OnPlatform>
+                    </Label.FontFamily>
+                </Label>
+            </StackLayout>
+            <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+                <Button BackgroundColor="#ae2323" Text="Filtriraj" TextColor="White" WidthRequest="100" HeightRequest="40" CornerRadius="13" x:Name="filter_button"></Button>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
