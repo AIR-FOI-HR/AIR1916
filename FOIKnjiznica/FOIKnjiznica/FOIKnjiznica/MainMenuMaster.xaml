@@ -13,36 +13,38 @@
               ItemsSource="{Binding MenuItems}">
       <d:ListView.ItemsSource>
           <x:Array Type="{x:Type x:String}">
-              <x:String>Početna</x:String>
+              <x:String>Moj profil</x:String>
+              <x:String>Pretraži knjižnicu</x:String>
               <x:String>Favoriti</x:String>
               <x:String>Postavke</x:String>
-              <x:String>Pomoć</x:String>
               <x:String>Slanje poruke</x:String>
-              <x:String>O nama</x:String>
               <x:String>Odjava</x:String>
           </x:Array>
       </d:ListView.ItemsSource>
       <ListView.Header>
-                <Grid BackgroundColor="#FF0000">
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="10"/>
-          </Grid.ColumnDefinitions>
+        <Grid>
           <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="10"/>
-          </Grid.RowDefinitions>
+            <RowDefinition Height="256"/>
+            <RowDefinition Height="*"/>
+          </Grid.RowDefinitions>  
+          
+          <Image Source="foi_header.jpg" Aspect="AspectFit"></Image>
+          <StackLayout Margin="0, -90, 0, 0" Grid.Row="1" Spacing="15">
           <Label
               Grid.Column="1"
-              Grid.Row="2"
+              Grid.Row="0"
               Text="FOI Knjižnica"
               TextColor="White"
-              FontSize="30"
+              FontSize="50"
               HorizontalOptions="CenterAndExpand"
-              FontAttributes="Bold"/>
+              FontAttributes="Bold">
+              <Label.FontFamily>
+                <OnPlatform x:TypeArguments="x:String">
+                    <On Platform="Android" Value="KeepCalm.ttf#KeepCalm" />
+                </OnPlatform>
+              </Label.FontFamily>
+          </Label>
+          </StackLayout>
         </Grid>
       </ListView.Header>
       <ListView.ItemTemplate>
