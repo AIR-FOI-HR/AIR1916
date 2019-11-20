@@ -1,0 +1,704 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FOIKnjiznicaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Auth_Protocol">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="naziv_auth_protokola" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Autori">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="ime" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="prezime" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clanovi">
+          <Key>
+            <PropertyRef Name="hrEduPersonUniqueID" />
+          </Key>
+          <Property Name="hrEduPersonUniqueID" Type="int" Nullable="false" />
+          <Property Name="ime" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="prezime" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clanovi_Auth_Protocol">
+          <Key>
+            <PropertyRef Name="ClanoviID" />
+            <PropertyRef Name="Auth_ProtocolID" />
+          </Key>
+          <Property Name="ClanoviID" Type="int" Nullable="false" />
+          <Property Name="Auth_ProtocolID" Type="int" Nullable="false" />
+          <Property Name="podaci" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Izdavaci">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="naziv" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="adresa" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Je_Autor">
+          <Key>
+            <PropertyRef Name="Autoriid" />
+            <PropertyRef Name="Publikacijeid" />
+          </Key>
+          <Property Name="Autoriid" Type="int" Nullable="false" />
+          <Property Name="Publikacijeid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Je_Favorit">
+          <Key>
+            <PropertyRef Name="Publikacijeid" />
+            <PropertyRef Name="Clanoviid" />
+          </Key>
+          <Property Name="Publikacijeid" Type="int" Nullable="false" />
+          <Property Name="Clanoviid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kategorije">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="naziv_kategorije" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kopija_Publikacije">
+          <Key>
+            <PropertyRef Name="kopija_id" />
+          </Key>
+          <Property Name="kopija_id" Type="int" Nullable="false" />
+          <Property Name="Publikacijeid" Type="int" Nullable="false" />
+          <Property Name="Clanoviid" Type="int" />
+        </EntityType>
+        <EntityType Name="Publikacije">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="isbn" Type="varchar" MaxLength="13" />
+          <Property Name="udk" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="signatura" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="jezik" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="stranice" Type="int" Nullable="false" />
+          <Property Name="sadrzaj" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="slika_url" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="godina_izdanja" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="izdanje" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="Kategorijeid" Type="int" Nullable="false" />
+          <Property Name="Izdavaciid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stanje_Publikacije">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="datum" Type="datetime" Nullable="false" />
+          <Property Name="datum_do" Type="datetime" />
+          <Property Name="Clanoviid" Type="int" Nullable="false" />
+          <Property Name="Vrsta_Statusaid" Type="int" Nullable="false" />
+          <Property Name="kopija_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vrsta_Statusa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="naziv_vrste" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Clanovi_A__Auth___5629CD9C">
+          <End Role="Auth_Protocol" Type="Self.Auth_Protocol" Multiplicity="1" />
+          <End Role="Clanovi_Auth_Protocol" Type="Self.Clanovi_Auth_Protocol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Protocol">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Clanovi_Auth_Protocol">
+              <PropertyRef Name="Auth_ProtocolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Clanovi_A__Clano__5535A963">
+          <End Role="Clanovi" Type="Self.Clanovi" Multiplicity="1" />
+          <End Role="Clanovi_Auth_Protocol" Type="Self.Clanovi_Auth_Protocol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clanovi">
+              <PropertyRef Name="hrEduPersonUniqueID" />
+            </Principal>
+            <Dependent Role="Clanovi_Auth_Protocol">
+              <PropertyRef Name="ClanoviID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Je_Autor__Autori__5CD6CB2B">
+          <End Role="Autori" Type="Self.Autori" Multiplicity="1" />
+          <End Role="Je_Autor" Type="Self.Je_Autor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autori">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Je_Autor">
+              <PropertyRef Name="Autoriid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Je_Autor__Publik__5DCAEF64">
+          <End Role="Publikacije" Type="Self.Publikacije" Multiplicity="1" />
+          <End Role="Je_Autor" Type="Self.Je_Autor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publikacije">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Je_Autor">
+              <PropertyRef Name="Publikacijeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Je_Favori__Clano__619B8048">
+          <End Role="Clanovi" Type="Self.Clanovi" Multiplicity="1" />
+          <End Role="Je_Favorit" Type="Self.Je_Favorit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clanovi">
+              <PropertyRef Name="hrEduPersonUniqueID" />
+            </Principal>
+            <Dependent Role="Je_Favorit">
+              <PropertyRef Name="Clanoviid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Je_Favori__Publi__60A75C0F">
+          <End Role="Publikacije" Type="Self.Publikacije" Multiplicity="1" />
+          <End Role="Je_Favorit" Type="Self.Je_Favorit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publikacije">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Je_Favorit">
+              <PropertyRef Name="Publikacijeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Publikaci__Izdav__59FA5E80">
+          <End Role="Izdavaci" Type="Self.Izdavaci" Multiplicity="1" />
+          <End Role="Publikacije" Type="Self.Publikacije" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Izdavaci">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Publikacije">
+              <PropertyRef Name="Izdavaciid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Publikaci__Kateg__59063A47">
+          <End Role="Kategorije" Type="Self.Kategorije" Multiplicity="1" />
+          <End Role="Publikacije" Type="Self.Publikacije" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategorije">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Publikacije">
+              <PropertyRef Name="Kategorijeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Stanje_Pu__Clano__2FCF1A8A">
+          <End Role="Clanovi" Type="Self.Clanovi" Multiplicity="1" />
+          <End Role="Stanje_Publikacije" Type="Self.Stanje_Publikacije" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clanovi">
+              <PropertyRef Name="hrEduPersonUniqueID" />
+            </Principal>
+            <Dependent Role="Stanje_Publikacije">
+              <PropertyRef Name="Clanoviid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Stanje_Pu__kopij__3864608B">
+          <End Role="Kopija_Publikacije" Type="Self.Kopija_Publikacije" Multiplicity="1" />
+          <End Role="Stanje_Publikacije" Type="Self.Stanje_Publikacije" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kopija_Publikacije">
+              <PropertyRef Name="kopija_id" />
+            </Principal>
+            <Dependent Role="Stanje_Publikacije">
+              <PropertyRef Name="kopija_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Stanje_Pu__Vrsta__30C33EC3">
+          <End Role="Vrsta_Statusa" Type="Self.Vrsta_Statusa" Multiplicity="1" />
+          <End Role="Stanje_Publikacije" Type="Self.Stanje_Publikacije" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vrsta_Statusa">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Stanje_Publikacije">
+              <PropertyRef Name="Vrsta_Statusaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FOIKnjiznicaModelStoreContainer">
+          <EntitySet Name="Auth_Protocol" EntityType="Self.Auth_Protocol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Autori" EntityType="Self.Autori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clanovi" EntityType="Self.Clanovi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clanovi_Auth_Protocol" EntityType="Self.Clanovi_Auth_Protocol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Izdavaci" EntityType="Self.Izdavaci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Je_Autor" EntityType="Self.Je_Autor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Je_Favorit" EntityType="Self.Je_Favorit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kategorije" EntityType="Self.Kategorije" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kopija_Publikacije" EntityType="Self.Kopija_Publikacije" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Publikacije" EntityType="Self.Publikacije" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stanje_Publikacije" EntityType="Self.Stanje_Publikacije" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vrsta_Statusa" EntityType="Self.Vrsta_Statusa" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Clanovi_A__Auth___5629CD9C" Association="Self.FK__Clanovi_A__Auth___5629CD9C">
+            <End Role="Auth_Protocol" EntitySet="Auth_Protocol" />
+            <End Role="Clanovi_Auth_Protocol" EntitySet="Clanovi_Auth_Protocol" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Clanovi_A__Clano__5535A963" Association="Self.FK__Clanovi_A__Clano__5535A963">
+            <End Role="Clanovi" EntitySet="Clanovi" />
+            <End Role="Clanovi_Auth_Protocol" EntitySet="Clanovi_Auth_Protocol" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Je_Autor__Autori__5CD6CB2B" Association="Self.FK__Je_Autor__Autori__5CD6CB2B">
+            <End Role="Autori" EntitySet="Autori" />
+            <End Role="Je_Autor" EntitySet="Je_Autor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Je_Autor__Publik__5DCAEF64" Association="Self.FK__Je_Autor__Publik__5DCAEF64">
+            <End Role="Publikacije" EntitySet="Publikacije" />
+            <End Role="Je_Autor" EntitySet="Je_Autor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Je_Favori__Clano__619B8048" Association="Self.FK__Je_Favori__Clano__619B8048">
+            <End Role="Clanovi" EntitySet="Clanovi" />
+            <End Role="Je_Favorit" EntitySet="Je_Favorit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Je_Favori__Publi__60A75C0F" Association="Self.FK__Je_Favori__Publi__60A75C0F">
+            <End Role="Publikacije" EntitySet="Publikacije" />
+            <End Role="Je_Favorit" EntitySet="Je_Favorit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Publikaci__Izdav__59FA5E80" Association="Self.FK__Publikaci__Izdav__59FA5E80">
+            <End Role="Izdavaci" EntitySet="Izdavaci" />
+            <End Role="Publikacije" EntitySet="Publikacije" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Publikaci__Kateg__59063A47" Association="Self.FK__Publikaci__Kateg__59063A47">
+            <End Role="Kategorije" EntitySet="Kategorije" />
+            <End Role="Publikacije" EntitySet="Publikacije" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Stanje_Pu__Clano__2FCF1A8A" Association="Self.FK__Stanje_Pu__Clano__2FCF1A8A">
+            <End Role="Clanovi" EntitySet="Clanovi" />
+            <End Role="Stanje_Publikacije" EntitySet="Stanje_Publikacije" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Stanje_Pu__kopij__3864608B" Association="Self.FK__Stanje_Pu__kopij__3864608B">
+            <End Role="Kopija_Publikacije" EntitySet="Kopija_Publikacije" />
+            <End Role="Stanje_Publikacije" EntitySet="Stanje_Publikacije" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Stanje_Pu__Vrsta__30C33EC3" Association="Self.FK__Stanje_Pu__Vrsta__30C33EC3">
+            <End Role="Vrsta_Statusa" EntitySet="Vrsta_Statusa" />
+            <End Role="Stanje_Publikacije" EntitySet="Stanje_Publikacije" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FOIKnjiznicaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Auth_Protocol">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="naziv_auth_protokola" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Clanovi_Auth_Protocol" Relationship="Self.FK__Clanovi_A__Auth___5629CD9C" FromRole="Auth_Protocol" ToRole="Clanovi_Auth_Protocol" />
+        </EntityType>
+        <EntityType Name="Autori">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="ime" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prezime" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Publikacije" Relationship="Self.Je_Autor" FromRole="Autori" ToRole="Publikacije" />
+        </EntityType>
+        <EntityType Name="Clanovi">
+          <Key>
+            <PropertyRef Name="hrEduPersonUniqueID" />
+          </Key>
+          <Property Name="hrEduPersonUniqueID" Type="Int32" Nullable="false" />
+          <Property Name="ime" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prezime" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Clanovi_Auth_Protocol" Relationship="Self.FK__Clanovi_A__Clano__5535A963" FromRole="Clanovi" ToRole="Clanovi_Auth_Protocol" />
+          <NavigationProperty Name="Stanje_Publikacije" Relationship="Self.FK__Stanje_Pu__Clano__2FCF1A8A" FromRole="Clanovi" ToRole="Stanje_Publikacije" />
+          <NavigationProperty Name="Publikacije" Relationship="Self.Je_Favorit" FromRole="Clanovi" ToRole="Publikacije" />
+        </EntityType>
+        <EntityType Name="Clanovi_Auth_Protocol">
+          <Key>
+            <PropertyRef Name="ClanoviID" />
+            <PropertyRef Name="Auth_ProtocolID" />
+          </Key>
+          <Property Name="ClanoviID" Type="Int32" Nullable="false" />
+          <Property Name="Auth_ProtocolID" Type="Int32" Nullable="false" />
+          <Property Name="podaci" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Auth_Protocol" Relationship="Self.FK__Clanovi_A__Auth___5629CD9C" FromRole="Clanovi_Auth_Protocol" ToRole="Auth_Protocol" />
+          <NavigationProperty Name="Clanovi" Relationship="Self.FK__Clanovi_A__Clano__5535A963" FromRole="Clanovi_Auth_Protocol" ToRole="Clanovi" />
+        </EntityType>
+        <EntityType Name="Izdavaci">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="naziv" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="adresa" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Publikacije" Relationship="Self.FK__Publikaci__Izdav__59FA5E80" FromRole="Izdavaci" ToRole="Publikacije" />
+        </EntityType>
+        <EntityType Name="Kategorije">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="naziv_kategorije" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Publikacije" Relationship="Self.FK__Publikaci__Kateg__59063A47" FromRole="Kategorije" ToRole="Publikacije" />
+        </EntityType>
+        <EntityType Name="Kopija_Publikacije">
+          <Key>
+            <PropertyRef Name="kopija_id" />
+          </Key>
+          <Property Name="kopija_id" Type="Int32" Nullable="false" />
+          <Property Name="Publikacijeid" Type="Int32" Nullable="false" />
+          <Property Name="Clanoviid" Type="Int32" />
+          <NavigationProperty Name="Stanje_Publikacije" Relationship="Self.FK__Stanje_Pu__kopij__3864608B" FromRole="Kopija_Publikacije" ToRole="Stanje_Publikacije" />
+        </EntityType>
+        <EntityType Name="Publikacije">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="isbn" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="udk" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="signatura" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="jezik" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="stranice" Type="Int32" Nullable="false" />
+          <Property Name="sadrzaj" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="slika_url" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="godina_izdanja" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="izdanje" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Kategorijeid" Type="Int32" Nullable="false" />
+          <Property Name="Izdavaciid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Izdavaci" Relationship="Self.FK__Publikaci__Izdav__59FA5E80" FromRole="Publikacije" ToRole="Izdavaci" />
+          <NavigationProperty Name="Kategorije" Relationship="Self.FK__Publikaci__Kateg__59063A47" FromRole="Publikacije" ToRole="Kategorije" />
+          <NavigationProperty Name="Autori" Relationship="Self.Je_Autor" FromRole="Publikacije" ToRole="Autori" />
+          <NavigationProperty Name="Clanovi" Relationship="Self.Je_Favorit" FromRole="Publikacije" ToRole="Clanovi" />
+        </EntityType>
+        <EntityType Name="Stanje_Publikacije">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="datum" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="datum_do" Type="DateTime" Precision="3" />
+          <Property Name="Clanoviid" Type="Int32" Nullable="false" />
+          <Property Name="Vrsta_Statusaid" Type="Int32" Nullable="false" />
+          <Property Name="kopija_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Clanovi" Relationship="Self.FK__Stanje_Pu__Clano__2FCF1A8A" FromRole="Stanje_Publikacije" ToRole="Clanovi" />
+          <NavigationProperty Name="Kopija_Publikacije" Relationship="Self.FK__Stanje_Pu__kopij__3864608B" FromRole="Stanje_Publikacije" ToRole="Kopija_Publikacije" />
+          <NavigationProperty Name="Vrsta_Statusa" Relationship="Self.FK__Stanje_Pu__Vrsta__30C33EC3" FromRole="Stanje_Publikacije" ToRole="Vrsta_Statusa" />
+        </EntityType>
+        <EntityType Name="Vrsta_Statusa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="naziv_vrste" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Stanje_Publikacije" Relationship="Self.FK__Stanje_Pu__Vrsta__30C33EC3" FromRole="Vrsta_Statusa" ToRole="Stanje_Publikacije" />
+        </EntityType>
+        <Association Name="FK__Clanovi_A__Auth___5629CD9C">
+          <End Role="Auth_Protocol" Type="Self.Auth_Protocol" Multiplicity="1" />
+          <End Role="Clanovi_Auth_Protocol" Type="Self.Clanovi_Auth_Protocol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auth_Protocol">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Clanovi_Auth_Protocol">
+              <PropertyRef Name="Auth_ProtocolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Clanovi_A__Clano__5535A963">
+          <End Role="Clanovi" Type="Self.Clanovi" Multiplicity="1" />
+          <End Role="Clanovi_Auth_Protocol" Type="Self.Clanovi_Auth_Protocol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clanovi">
+              <PropertyRef Name="hrEduPersonUniqueID" />
+            </Principal>
+            <Dependent Role="Clanovi_Auth_Protocol">
+              <PropertyRef Name="ClanoviID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Stanje_Pu__Clano__2FCF1A8A">
+          <End Role="Clanovi" Type="Self.Clanovi" Multiplicity="1" />
+          <End Role="Stanje_Publikacije" Type="Self.Stanje_Publikacije" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clanovi">
+              <PropertyRef Name="hrEduPersonUniqueID" />
+            </Principal>
+            <Dependent Role="Stanje_Publikacije">
+              <PropertyRef Name="Clanoviid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Publikaci__Izdav__59FA5E80">
+          <End Role="Izdavaci" Type="Self.Izdavaci" Multiplicity="1" />
+          <End Role="Publikacije" Type="Self.Publikacije" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Izdavaci">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Publikacije">
+              <PropertyRef Name="Izdavaciid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Publikaci__Kateg__59063A47">
+          <End Role="Kategorije" Type="Self.Kategorije" Multiplicity="1" />
+          <End Role="Publikacije" Type="Self.Publikacije" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategorije">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Publikacije">
+              <PropertyRef Name="Kategorijeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Stanje_Pu__kopij__3864608B">
+          <End Role="Kopija_Publikacije" Type="Self.Kopija_Publikacije" Multiplicity="1" />
+          <End Role="Stanje_Publikacije" Type="Self.Stanje_Publikacije" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kopija_Publikacije">
+              <PropertyRef Name="kopija_id" />
+            </Principal>
+            <Dependent Role="Stanje_Publikacije">
+              <PropertyRef Name="kopija_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Stanje_Pu__Vrsta__30C33EC3">
+          <End Role="Vrsta_Statusa" Type="Self.Vrsta_Statusa" Multiplicity="1" />
+          <End Role="Stanje_Publikacije" Type="Self.Stanje_Publikacije" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vrsta_Statusa">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Stanje_Publikacije">
+              <PropertyRef Name="Vrsta_Statusaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Je_Autor">
+          <End Role="Autori" Type="Self.Autori" Multiplicity="*" />
+          <End Role="Publikacije" Type="Self.Publikacije" Multiplicity="*" />
+        </Association>
+        <Association Name="Je_Favorit">
+          <End Role="Clanovi" Type="Self.Clanovi" Multiplicity="*" />
+          <End Role="Publikacije" Type="Self.Publikacije" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="FOIKnjiznicaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Auth_Protocol" EntityType="Self.Auth_Protocol" />
+          <EntitySet Name="Autori" EntityType="Self.Autori" />
+          <EntitySet Name="Clanovi" EntityType="Self.Clanovi" />
+          <EntitySet Name="Clanovi_Auth_Protocol" EntityType="Self.Clanovi_Auth_Protocol" />
+          <EntitySet Name="Izdavaci" EntityType="Self.Izdavaci" />
+          <EntitySet Name="Kategorije" EntityType="Self.Kategorije" />
+          <EntitySet Name="Kopija_Publikacije" EntityType="Self.Kopija_Publikacije" />
+          <EntitySet Name="Publikacije" EntityType="Self.Publikacije" />
+          <EntitySet Name="Stanje_Publikacije" EntityType="Self.Stanje_Publikacije" />
+          <EntitySet Name="Vrsta_Statusa" EntityType="Self.Vrsta_Statusa" />
+          <AssociationSet Name="FK__Clanovi_A__Auth___5629CD9C" Association="Self.FK__Clanovi_A__Auth___5629CD9C">
+            <End Role="Auth_Protocol" EntitySet="Auth_Protocol" />
+            <End Role="Clanovi_Auth_Protocol" EntitySet="Clanovi_Auth_Protocol" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Clanovi_A__Clano__5535A963" Association="Self.FK__Clanovi_A__Clano__5535A963">
+            <End Role="Clanovi" EntitySet="Clanovi" />
+            <End Role="Clanovi_Auth_Protocol" EntitySet="Clanovi_Auth_Protocol" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Stanje_Pu__Clano__2FCF1A8A" Association="Self.FK__Stanje_Pu__Clano__2FCF1A8A">
+            <End Role="Clanovi" EntitySet="Clanovi" />
+            <End Role="Stanje_Publikacije" EntitySet="Stanje_Publikacije" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Publikaci__Izdav__59FA5E80" Association="Self.FK__Publikaci__Izdav__59FA5E80">
+            <End Role="Izdavaci" EntitySet="Izdavaci" />
+            <End Role="Publikacije" EntitySet="Publikacije" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Publikaci__Kateg__59063A47" Association="Self.FK__Publikaci__Kateg__59063A47">
+            <End Role="Kategorije" EntitySet="Kategorije" />
+            <End Role="Publikacije" EntitySet="Publikacije" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Stanje_Pu__kopij__3864608B" Association="Self.FK__Stanje_Pu__kopij__3864608B">
+            <End Role="Kopija_Publikacije" EntitySet="Kopija_Publikacije" />
+            <End Role="Stanje_Publikacije" EntitySet="Stanje_Publikacije" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Stanje_Pu__Vrsta__30C33EC3" Association="Self.FK__Stanje_Pu__Vrsta__30C33EC3">
+            <End Role="Vrsta_Statusa" EntitySet="Vrsta_Statusa" />
+            <End Role="Stanje_Publikacije" EntitySet="Stanje_Publikacije" />
+          </AssociationSet>
+          <AssociationSet Name="Je_Autor" Association="Self.Je_Autor">
+            <End Role="Autori" EntitySet="Autori" />
+            <End Role="Publikacije" EntitySet="Publikacije" />
+          </AssociationSet>
+          <AssociationSet Name="Je_Favorit" Association="Self.Je_Favorit">
+            <End Role="Clanovi" EntitySet="Clanovi" />
+            <End Role="Publikacije" EntitySet="Publikacije" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FOIKnjiznicaModelStoreContainer" CdmEntityContainer="FOIKnjiznicaEntities">
+          <EntitySetMapping Name="Auth_Protocol">
+            <EntityTypeMapping TypeName="FOIKnjiznicaModel.Auth_Protocol">
+              <MappingFragment StoreEntitySet="Auth_Protocol">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="naziv_auth_protokola" ColumnName="naziv_auth_protokola" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Autori">
+            <EntityTypeMapping TypeName="FOIKnjiznicaModel.Autori">
+              <MappingFragment StoreEntitySet="Autori">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ime" ColumnName="ime" />
+                <ScalarProperty Name="prezime" ColumnName="prezime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clanovi">
+            <EntityTypeMapping TypeName="FOIKnjiznicaModel.Clanovi">
+              <MappingFragment StoreEntitySet="Clanovi">
+                <ScalarProperty Name="hrEduPersonUniqueID" ColumnName="hrEduPersonUniqueID" />
+                <ScalarProperty Name="ime" ColumnName="ime" />
+                <ScalarProperty Name="prezime" ColumnName="prezime" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clanovi_Auth_Protocol">
+            <EntityTypeMapping TypeName="FOIKnjiznicaModel.Clanovi_Auth_Protocol">
+              <MappingFragment StoreEntitySet="Clanovi_Auth_Protocol">
+                <ScalarProperty Name="ClanoviID" ColumnName="ClanoviID" />
+                <ScalarProperty Name="Auth_ProtocolID" ColumnName="Auth_ProtocolID" />
+                <ScalarProperty Name="podaci" ColumnName="podaci" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Izdavaci">
+            <EntityTypeMapping TypeName="FOIKnjiznicaModel.Izdavaci">
+              <MappingFragment StoreEntitySet="Izdavaci">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="naziv" ColumnName="naziv" />
+                <ScalarProperty Name="adresa" ColumnName="adresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategorije">
+            <EntityTypeMapping TypeName="FOIKnjiznicaModel.Kategorije">
+              <MappingFragment StoreEntitySet="Kategorije">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="naziv_kategorije" ColumnName="naziv_kategorije" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kopija_Publikacije">
+            <EntityTypeMapping TypeName="FOIKnjiznicaModel.Kopija_Publikacije">
+              <MappingFragment StoreEntitySet="Kopija_Publikacije">
+                <ScalarProperty Name="kopija_id" ColumnName="kopija_id" />
+                <ScalarProperty Name="Publikacijeid" ColumnName="Publikacijeid" />
+                <ScalarProperty Name="Clanoviid" ColumnName="Clanoviid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Publikacije">
+            <EntityTypeMapping TypeName="FOIKnjiznicaModel.Publikacije">
+              <MappingFragment StoreEntitySet="Publikacije">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="isbn" ColumnName="isbn" />
+                <ScalarProperty Name="udk" ColumnName="udk" />
+                <ScalarProperty Name="signatura" ColumnName="signatura" />
+                <ScalarProperty Name="jezik" ColumnName="jezik" />
+                <ScalarProperty Name="stranice" ColumnName="stranice" />
+                <ScalarProperty Name="sadrzaj" ColumnName="sadrzaj" />
+                <ScalarProperty Name="slika_url" ColumnName="slika_url" />
+                <ScalarProperty Name="godina_izdanja" ColumnName="godina_izdanja" />
+                <ScalarProperty Name="izdanje" ColumnName="izdanje" />
+                <ScalarProperty Name="Kategorijeid" ColumnName="Kategorijeid" />
+                <ScalarProperty Name="Izdavaciid" ColumnName="Izdavaciid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stanje_Publikacije">
+            <EntityTypeMapping TypeName="FOIKnjiznicaModel.Stanje_Publikacije">
+              <MappingFragment StoreEntitySet="Stanje_Publikacije">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="datum" ColumnName="datum" />
+                <ScalarProperty Name="datum_do" ColumnName="datum_do" />
+                <ScalarProperty Name="Clanoviid" ColumnName="Clanoviid" />
+                <ScalarProperty Name="Vrsta_Statusaid" ColumnName="Vrsta_Statusaid" />
+                <ScalarProperty Name="kopija_id" ColumnName="kopija_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vrsta_Statusa">
+            <EntityTypeMapping TypeName="FOIKnjiznicaModel.Vrsta_Statusa">
+              <MappingFragment StoreEntitySet="Vrsta_Statusa">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="naziv_vrste" ColumnName="naziv_vrste" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Je_Autor" TypeName="FOIKnjiznicaModel.Je_Autor" StoreEntitySet="Je_Autor">
+            <EndProperty Name="Autori">
+              <ScalarProperty Name="id" ColumnName="Autoriid" />
+            </EndProperty>
+            <EndProperty Name="Publikacije">
+              <ScalarProperty Name="id" ColumnName="Publikacijeid" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Je_Favorit" TypeName="FOIKnjiznicaModel.Je_Favorit" StoreEntitySet="Je_Favorit">
+            <EndProperty Name="Clanovi">
+              <ScalarProperty Name="hrEduPersonUniqueID" ColumnName="Clanoviid" />
+            </EndProperty>
+            <EndProperty Name="Publikacije">
+              <ScalarProperty Name="id" ColumnName="Publikacijeid" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

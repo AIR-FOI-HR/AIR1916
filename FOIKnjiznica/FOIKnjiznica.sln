@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FOIKnjiznica.Android", "FOIKnjiznica\FOIKnjiznica.Android\FOIKnjiznica.Android.csproj", "{8C00DF57-7576-4630-89EC-0EE90D6992DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FOIKnjiznica", "FOIKnjiznica\FOIKnjiznica\FOIKnjiznica.csproj", "{FFED30D8-4D6B-472A-A1C6-90E0B9A0795A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FOIKnjiznica", "FOIKnjiznica\FOIKnjiznica\FOIKnjiznica.csproj", "{FFED30D8-4D6B-472A-A1C6-90E0B9A0795A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FOIKnjiznicaWebServis", "FOIKnjiznicaWebServis\FOIKnjiznicaWebServis.csproj", "{CD60E8E5-0441-410D-9A72-749D9D669FF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{FFED30D8-4D6B-472A-A1C6-90E0B9A0795A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFED30D8-4D6B-472A-A1C6-90E0B9A0795A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFED30D8-4D6B-472A-A1C6-90E0B9A0795A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD60E8E5-0441-410D-9A72-749D9D669FF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD60E8E5-0441-410D-9A72-749D9D669FF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD60E8E5-0441-410D-9A72-749D9D669FF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD60E8E5-0441-410D-9A72-749D9D669FF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
