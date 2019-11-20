@@ -22,10 +22,10 @@ namespace FOIKnjiznicaWebServis.Models
             this.Publikacije = new HashSet<Publikacije>();
         }
     
-        public int hrEduPersonUniqueID { get; set; }
+        public string hrEduPersonUniqueID { get; set; }
         public string ime { get; set; }
         public string prezime { get; set; }
-        public string email { get; set; }
+        public string mobitelID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Clanovi_Auth_Protocol> Clanovi_Auth_Protocol { get; set; }

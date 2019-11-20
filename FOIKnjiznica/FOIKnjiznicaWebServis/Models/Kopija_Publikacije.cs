@@ -21,9 +21,9 @@ namespace FOIKnjiznicaWebServis.Models
         }
     
         public int kopija_id { get; set; }
-        public int Publikacijeid { get; set; }
-        public Nullable<int> Clanoviid { get; set; }
+        public int PublikacijeId { get; set; }
     
+        public virtual Publikacije Publikacije { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Stanje_Publikacije> Stanje_Publikacije { get; set; }
     }

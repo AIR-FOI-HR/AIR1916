@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FOIKnjiznica.MainMenuMaster"
+             Title="Master">
+  <StackLayout>
+    <ListView x:Name="MenuItemsListView"
+              SeparatorVisibility="None"
+              HasUnevenRows="true"
+              ItemsSource="{Binding MenuItems}">
+      <d:ListView.ItemsSource>
+          <x:Array Type="{x:Type x:String}">
+              <x:String>Moj profil</x:String>
+              <x:String>Pretraži knjižnicu</x:String>
+              <x:String>Favoriti</x:String>
+              <x:String>Postavke</x:String>
+              <x:String>Slanje poruke</x:String>
+              <x:String>Odjava</x:String>
+          </x:Array>
+      </d:ListView.ItemsSource>
+      <ListView.Header>
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+          </Grid.RowDefinitions>  
+          
+          <Image Source="foi_header.jpg" Aspect="AspectFit"></Image>
+          <StackLayout Margin="0, -105, 0, 0" Grid.Row="1" Spacing="15">
+          <Label
+              Grid.Column="1"
+              Grid.Row="0"
+              Text="FOI Knjižnica"
+              TextColor="White"
+              FontSize="50"
+              HorizontalOptions="CenterAndExpand"
+              FontAttributes="Bold">
+              <Label.FontFamily>
+                <OnPlatform x:TypeArguments="x:String">
+                    <On Platform="Android" Value="KeepCalm.ttf#KeepCalm" />
+                </OnPlatform>
+              </Label.FontFamily>
+          </Label>
+          </StackLayout>
+        </Grid>
+      </ListView.Header>
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand">
+              <Label VerticalOptions="FillAndExpand" 
+                    VerticalTextAlignment="Center" 
+                    Text="{Binding Title}" 
+                    d:Text="{Binding .}"
+                    FontSize="20"/>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
+</ContentPage>

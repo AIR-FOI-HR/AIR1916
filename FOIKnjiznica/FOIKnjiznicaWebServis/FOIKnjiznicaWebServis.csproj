@@ -8,7 +8,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CD60E8E5-0441-410D-9A72-749D9D669FF4}</ProjectGuid>
+    <ProjectGuid>{D704807F-4844-4DF1-B8E8-ECBBF8379E1C}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -54,8 +54,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Data.Entity.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.Entity" />
@@ -164,56 +162,56 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PublikacijeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Auth_Protocol.cs">
-      <DependentUpon>Feedback.tt</DependentUpon>
+      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Autori.cs">
-      <DependentUpon>Feedback.tt</DependentUpon>
+      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Clanovi.cs">
-      <DependentUpon>Feedback.tt</DependentUpon>
+      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Clanovi_Auth_Protocol.cs">
-      <DependentUpon>Feedback.tt</DependentUpon>
+      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Feedback.Context.cs">
+    <Compile Include="Models\FOIKnjiznicaDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Feedback.Context.tt</DependentUpon>
+      <DependentUpon>FOIKnjiznicaDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Feedback.cs">
+    <Compile Include="Models\FOIKnjiznicaDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Feedback.tt</DependentUpon>
+      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Feedback.Designer.cs">
+    <Compile Include="Models\FOIKnjiznicaDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Feedback.edmx</DependentUpon>
+      <DependentUpon>FOIKnjiznicaDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Izdavaci.cs">
-      <DependentUpon>Feedback.tt</DependentUpon>
+      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Kategorije.cs">
-      <DependentUpon>Feedback.tt</DependentUpon>
+      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Kopija_Publikacije.cs">
-      <DependentUpon>Feedback.tt</DependentUpon>
+      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Publikacije.cs">
-      <DependentUpon>Feedback.tt</DependentUpon>
+      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Stanje_Publikacije.cs">
-      <DependentUpon>Feedback.tt</DependentUpon>
+      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Vrsta_Statusa.cs">
-      <DependentUpon>Feedback.tt</DependentUpon>
+      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -226,15 +224,15 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\Feedback.Context.tt">
+    <Content Include="Models\FOIKnjiznicaDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Feedback.Context.cs</LastGenOutput>
-      <DependentUpon>Feedback.edmx</DependentUpon>
+      <LastGenOutput>FOIKnjiznicaDB.Context.cs</LastGenOutput>
+      <DependentUpon>FOIKnjiznicaDB.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\Feedback.tt">
+    <Content Include="Models\FOIKnjiznicaDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Feedback.edmx</DependentUpon>
-      <LastGenOutput>Feedback.cs</LastGenOutput>
+      <DependentUpon>FOIKnjiznicaDB.edmx</DependentUpon>
+      <LastGenOutput>FOIKnjiznicaDB.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -257,13 +255,14 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <EntityDeploy Include="Models\Feedback.edmx">
+    <EntityDeploy Include="Models\FOIKnjiznicaDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Feedback.Designer.cs</LastGenOutput>
+      <LastGenOutput>FOIKnjiznicaDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Feedback.edmx.diagram">
-      <DependentUpon>Feedback.edmx</DependentUpon>
+    <Content Include="Models\FOIKnjiznicaDB.edmx.diagram">
+      <DependentUpon>FOIKnjiznicaDB.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\FOIKnjiznica - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -336,7 +335,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>61278</DevelopmentServerPort>
+          <DevelopmentServerPort>53097</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>https://localhost:44344/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
