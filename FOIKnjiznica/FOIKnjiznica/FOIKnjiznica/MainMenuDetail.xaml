@@ -55,21 +55,14 @@
         </StackLayout>
 
         <!-- Ispis publikacije na zaslon -->
-        <StackLayout VerticalOptions="CenterAndExpand">
-            <ListView x:Name="ListaPublikacije">
+        <StackLayout VerticalOptions="CenterAndExpand" WidthRequest="75" MinimumWidthRequest="60">
+            <ListView x:Name="ListaPublikacije" HasUnevenRows="True" SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell Height="100">
-                            <StackLayout>
-                                <Label Text="{Binding naziv}"></Label>
-                                <Label Text="{Binding isbn}"></Label>
-                                <Label Text="{Binding udk}"></Label>
-                                <Label Text="{Binding signatura}"></Label>
-                                <Label Text="{Binding jezik}"></Label>
-                                <Label Text="{Binding stranice}"></Label>
-                                <Label Text="{Binding sadrzaj}"></Label>
-                                <Label Text="{Binding godina_izdanja}"></Label>
-                                <Label Text="{Binding izdanje}"></Label>
+                        <ViewCell>
+                            <StackLayout Padding="10, 10, 10, 10">
+                                <Image Source="test.jpg" WidthRequest="90" HeightRequest="200"></Image>
+                                <Label Text="{Binding naziv}" HorizontalOptions="Center"></Label>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

@@ -24,12 +24,12 @@
       <ListView.Header>
         <Grid>
           <Grid.RowDefinitions>
-            <RowDefinition Height="256"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
           </Grid.RowDefinitions>  
           
           <Image Source="foi_header.jpg" Aspect="AspectFit"></Image>
-          <StackLayout Margin="0, -90, 0, 0" Grid.Row="1" Spacing="15">
+          <StackLayout Margin="0, -105, 0, 0" Grid.Row="1" Spacing="15">
           <Label
               Grid.Column="1"
               Grid.Row="0"

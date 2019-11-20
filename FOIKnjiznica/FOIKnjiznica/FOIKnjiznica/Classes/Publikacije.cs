@@ -16,6 +16,6 @@ namespace FOIKnjiznica.Classes
         public string sadrzaj { get; set; }
         public int godina_izdanja { get; set; }
         public string izdanje { get; set; }
-        public string slika_url { get; set; }
+        public string slika_url { get; set;}
     }
 }
