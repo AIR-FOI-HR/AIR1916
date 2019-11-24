@@ -13,10 +13,10 @@ namespace FOIKnjiznicaWebServis.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class FOIKnjiznicaEntities : DbContext
+    public partial class KnjiznicaEntities : DbContext
     {
-        public FOIKnjiznicaEntities()
-            : base("name=FOIKnjiznicaEntities")
+        public KnjiznicaEntities()
+            : base("name=KnjiznicaEntities")
         {
         }
     
@@ -30,6 +30,8 @@ namespace FOIKnjiznicaWebServis.Models
         public virtual DbSet<Clanovi> Clanovi { get; set; }
         public virtual DbSet<Clanovi_Auth_Protocol> Clanovi_Auth_Protocol { get; set; }
         public virtual DbSet<Izdavaci> Izdavaci { get; set; }
+        public virtual DbSet<Je_Autor> Je_Autor { get; set; }
+        public virtual DbSet<Je_Favorit> Je_Favorit { get; set; }
         public virtual DbSet<Kategorije> Kategorije { get; set; }
         public virtual DbSet<Kopija_Publikacije> Kopija_Publikacije { get; set; }
         public virtual DbSet<Publikacije> Publikacije { get; set; }

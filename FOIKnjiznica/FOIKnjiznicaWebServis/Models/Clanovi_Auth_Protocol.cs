@@ -14,12 +14,11 @@ namespace FOIKnjiznicaWebServis.Models
     
     public partial class Clanovi_Auth_Protocol
     {
-        public string ClanoviId { get; set; }
+        public int ClanoviId { get; set; }
         public int Auth_ProtocolId { get; set; }
         public string podaci { get; set; }
         public Nullable<bool> odabrano { get; set; }
     
-        public virtual Auth_Protocol Auth_Protocol { get; set; }
         public virtual Clanovi Clanovi { get; set; }
     }
 }

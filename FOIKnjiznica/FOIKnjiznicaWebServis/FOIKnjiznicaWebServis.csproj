@@ -198,6 +198,12 @@
     <Compile Include="Models\Izdavaci.cs">
       <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Je_Autor.cs">
+      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Je_Favorit.cs">
+      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Kategorije.cs">
       <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
     </Compile>
@@ -226,8 +232,8 @@
     <Content Include="Global.asax" />
     <Content Include="Models\FOIKnjiznicaDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FOIKnjiznicaDB.Context.cs</LastGenOutput>
       <DependentUpon>FOIKnjiznicaDB.edmx</DependentUpon>
+      <LastGenOutput>FOIKnjiznicaDB.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\FOIKnjiznicaDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

@@ -17,7 +17,7 @@ namespace FOIKnjiznicaWebServis.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Autori()
         {
-            this.Publikacije = new HashSet<Publikacije>();
+            this.Je_Autor = new HashSet<Je_Autor>();
         }
     
         public int id { get; set; }
@@ -25,6 +25,6 @@ namespace FOIKnjiznicaWebServis.Models
         public string prezime { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Publikacije> Publikacije { get; set; }
+        public virtual ICollection<Je_Autor> Je_Autor { get; set; }
     }
 }

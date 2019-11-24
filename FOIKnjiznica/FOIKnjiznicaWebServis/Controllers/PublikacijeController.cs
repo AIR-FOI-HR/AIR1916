@@ -10,14 +10,16 @@ namespace FOIKnjiznicaWebServis.Controllers
 {
     public class PublikacijeController : ApiController
     {
-        FOIKnjiznicaEntities db = new FOIKnjiznicaEntities();
+        KnjiznicaEntities db = new KnjiznicaEntities();
 
         // GET: api/Publikacije
         public IEnumerable<Object> Get()
         {
-            var upit = from Publikacije in db.Publikacije select new { Publikacije.id, Publikacije.naziv, Publikacije.isbn, Publikacije.udk,
-                Publikacije.signatura, Publikacije.jezik, Publikacije.stranice, Publikacije.sadrzaj, Publikacije.godina_izdanja,
-                Publikacije.izdanje, Publikacije.slika_url};
+            var upit = from Publikacije in db.Publikacije join Izdavaci in db.Izdavaci on Publikacije.IzdavaciId equals Izdavaci.id
+                       from Autori in db.Autori where Publikacije.id == Autori.id
+                       select new { Publikacije.id, Publikacije.naziv, Publikacije.isbn, Publikacije.udk,
+                       Publikacije.signatura, Publikacije.jezik, Publikacije.stranice, Publikacije.sadrzaj, Publikacije.godina_izdanja,
+                       Publikacije.izdanje, Publikacije.slika_url, Izdavac = Izdavaci.naziv, Autor = Autori.ime + " " + Autori.prezime};
             return upit.ToList<Object>();
         }
 
