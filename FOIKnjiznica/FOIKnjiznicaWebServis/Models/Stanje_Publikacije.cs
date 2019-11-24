@@ -17,10 +17,9 @@ namespace FOIKnjiznicaWebServis.Models
         public int id { get; set; }
         public System.DateTime datum { get; set; }
         public Nullable<System.DateTime> datum_do { get; set; }
-        public string ClanoviId { get; set; }
-        public int PublikacijeId { get; set; }
         public int KopijaId { get; set; }
         public int Vrsta_StatusaId { get; set; }
+        public int ClanoviId { get; set; }
     
         public virtual Clanovi Clanovi { get; set; }
         public virtual Kopija_Publikacije Kopija_Publikacije { get; set; }

@@ -14,16 +14,7 @@ namespace FOIKnjiznicaWebServis.Models
     
     public partial class Auth_Protocol
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Auth_Protocol()
-        {
-            this.Clanovi_Auth_Protocol = new HashSet<Clanovi_Auth_Protocol>();
-        }
-    
         public int id { get; set; }
         public string naziv_auth_protokola { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Clanovi_Auth_Protocol> Clanovi_Auth_Protocol { get; set; }
     }
 }

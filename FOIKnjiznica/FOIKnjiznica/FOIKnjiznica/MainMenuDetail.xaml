@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="FOIKnjiznica.MainMenuDetail"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              Title="Matej Lipovača">
     
     <!-- Glavni StackLayout -->
@@ -55,15 +56,27 @@
         </StackLayout>
 
         <!-- Ispis publikacije na zaslon -->
-        <StackLayout VerticalOptions="CenterAndExpand" WidthRequest="75" MinimumWidthRequest="60">
+        <StackLayout WidthRequest="75" MinimumWidthRequest="60">
             <ListView x:Name="ListaPublikacije" HasUnevenRows="True" SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10, 10, 10, 10">
-                                <Image Source="test.jpg" WidthRequest="90" HeightRequest="200"></Image>
-                                <Label Text="{Binding naziv}" HorizontalOptions="Center"></Label>
-                            </StackLayout>
+                            <Grid Padding="10" RowSpacing="10" ColumnSpacing="15">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <ff:CachedImage x:Name="Image" Source="{Binding slika_url}" WidthRequest="120" HeightRequest="200" HorizontalOptions="Center" VerticalOptions="Center" Margin="30, 0, 0, 0"/>
+                                <ActivityIndicator Color="OrangeRed" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" BindingContext="{x:Reference Name=Image}" />
+                                <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1">
+                                    <Label Text="{Binding naziv}" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold, Italic" TextColor="Black" FontSize="15"/>
+                                    <Label Text="{Binding Autor}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Label Text="{Binding Izdavac}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Label Text="{Binding godina_izdanja}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                </StackLayout>
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

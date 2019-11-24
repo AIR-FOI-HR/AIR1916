@@ -12,19 +12,13 @@ namespace FOIKnjiznicaWebServis.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Kopija_Publikacije
+    public partial class Je_Autor
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Kopija_Publikacije()
-        {
-            this.Stanje_Publikacije = new HashSet<Stanje_Publikacije>();
-        }
-    
+        public int AutoriId { get; set; }
         public int PublikacijeId { get; set; }
-        public int kopija_id { get; set; }
+        public string pomocno { get; set; }
     
+        public virtual Autori Autori { get; set; }
         public virtual Publikacije Publikacije { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Stanje_Publikacije> Stanje_Publikacije { get; set; }
     }
 }
