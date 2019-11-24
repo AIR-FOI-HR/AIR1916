@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="FOIKnjiznica.MainMenuDetail"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              Title="Matej Lipovača">
     
     <!-- Glavni StackLayout -->
@@ -67,7 +68,8 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Source="{Binding slika_url}" WidthRequest="120" HeightRequest="200" HorizontalOptions="Center" VerticalOptions="Center" Margin="30, 0, 0, 0"/>
+                                <ff:CachedImage x:Name="Image" Source="{Binding slika_url}" WidthRequest="120" HeightRequest="200" HorizontalOptions="Center" VerticalOptions="Center" Margin="30, 0, 0, 0"/>
+                                <ActivityIndicator Color="OrangeRed" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" BindingContext="{x:Reference Name=Image}" />
                                 <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1">
                                     <Label Text="{Binding naziv}" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold, Italic" TextColor="Black" FontSize="15"/>
                                     <Label Text="{Binding Autor}" HorizontalOptions="Center" VerticalOptions="Center"/>
