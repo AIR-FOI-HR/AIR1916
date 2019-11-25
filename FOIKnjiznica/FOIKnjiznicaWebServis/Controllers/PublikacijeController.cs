@@ -16,7 +16,8 @@ namespace FOIKnjiznicaWebServis.Controllers
         public IEnumerable<Object> Get()
         {
             var upit = from Publikacije in db.Publikacije join Izdavaci in db.Izdavaci on Publikacije.IzdavaciId equals Izdavaci.id
-                       from Autori in db.Autori where Publikacije.id == Autori.id
+                       join Je_Autor in db.Je_Autor on Publikacije.id equals Je_Autor.PublikacijeId
+                       join Autori in db.Autori on Je_Autor.AutoriId equals Autori.id
                        select new { Publikacije.id, Publikacije.naziv, Publikacije.isbn, Publikacije.udk,
                        Publikacije.signatura, Publikacije.jezik, Publikacije.stranice, Publikacije.sadrzaj, Publikacije.godina_izdanja,
                        Publikacije.izdanje, Publikacije.slika_url, Izdavac = Izdavaci.naziv, Autor = Autori.ime + " " + Autori.prezime};

@@ -23,7 +23,7 @@
                 </Label>
             </StackLayout>
             <StackLayout Orientation="Vertical" HorizontalOptions="Center" Grid.Column="1">
-                <Entry x:Name="search_bar" Placeholder="Pretraži" WidthRequest="200"></Entry>
+                <Entry TextChanged="UnosPretrazivanja" x:Name="search_bar" Placeholder="Pretraži" WidthRequest="200"></Entry>
             </StackLayout>
         </StackLayout>
         
