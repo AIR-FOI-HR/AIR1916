@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             x:Class="FOIKnjiznica.PopUpPages.SortiranjePopupPage"
+             BackgroundColor="Transparent">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation   
+                      PositionIn="Center"  
+                      PositionOut="Center"  
+                      ScaleIn="1.2"  
+                      ScaleOut="0.8"  
+                      DurationIn="400"  
+                      DurationOut="300"  
+                      EasingIn="SinOut"  
+                      EasingOut="SinIn"  
+      HasBackgroundAnimation="False"/>
+    </pages:PopupPage.Animation>
+    <StackLayout VerticalOptions="Center"  Padding="20,0" HorizontalOptions="FillAndExpand" >
+        <Frame CornerRadius="10" Padding="0" BackgroundColor="OrangeRed">
+            <StackLayout Padding="10">
+                <Label Text="First Popup Page" TextColor="White" FontSize="20" HorizontalOptions="Center"></Label>
+                <ScrollView>
+                    <StackLayout>
+                        <Label Text="Hello Xamarin Guys" TextColor="White"/>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="This is Very Awesome Popup Plugins For Xamarin forms" TextColor="White"/>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>

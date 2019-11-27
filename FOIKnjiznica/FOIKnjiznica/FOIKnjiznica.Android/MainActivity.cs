@@ -20,6 +20,9 @@ namespace FOIKnjiznica.Droid
 
             base.OnCreate(savedInstanceState);
 
+            //Inicijalizacija POPUP nugget paketa
+            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             CachedImageRenderer.Init(true);

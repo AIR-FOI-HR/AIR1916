@@ -10,6 +10,7 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using FOIKnjiznicaWebServis.Models;
 using FOIKnjiznicaWebServis.Controllers;
+using Rg.Plugins.Popup.Services;
 
 namespace FOIKnjiznica
 {
@@ -47,6 +48,11 @@ namespace FOIKnjiznica
             {
                 DohvatiPublikacije();
             }
+        }
+
+        private async void sort_button_Clicked(object sender, EventArgs e)
+        {
+            await PopupNavigation.PushAsync(new PopUpPages.SortiranjePopupPage());
         }
     }
 }
