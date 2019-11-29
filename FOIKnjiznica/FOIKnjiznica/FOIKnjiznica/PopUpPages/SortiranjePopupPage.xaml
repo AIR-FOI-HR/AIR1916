@@ -31,10 +31,10 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.Row="0">
-                            <Button CornerRadius="2" Text="A-Z" TextColor="Black" FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" x:Name="sortirajAZ"></Button>
+                            <Button CornerRadius="2" Text="A-Z" TextColor="Black" FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" x:Name="sortirajAZ" Clicked="sortirajAZ_Clicked"></Button>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.Row="1">
-                            <Button CornerRadius="2" Text="Z-A" TextColor="Black" FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" x:Name="sortirajZA"></Button>
+                            <Button CornerRadius="2" Text="Z-A" TextColor="Black" FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" x:Name="sortirajZA" Clicked="sortirajZA_Clicked"></Button>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.Row="2">
                             <Button CornerRadius="2" Text="Godine" TextColor="Black" FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" x:Name="sortirajPoGodinama"></Button>
@@ -43,7 +43,7 @@
                             <Button CornerRadius="2" Text="Autori" TextColor="Black" FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" x:Name="sortirajPoAutorima"></Button>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.Row="4">
-                            <Button CornerRadius="2" BackgroundColor="#ae2323" Text="Izlaz" TextColor="White" FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" x:Name="izlazak"></Button>
+                            <Button CornerRadius="2" BackgroundColor="#ae2323" Text="Izlaz" TextColor="White" FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" x:Name="izlazak" Clicked="izlazak_Clicked"></Button>
                         </StackLayout>
                     </Grid>
                 </ScrollView>

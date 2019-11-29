@@ -17,11 +17,16 @@ namespace FOIKnjiznica
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainMenuDetail : ContentPage
     {
+        public static List<Classes.Publikacije> listaSvihPublikacija;
         public MainMenuDetail()
         {
             InitializeComponent();
             BindingContext = this;
             DohvatiPublikacije();
+
+            //Listener koji prima događaj od popup prozora te osvjezava listu
+            MessagingCenter.Subscribe<App>((App)Application.Current, "sortiranjeAZ", (sender) => { OsvjeziListuPublikacija(); });
+            MessagingCenter.Subscribe<App>((App)Application.Current, "sortiranjeZA", (sender) => { OsvjeziListuPublikacija(); });
         }
 
         //Dohvacanje Publikacije za prikaz na zaslonu
@@ -30,6 +35,7 @@ namespace FOIKnjiznica
             HttpClient client = new HttpClient();
             var response = await client.GetStringAsync("http://foiknjiznica.azurewebsites.net/api/Publikacije");
             var publikacije = JsonConvert.DeserializeObject<List<Classes.Publikacije>>(response);
+            listaSvihPublikacija = publikacije;
             ListaPublikacije.ItemsSource = publikacije;
         }
 
@@ -48,6 +54,11 @@ namespace FOIKnjiznica
             {
                 DohvatiPublikacije();
             }
+        }
+
+        private void OsvjeziListuPublikacija()
+        {
+            ListaPublikacije.ItemsSource = listaSvihPublikacija;
         }
 
         private async void sort_button_Clicked(object sender, EventArgs e)
