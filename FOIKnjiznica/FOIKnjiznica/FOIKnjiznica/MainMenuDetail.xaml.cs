@@ -27,6 +27,7 @@ namespace FOIKnjiznica
             //Listener koji prima događaj od popup prozora te osvjezava listu
             MessagingCenter.Subscribe<App>((App)Application.Current, "sortiranjeAZ", (sender) => { OsvjeziListuPublikacija(); });
             MessagingCenter.Subscribe<App>((App)Application.Current, "sortiranjeZA", (sender) => { OsvjeziListuPublikacija(); });
+            MessagingCenter.Subscribe<App>((App)Application.Current, "sortiranjePoGodini", (sender) => { OsvjeziListuPublikacija(); });
         }
 
         //Dohvacanje Publikacije za prikaz na zaslonu

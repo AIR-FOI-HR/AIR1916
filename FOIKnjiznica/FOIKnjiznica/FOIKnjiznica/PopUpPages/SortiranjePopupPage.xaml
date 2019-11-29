@@ -37,7 +37,7 @@
                             <Button CornerRadius="2" Text="Z-A" TextColor="Black" FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" x:Name="sortirajZA" Clicked="sortirajZA_Clicked"></Button>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.Row="2">
-                            <Button CornerRadius="2" Text="Godine" TextColor="Black" FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" x:Name="sortirajPoGodinama"></Button>
+                            <Button CornerRadius="2" Text="Godine" TextColor="Black" FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" x:Name="sortirajPoGodinama" Clicked="sortirajPoGodinama_Clicked"></Button>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.Row="3">
                             <Button CornerRadius="2" Text="Autori" TextColor="Black" FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" x:Name="sortirajPoAutorima"></Button>
