@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FOIKnjiznica.Classes
 {
-    class Publikacije
+    public class Publikacije
     {
         public int id { get; set; }
         public string naziv { get; set; }

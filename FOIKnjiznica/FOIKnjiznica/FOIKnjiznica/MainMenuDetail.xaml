@@ -39,7 +39,7 @@
                 </Label>
             </StackLayout>
             <StackLayout Orientation="Vertical" HorizontalOptions="Center">
-                <Button BackgroundColor="#ae2323" Text="Sortiraj" TextColor="White" WidthRequest="100" HeightRequest="40" CornerRadius="13" x:Name="sort_button"></Button>
+                <Button BackgroundColor="#ae2323" Text="Sortiraj" TextColor="White" WidthRequest="100" HeightRequest="40" CornerRadius="13" x:Name="sort_button" Clicked="sort_button_Clicked"></Button>
             </StackLayout>
             <StackLayout Orientation="Vertical" HorizontalOptions="Center" Margin="30, 5, 0, 0">
                 <Label x:Name="filter_label" Text="&#xf0b0;" FontSize="25" HorizontalOptions="Center" TextColor="#696969">
