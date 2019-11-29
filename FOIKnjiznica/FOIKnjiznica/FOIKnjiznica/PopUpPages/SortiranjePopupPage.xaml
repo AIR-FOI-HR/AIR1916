@@ -18,9 +18,9 @@
       HasBackgroundAnimation="False"/>
     </pages:PopupPage.Animation>
     <StackLayout VerticalOptions="Center"  Padding="20,0" HorizontalOptions="FillAndExpand" >
-        <Frame CornerRadius="10" Padding="0" BackgroundColor="#ae2323" Opacity="0.9">
+        <Frame CornerRadius="10" Padding="0" BackgroundColor="#ae2323">
             <StackLayout Padding="10">
-                <Label Text="Sortiranje" TextColor="White" FontSize="40" HorizontalOptions="Center"></Label>
+                <Label Text="Sortiranje" TextColor="White" FontSize="40" HorizontalOptions="Center" FontFamily="Roboto"></Label>
                 <ScrollView>
                     <Grid Padding="5" RowSpacing="5" ColumnSpacing="15">
                         <Grid.RowDefinitions>
@@ -31,19 +31,19 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.Row="0">
-                            <Button CornerRadius="2" Text="A-Z" TextColor="Black" FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" x:Name="sortirajAZ" Clicked="sortirajAZ_Clicked"></Button>
+                            <Button CornerRadius="2" Text="A-Z" TextColor="Black" FontSize="17" FontAttributes="Bold" FontFamily="Roboto" HorizontalOptions="FillAndExpand" x:Name="sortirajAZ" Clicked="sortirajAZ_Clicked"></Button>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.Row="1">
-                            <Button CornerRadius="2" Text="Z-A" TextColor="Black" FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" x:Name="sortirajZA" Clicked="sortirajZA_Clicked"></Button>
+                            <Button CornerRadius="2" Text="Z-A" TextColor="Black" FontSize="17" FontAttributes="Bold" FontFamily="Roboto" HorizontalOptions="FillAndExpand" x:Name="sortirajZA" Clicked="sortirajZA_Clicked"></Button>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.Row="2">
-                            <Button CornerRadius="2" Text="Godine" TextColor="Black" FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" x:Name="sortirajPoGodinama" Clicked="sortirajPoGodinama_Clicked"></Button>
+                            <Button CornerRadius="2" Text="Godine izdanja" TextColor="Black" FontSize="17" FontAttributes="Bold" FontFamily="Roboto" HorizontalOptions="FillAndExpand" x:Name="sortirajPoGodinama" Clicked="sortirajPoGodinama_Clicked"></Button>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.Row="3">
-                            <Button CornerRadius="2" Text="Autori" TextColor="Black" FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" x:Name="sortirajPoAutorima"></Button>
+                            <Button CornerRadius="2" Text="Autori" TextColor="Black" FontSize="17" FontAttributes="Bold" FontFamily="Roboto" HorizontalOptions="FillAndExpand" x:Name="sortirajPoAutorima" Clicked="sortirajPoAutorima_Clicked"></Button>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.Row="4">
-                            <Button CornerRadius="2" BackgroundColor="#ae2323" Text="Izlaz" TextColor="White" FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" x:Name="izlazak" Clicked="izlazak_Clicked"></Button>
+                            <Button CornerRadius="2" BackgroundColor="#ae2323" Text="Izlaz" TextColor="White" FontSize="15" FontAttributes="Bold" FontFamily="Roboto" HorizontalOptions="FillAndExpand" x:Name="izlazak" Clicked="izlazak_Clicked"></Button>
                         </StackLayout>
                     </Grid>
                 </ScrollView>

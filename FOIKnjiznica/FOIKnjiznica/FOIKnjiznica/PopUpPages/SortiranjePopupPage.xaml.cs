@@ -63,5 +63,14 @@ namespace FOIKnjiznica.PopUpPages
             MessagingCenter.Send<App>((App)Application.Current, "sortiranjePoGodini");
             await PopupNavigation.Instance.PopAsync();
         }
+
+        private async void sortirajPoAutorima_Clicked(object sender, EventArgs e)
+        {
+            var sortiranaLista = publikacijeZaSortiranje.OrderBy(publikacija => publikacija.Autor);
+            MainMenuDetail.listaSvihPublikacija = sortiranaLista.ToList();
+
+            MessagingCenter.Send<App>((App)Application.Current, "sortiranjePoAutoru");
+            await PopupNavigation.Instance.PopAsync();
+        }
     }
 }
