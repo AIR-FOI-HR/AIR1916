@@ -4,12 +4,9 @@ using System.Text;
 
 namespace FOIKnjiznica.Classes
 {
-    public class Autori
+    public class Kategorije
     {
         public int id { get; set; }
-
-        public string ime { get; set; }
-
-        public string prezime { get; set; }
+        public string naziv { get; set; }
     }
 }
