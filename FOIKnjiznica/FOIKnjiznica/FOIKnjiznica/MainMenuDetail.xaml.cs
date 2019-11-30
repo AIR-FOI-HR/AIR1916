@@ -10,6 +10,8 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using FOIKnjiznicaWebServis.Models;
 using FOIKnjiznicaWebServis.Controllers;
+using System.Windows.Input;
+using Rg.Plugins.Popup.Services;
 
 namespace FOIKnjiznica
 {
@@ -47,6 +49,11 @@ namespace FOIKnjiznica
             {
                 DohvatiPublikacije();
             }
+        }
+
+        private async void filter_button_Clicked(object sender, EventArgs e)
+        {
+            await PopupNavigation.PushAsync(new IzbornikFiltracije());
         }
     }
 }

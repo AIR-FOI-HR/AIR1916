@@ -51,7 +51,7 @@
                 </Label>
             </StackLayout>
             <StackLayout Orientation="Vertical" HorizontalOptions="Center">
-                <Button BackgroundColor="#ae2323" Text="Filtriraj" TextColor="White" WidthRequest="100" HeightRequest="40" CornerRadius="13" x:Name="filter_button"></Button>
+                <Button Clicked="filter_button_Clicked" BackgroundColor="#ae2323" Text="Filtriraj" TextColor="White" WidthRequest="100" HeightRequest="40" CornerRadius="13" x:Name="filter_button"></Button>
             </StackLayout>
         </StackLayout>
 

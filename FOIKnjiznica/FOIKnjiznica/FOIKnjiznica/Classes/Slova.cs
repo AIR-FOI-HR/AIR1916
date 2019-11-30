@@ -4,9 +4,8 @@ using System.Text;
 
 namespace FOIKnjiznica.Classes
 {
-    public class Kategorije
+    public class Slova
     {
-        public int id { get; set; }
-        public string naziv_kategorije { get; set; }
+        public char slovo { get; set; }
     }
 }
