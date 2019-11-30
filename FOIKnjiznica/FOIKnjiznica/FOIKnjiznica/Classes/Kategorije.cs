@@ -8,5 +8,7 @@ namespace FOIKnjiznica.Classes
     {
         public int id { get; set; }
         public string naziv_kategorije { get; set; }
+
+        public bool odabrano { get; set; } = false;
     }
 }

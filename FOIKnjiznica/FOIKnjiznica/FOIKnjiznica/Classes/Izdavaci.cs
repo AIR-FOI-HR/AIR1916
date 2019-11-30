@@ -11,5 +11,7 @@ namespace FOIKnjiznica.Classes
         public string naziv { get; set; }
 
         public string adresa { get; set; }
+
+        public bool odabrano { get; set; } = false;
     }
 }

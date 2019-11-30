@@ -8,67 +8,67 @@
              mc:Ignorable="d"
              x:Class="FOIKnjiznica.IzbornikFiltracije">
     <pages:PopupPage.Content>
-        <StackLayout BackgroundColor="White" Orientation="Vertical" WidthRequest="75" MinimumWidthRequest="60">
+        <StackLayout BackgroundColor="#f5f6f7" Orientation="Vertical" WidthRequest="75" MinimumWidthRequest="60">
             <Button x:Name="gumb_Autori" TextColor="#ffffff" BackgroundColor="#ae2323" Text="Autori" BorderWidth="0" Clicked="Autori_Clicked" />
             <Button x:Name="gumb_Izdavaci" TextColor="#ffffff" BackgroundColor="#ae2323" Text="Izdavači" BorderWidth="0" Clicked="Izdavaci_Clicked"/>
             <Button x:Name="gumb_Slova" TextColor="#ffffff" BackgroundColor="#ae2323" Text="Prvo slovo publikacije" BorderWidth="0" Clicked="Slovo_Clicked"/>
             <Button x:Name="gumb_Kategorije" TextColor="#ffffff" BackgroundColor="#ae2323" Text="Kategorije" BorderWidth="0" Clicked="Kategorije_Clicked"/>
             <!-- Prikaz filtra prema autorima -->
-            <ListView x:Name="FiltarAutora" IsVisible="False" SelectionMode="None">
+            <ListView x:Name="FiltarAutora" IsVisible="False" SelectionMode="None" BackgroundColor="White">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" Spacing="0">
                                 <Label Text="{Binding ime}" Margin="5,5,5,5"/>
                                 <Label Text="{Binding prezime}" Margin="0,5,0,5"/>
-                                <CheckBox x:Name="{Binding id}" Color="#ae2323"/>
+                                <CheckBox Color="#ae2323" IsChecked="{Binding odabrano,Mode=TwoWay}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
             <!-- Prikaz filtra prema izdavacima -->
-            <ListView x:Name="FiltarIzdavaca" IsVisible="False" SelectionMode="None">
+            <ListView x:Name="FiltarIzdavaca" IsVisible="False" SelectionMode="None" BackgroundColor="White">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" Spacing="0">
-                                <Label Text="{Binding naziv}"/>
-                                <CheckBox x:Name="{Binding id}" Color="#ae2323"/>
+                                <Label Text="{Binding naziv}" Margin="5,5,5,5"/>
+                                <CheckBox x:Name="{Binding id}" Color="#ae2323" IsChecked="{Binding odabrano,Mode=TwoWay}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
             <!-- Prikaz filtra prema kategorijama -->
-            <ListView x:Name="FiltarKategorija" IsVisible="False" SelectionMode="None">
+            <ListView x:Name="FiltarKategorija" IsVisible="False" SelectionMode="None" BackgroundColor="White">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" Spacing="0">
                                 <Label Text="{Binding naziv_kategorije}"/>
-                                <CheckBox x:Name="{Binding id}" Color="#ae2323"/>
+                                <CheckBox x:Name="{Binding id}" Color="#ae2323" Margin="5,5,5,5" IsChecked="{Binding odabrano,Mode=TwoWay}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
             <!-- Prikaz filtra prema slovima -->
-            <ListView x:Name="FiltarSlova" IsVisible="False" SelectionMode="None">
+            <ListView x:Name="FiltarSlova" IsVisible="False" SelectionMode="None" BackgroundColor="White">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" Spacing="0">
                                 <Label Text="{Binding slovo}"/>
-                                <CheckBox x:Name="{Binding slovo}" Color="#ae2323"/>
+                                <CheckBox x:Name="{Binding slovo}" Color="#ae2323" Margin="5,5,5,5" IsChecked="{Binding odabrano,Mode=TwoWay}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Button  TextColor="#ffffff" BackgroundColor="#ae2323" Text="Resetiraj" BorderWidth="0"/>
-                <Button  TextColor="#ffffff" BackgroundColor="#ae2323" Text="Odaberi" BorderWidth="0"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="End" Margin="5,5,5,5">
+                <Button  TextColor="#ffffff" BackgroundColor="#ae2323" Text="Resetiraj" BorderWidth="0" Clicked="Reset_Clicked"/>
+                <Button  TextColor="#ffffff" BackgroundColor="#ae2323" Text="Odaberi" BorderWidth="0" Clicked="Accept_Clicked"/>
             </StackLayout>
         </StackLayout>
     </pages:PopupPage.Content>

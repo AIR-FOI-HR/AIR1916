@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,10 @@ namespace FOIKnjiznica
     public partial class IzbornikFiltracije : Rg.Plugins.Popup.Pages.PopupPage
     {
         public ListView trenutniListView;
+        public List<Classes.Autori> autori;
+        public List<Classes.Kategorije> kategorije;
+        public List<Classes.Izdavaci> izdavaci;
+        public List<Classes.Slova> slova;
         public Button gumbTrenutnoAktivneKategorije;
 
         public IzbornikFiltracije()
@@ -35,8 +40,10 @@ namespace FOIKnjiznica
         {
             HttpClient client = new HttpClient();
             var response = await client.GetStringAsync("http://foiknjiznica.azurewebsites.net/api/Autori");
-            var autori = JsonConvert.DeserializeObject<List<Classes.Autori>>(response);
+            autori = JsonConvert.DeserializeObject<List<Classes.Autori>>(response);
+            ProvjeriPostojeceFiltreAutor();
             FiltarAutora.ItemsSource = autori;
+            client.Dispose();
         }
 
         //Dohvacanje liste izdavača na isti način kao što se dohvatila i lista autora
@@ -44,15 +51,17 @@ namespace FOIKnjiznica
         {
             HttpClient client = new HttpClient();
             var response = await client.GetStringAsync("http://foiknjiznica.azurewebsites.net/api/Izdavaci");
-            var izdavaci = JsonConvert.DeserializeObject<List<Classes.Izdavaci>>(response);
+            izdavaci = JsonConvert.DeserializeObject<List<Classes.Izdavaci>>(response);
+            ProvjeriPostojeceFiltreIzdavac();
             FiltarIzdavaca.ItemsSource = izdavaci;
+            client.Dispose();
         }
 
         //Kreiranje liste svih slova engleske abecede te postavljanje iste kao izvor podataka za ListView prikaz 
         //filtra slova
         private void DohvatiSlova()
         {
-            List<Classes.Slova> slova = new List<Classes.Slova>();
+            slova = new List<Classes.Slova>();
             Classes.Slova slovo;
 
             for (int i = 0; i < 26; i++)
@@ -63,7 +72,7 @@ namespace FOIKnjiznica
 
                 slova.Add(slovo);
             }
-
+            ProvjeriPostojeceFiltreSlovo();
             FiltarSlova.ItemsSource = slova;
         }
 
@@ -72,8 +81,10 @@ namespace FOIKnjiznica
         {
             HttpClient client = new HttpClient();
             var response = await client.GetStringAsync("http://foiknjiznica.azurewebsites.net/api/Kategorije");
-            var kategorije = JsonConvert.DeserializeObject<List<Classes.Kategorije>>(response);
+            kategorije = JsonConvert.DeserializeObject<List<Classes.Kategorije>>(response);
+            ProvjeriPostojeceFiltreKategorija();
             FiltarKategorija.ItemsSource = kategorije;
+            client.Dispose();
         }
 
 
@@ -120,6 +131,9 @@ namespace FOIKnjiznica
 
         }
 
+        //Metode koje se aktiviraju kod pritiska na gumb neke kategorije
+        //filtra. Metode zovu metode za prikaz odgovarajućeg ListViewa
+        // te označavanje odabrane kategorije.
         private void Autori_Clicked(object sender, EventArgs e)
         {
             PrikazFiltra(FiltarAutora);
@@ -143,5 +157,149 @@ namespace FOIKnjiznica
             PrikazFiltra(FiltarKategorija);
             OznaciKategoriju(gumb_Kategorije);
         }
+
+
+        //Metoda koja se izvršava kad korisnik pritisne na gumb za reset odabira.
+        //Metoda je implementirana tako da se za svaku ListView kontrolu napravi
+        //refresh te se dohvate podaci u slučaju neke promjene podataka
+        private void Reset_Clicked(object sender, EventArgs e)
+        {
+            Classes.Filtar.filtarAutori.Clear();
+            Classes.Filtar.filtarIzdavaci.Clear();
+            Classes.Filtar.filtarKategorije.Clear();
+            Classes.Filtar.filtarSlova.Clear();
+
+            FiltarAutora.BeginRefresh();
+            DohvatiAutore();
+            FiltarAutora.EndRefresh();
+
+            FiltarIzdavaca.BeginRefresh();
+            DohvatiIzdavace();
+            FiltarIzdavaca.EndRefresh();
+
+            FiltarKategorija.BeginRefresh();
+            DohvatiKategorije();
+            FiltarKategorija.EndRefresh();
+
+            FiltarSlova.BeginRefresh();
+            DohvatiSlova();
+            FiltarSlova.EndRefresh();
+        }
+
+        private async void Accept_Clicked(object sender, EventArgs e)
+        {
+            Classes.Filtar.filtarAutori.Clear();
+            Classes.Filtar.filtarIzdavaci.Clear();
+            Classes.Filtar.filtarKategorije.Clear();
+            Classes.Filtar.filtarSlova.Clear();
+
+            ListaOdabranihFiltra();
+
+            await PopupNavigation.Instance.PopAsync();
+        }
+
+        private void ListaOdabranihFiltra()
+        {
+            foreach (var autor in autori)
+            {
+                if(autor.odabrano == true)
+                {
+                    Classes.Filtar.filtarAutori.Add(autor);
+                }
+            }
+
+            foreach (var kategorija in kategorije)
+            {
+                if (kategorija.odabrano == true)
+                {
+                    Classes.Filtar.filtarKategorije.Add(kategorija);
+                }
+            }
+
+            foreach (var izdavac in izdavaci)
+            {
+                if (izdavac.odabrano == true)
+                {
+                    Classes.Filtar.filtarIzdavaci.Add(izdavac);
+                }
+            }
+
+            foreach (var slovo in slova)
+            {
+                if (slovo.odabrano == true)
+                {
+                    Classes.Filtar.filtarSlova.Add(slovo);
+                }
+            }
+        }
+
+        private void ProvjeriPostojeceFiltreAutor()
+        {
+            if(Classes.Filtar.filtarAutori.Count > 0)
+            {
+                foreach(var autor in Classes.Filtar.filtarAutori)
+                {
+                    foreach (var autorLista in autori)
+                    {
+                        if(autor.id == autorLista.id)
+                        {
+                            autorLista.odabrano = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void ProvjeriPostojeceFiltreIzdavac()
+        {
+            if (Classes.Filtar.filtarIzdavaci.Count > 0)
+            {
+                foreach (var izdavac in Classes.Filtar.filtarIzdavaci)
+                {
+                    foreach (var izdavacLista in izdavaci)
+                    {
+                        if (izdavac.id == izdavacLista.id)
+                        {
+                            izdavacLista.odabrano = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void ProvjeriPostojeceFiltreKategorija()
+        {
+            if (Classes.Filtar.filtarKategorije.Count > 0)
+            {
+                foreach (var kategorija in Classes.Filtar.filtarKategorije)
+                {
+                    foreach (var kategorijaLista in kategorije)
+                    {
+                        if (kategorija.id == kategorijaLista.id)
+                        {
+                            kategorijaLista.odabrano = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void ProvjeriPostojeceFiltreSlovo()
+        {
+            if (Classes.Filtar.filtarSlova.Count > 0)
+            {
+                foreach (var slovo in Classes.Filtar.filtarSlova)
+                {
+                    foreach (var slovaLista in slova)
+                    {
+                        if (slovo.slovo == slovaLista.slovo)
+                        {
+                            slovaLista.odabrano = true;
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }
