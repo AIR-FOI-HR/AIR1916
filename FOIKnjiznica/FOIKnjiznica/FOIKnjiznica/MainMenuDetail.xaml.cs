@@ -67,5 +67,11 @@ namespace FOIKnjiznica
         {
             await PopupNavigation.PushAsync(new PopUpPages.SortiranjePopupPage());
         }
+
+        public async void OnListViewItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            Classes.Publikacije tappedItem = e.Item as Classes.Publikacije;
+            await Navigation.PushAsync(new BookInfo(tappedItem));
+        }
     }
 }
