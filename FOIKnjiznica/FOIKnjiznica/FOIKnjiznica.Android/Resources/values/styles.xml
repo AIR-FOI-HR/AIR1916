@@ -22,7 +22,11 @@
     <item name="windowActionModeOverlay">true</item>
 
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
+
+    <!-- Boja za ListView-ove -->
+    <item name="android:colorActivatedHighlight">@color/ListViewHighlight</item>
   </style>
+  <color name="ListViewHighlight">#F3F3F3</color>
 
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
     <item name="colorAccent">#FF0000</item>

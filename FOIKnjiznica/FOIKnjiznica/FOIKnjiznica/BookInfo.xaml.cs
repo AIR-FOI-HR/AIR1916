@@ -41,7 +41,7 @@ namespace FOIKnjiznica
             var response = await client.GetStringAsync("http://foiknjiznica.azurewebsites.net/api/Publikacije/"+id);
             var publikacije = JsonConvert.DeserializeObject<List<Classes.Publikacije>>(response);
             listaSvihPublikacija = publikacije;
-            ListaPublikacije.ItemsSource = publikacije;
+            ListaPublikacije.ItemsSource = listaSvihPublikacija;
         }
     }
 }
