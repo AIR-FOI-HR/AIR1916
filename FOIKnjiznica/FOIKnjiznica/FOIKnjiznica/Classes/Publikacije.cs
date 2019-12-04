@@ -22,6 +22,7 @@ namespace FOIKnjiznica.Classes
         public string Kopija { get; set; }
         public string Stanje { get; set; }
         public string Vrsta { get; set; }
+        public int Kategorija { get; set; }
 
     }
 }

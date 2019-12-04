@@ -62,7 +62,7 @@ namespace FOIKnjiznica.Classes
             {
                 foreach (Publikacije trenutnaPublikacija in filtriranaListaPublikacija)
                 {
-                    prolaziFiltar = filtarKategorije.Any(item => item.naziv_kategorije == trenutnaPublikacija.Vrsta);
+                    prolaziFiltar = filtarKategorije.Any(item => item.id == trenutnaPublikacija.Kategorija);
 
                     if (prolaziFiltar == true)
                     {

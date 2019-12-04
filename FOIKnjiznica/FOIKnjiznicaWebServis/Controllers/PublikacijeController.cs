@@ -19,6 +19,7 @@ namespace FOIKnjiznicaWebServis.Controllers
                        join Izdavaci in db.Izdavaci on Publikacije.IzdavaciId equals Izdavaci.id
                        join Je_Autor in db.Je_Autor on Publikacije.id equals Je_Autor.PublikacijeId
                        join Autori in db.Autori on Je_Autor.AutoriId equals Autori.id
+                       join Kategorije in db.Kategorije on Publikacije.KategorijeId equals Kategorije.id
                        select new
                        {
                            Publikacije.id,
@@ -33,7 +34,8 @@ namespace FOIKnjiznicaWebServis.Controllers
                            Publikacije.izdanje,
                            Publikacije.slika_url,
                            Izdavac = Izdavaci.naziv,
-                           Autor = Autori.ime + " " + Autori.prezime
+                           Autor = Autori.ime + " " + Autori.prezime,
+                           Kategorija = Kategorije.id
                        }; 
                        return upit.ToList<Object>();
         }
