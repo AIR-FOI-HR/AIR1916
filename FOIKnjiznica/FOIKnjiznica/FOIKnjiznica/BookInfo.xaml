@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             mc:Ignorable="d"
+             x:Class="FOIKnjiznica.BookInfo"
+             Title="Detaljne informacije">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="Naziv" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold, Italic" TextColor="Black" FontSize="25" Margin="10"/>
+            <Grid Padding="10" RowSpacing="10" ColumnSpacing="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+                <ff:CachedImage x:Name="Image" Source="{Binding slika_url}" WidthRequest="150" HeightRequest="240" HorizontalOptions="Start" VerticalOptions="Center" Margin="30, 0, 0, 0"/>
+                <ActivityIndicator Color="OrangeRed" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" BindingContext="{x:Reference Name=Image}" />
+                <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1">
+                    <Label x:Name="Autor" HorizontalOptions="Start" VerticalOptions="Center" FontAttributes="Bold"/>
+                    <Label x:Name="Isbn" HorizontalOptions="Start" VerticalOptions="Center" FontAttributes="Bold"/>
+                    <Label x:Name="Udk" HorizontalOptions="Start" VerticalOptions="Center" FontAttributes="Bold"/>
+                    <Label x:Name="Signatura" HorizontalOptions="Start" VerticalOptions="Center" FontAttributes="Bold"/>
+                    <Label x:Name="Jezik" HorizontalOptions="Start" VerticalOptions="Center" FontAttributes="Bold"/>
+                    <Label x:Name="Stranice" HorizontalOptions="Start" VerticalOptions="Center" FontAttributes="Bold"/>
+                    <Label x:Name="Godina" HorizontalOptions="Start" VerticalOptions="Center" FontAttributes="Bold"/>
+                    <Label x:Name="Izdanje" HorizontalOptions="Start" VerticalOptions="Center" FontAttributes="Bold"/>
+                    <Label x:Name="Izdavac" HorizontalOptions="Start" VerticalOptions="Center" FontAttributes="Bold"/>
+                </StackLayout>
+            </Grid>
+            <ListView x:Name="ListaPublikacije" HasUnevenRows="True" SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10" RowSpacing="10" ColumnSpacing="15">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Broj kopije i status:" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0" FontAttributes="Bold"/>
+                                <Label Text="{Binding Kopija}" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" TextColor="Black" FontSize="15" Grid.Column="1"/>
+                                <Image Source="{Binding Vrsta}" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="25" HeightRequest="25" Grid.Column="2"/>
+                                <Label Text="{Binding Vrsta}" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Italic" Grid.Column="3"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Sadržaj" x:Name="Sadrzaj" BackgroundColor="#ae2323" TextColor="White"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
