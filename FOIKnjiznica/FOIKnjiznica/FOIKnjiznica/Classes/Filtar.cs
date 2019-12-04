@@ -35,7 +35,7 @@ namespace FOIKnjiznica.Classes
             }
             else
             {
-                filtriranaListaPublikacija = trenutnaListaPublikacija;
+                filtriranaListaPublikacija.AddRange(trenutnaListaPublikacija); 
             }
 
             //Filtriranje po id izdavaca ako filtar izdavaca sadrži barem jedan element, ako ne filtriranaLista sadrži sve publikacije
@@ -43,7 +43,7 @@ namespace FOIKnjiznica.Classes
             {
                 foreach (Publikacije trenutnaPublikacija in filtriranaListaPublikacija)
                 {
-                    prolaziFiltar = filtarIzdavaci.Any(item => item.id == trenutnaPublikacija.id);
+                    prolaziFiltar = filtarIzdavaci.Any(item => item.naziv == trenutnaPublikacija.Izdavac);
 
                     if (prolaziFiltar == true)
                     {
@@ -52,7 +52,8 @@ namespace FOIKnjiznica.Classes
                     }
                 }
 
-                trenutnaListaPublikacija = privremenaFiltriranaListaPublikacija;
+                filtriranaListaPublikacija.Clear();
+                filtriranaListaPublikacija.AddRange(privremenaFiltriranaListaPublikacija);
                 privremenaFiltriranaListaPublikacija.Clear();
             }
 
@@ -61,7 +62,7 @@ namespace FOIKnjiznica.Classes
             {
                 foreach (Publikacije trenutnaPublikacija in filtriranaListaPublikacija)
                 {
-                    prolaziFiltar = filtarKategorije.Any(item => item.id == trenutnaPublikacija.id);
+                    prolaziFiltar = filtarKategorije.Any(item => item.naziv_kategorije == trenutnaPublikacija.Vrsta);
 
                     if (prolaziFiltar == true)
                     {
@@ -70,7 +71,8 @@ namespace FOIKnjiznica.Classes
                     }
                 }
 
-                trenutnaListaPublikacija = privremenaFiltriranaListaPublikacija;
+                filtriranaListaPublikacija.Clear();
+                filtriranaListaPublikacija.AddRange(privremenaFiltriranaListaPublikacija);
                 privremenaFiltriranaListaPublikacija.Clear();
             }
 
@@ -88,7 +90,8 @@ namespace FOIKnjiznica.Classes
                     }
                 }
 
-                trenutnaListaPublikacija = privremenaFiltriranaListaPublikacija;
+                filtriranaListaPublikacija.Clear();
+                filtriranaListaPublikacija.AddRange(privremenaFiltriranaListaPublikacija);
                 privremenaFiltriranaListaPublikacija.Clear();
             }
 

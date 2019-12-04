@@ -195,6 +195,8 @@ namespace FOIKnjiznica
 
             ListaOdabranihFiltra();
 
+            MessagingCenter.Send<App>((App)Application.Current, "filtriranjePublikacija");
+
             await PopupNavigation.Instance.PopAsync();
         }
 

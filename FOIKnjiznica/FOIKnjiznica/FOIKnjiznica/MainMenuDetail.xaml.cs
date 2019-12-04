@@ -30,6 +30,7 @@ namespace FOIKnjiznica
             MessagingCenter.Subscribe<App>((App)Application.Current, "sortiranjeZA", (sender) => { OsvjeziListuPublikacija(); });
             MessagingCenter.Subscribe<App>((App)Application.Current, "sortiranjePoGodini", (sender) => { OsvjeziListuPublikacija(); });
             MessagingCenter.Subscribe<App>((App)Application.Current, "sortiranjePoAutoru", (sender) => { OsvjeziListuPublikacija(); });
+            MessagingCenter.Subscribe<App>((App)Application.Current, "filtriranjePublikacija", (sender) => { OsvjeziListuPublikacija(); });
         }
 
         //Dohvacanje Publikacije za prikaz na zaslonu
@@ -66,7 +67,7 @@ namespace FOIKnjiznica
         
         private void OsvjeziListuPublikacija()
         {
-            ListaPublikacije.ItemsSource = listaSvihPublikacija;
+            ListaPublikacije.ItemsSource = Classes.Filtar.FiltrirajPublikacije(listaSvihPublikacija);
         }
 
         private async void sort_button_Clicked(object sender, EventArgs e)
