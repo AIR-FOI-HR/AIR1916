@@ -50,6 +50,7 @@ namespace FOIKnjiznicaWebServis.Controllers
                        join Kopija_Publikacije in db.Kopija_Publikacije on Publikacije.id equals Kopija_Publikacije.PublikacijeId
                        join Stanje_Publikacije in db.Stanje_Publikacije on Kopija_Publikacije.kopija_id equals Stanje_Publikacije.KopijaId
                        join Vrsta_Statusa in db.Vrsta_Statusa on Stanje_Publikacije.Vrsta_StatusaId equals Vrsta_Statusa.id
+                       join Kategorije in db.Kategorije on Publikacije.KategorijeId equals Kategorije.id
                        where id == Publikacije.id
                        select new
                        {
@@ -68,7 +69,8 @@ namespace FOIKnjiznicaWebServis.Controllers
                            Autor = Autori.ime + " " + Autori.prezime,
                            Kopija = Kopija_Publikacije.kopija_id,
                            Stanje = Stanje_Publikacije.datum_do,
-                           Vrsta = Vrsta_Statusa.naziv_vrste
+                           Vrsta = Vrsta_Statusa.naziv_vrste,
+                           Kategorije = Kategorije.naziv_kategorije
                        };
             return upit.ToList<Object>();
         }
