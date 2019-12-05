@@ -31,6 +31,7 @@ namespace FOIKnjiznica
             MessagingCenter.Subscribe<App>((App)Application.Current, "sortiranjePoGodini", (sender) => { OsvjeziListuPublikacija(); });
             MessagingCenter.Subscribe<App>((App)Application.Current, "sortiranjePoAutoru", (sender) => { OsvjeziListuPublikacija(); });
             MessagingCenter.Subscribe<App>((App)Application.Current, "filtriranjePublikacija", (sender) => { OsvjeziListuPublikacija(); });
+            MessagingCenter.Subscribe<App>((App)Application.Current, "resetiranjeFiltera", (sender) => { OsvjeziListuPublikacija(); });
         }
 
         //Dohvacanje Publikacije za prikaz na zaslonu
