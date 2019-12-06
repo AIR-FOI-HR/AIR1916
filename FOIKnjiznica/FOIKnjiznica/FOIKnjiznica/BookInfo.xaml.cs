@@ -43,5 +43,10 @@ namespace FOIKnjiznica
             listaSvihPublikacija = publikacije;
             ListaPublikacije.ItemsSource = listaSvihPublikacija;
         }
+        private async void ButtonSadrzaj(object sender, EventArgs e)
+        {
+
+            await Navigation.PushAsync(new Sadrzaj(publikacijeD));
+        }
     }
 }
