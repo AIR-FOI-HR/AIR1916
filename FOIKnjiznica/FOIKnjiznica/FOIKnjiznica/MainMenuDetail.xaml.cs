@@ -38,10 +38,56 @@ namespace FOIKnjiznica
         private async void DohvatiPublikacije()
         {
             HttpClient client = new HttpClient();
-            var response = await client.GetStringAsync("http://foiknjiznica.azurewebsites.net/api/Publikacije");
-            var publikacije = JsonConvert.DeserializeObject<List<Classes.Publikacije>>(response);
-            listaSvihPublikacija = publikacije;
-            ListaPublikacije.ItemsSource = publikacije;
+            try
+            {
+                var response = await client.GetStringAsync("http://foiknjiznica.azurewebsites.net/api/Publikacije");
+                var publikacije = JsonConvert.DeserializeObject<List<Classes.Publikacije>>(response);
+                listaSvihPublikacija = publikacije;
+                ListaPublikacije.ItemsSource = publikacije;
+
+            }
+            catch (Exception socketException) when (socketException is System.Net.Sockets.SocketException || socketException is HttpRequestException)
+            {
+                Console.WriteLine(socketException);
+
+                await PopupNavigation.PushAsync(new PopUpPages.InternetObavijestPopupPage());
+
+                DohvatiPublikacijeKadJeMoguce();
+            }
+            finally
+            {
+                client.Dispose();
+            }
+        }
+
+
+        // Metoda koja pokušava dohvatiti publikacije tako dugo dok ne uspije, to jest tako dugo dok se korisnik ne spoji na internet
+        private async void DohvatiPublikacijeKadJeMoguce()
+        {
+            bool dohvaceno = false;
+
+            while (dohvaceno == false)
+            {              
+                HttpClient client = new HttpClient();
+                try
+                {
+                    var response = await client.GetStringAsync("http://foiknjiznica.azurewebsites.net/api/Publikacije");
+                    var publikacije = JsonConvert.DeserializeObject<List<Classes.Publikacije>>(response);
+                    listaSvihPublikacija = publikacije;
+                    ListaPublikacije.ItemsSource = publikacije;
+                    dohvaceno = true;
+
+                }
+                catch (Exception socketException) when (socketException is System.Net.Sockets.SocketException || socketException is HttpRequestException)
+                {
+                    Console.WriteLine(socketException);
+                    dohvaceno = false;
+                }
+                finally
+                {
+                    client.Dispose();
+                }
+            }
         }
 
         private async void UnosPretrazivanja(object sender, TextChangedEventArgs e)
@@ -51,7 +97,7 @@ namespace FOIKnjiznica
             if (id.Length > 0)
             {
                 HttpClient client = new HttpClient();
-                var response = await client.GetStringAsync("http://foiknjiznica.azurewebsites.net/api/PretragaPublikacija/"+id);
+                var response = await client.GetStringAsync("http://foiknjiznica.azurewebsites.net/api/PretragaPublikacija/" + id);
                 var publikacije = JsonConvert.DeserializeObject<List<Classes.Publikacije>>(response);
                 ListaPublikacije.ItemsSource = publikacije;
             }
