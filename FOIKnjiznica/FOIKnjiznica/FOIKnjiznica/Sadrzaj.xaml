@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             mc:Ignorable="d"
+             x:Class="FOIKnjiznica.Sadrzaj"
+             Title="Sadrzaj">
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <StackLayout Orientation="Horizontal">
+                <Label x:Name="NaslovSadrzaja" FontSize ="Medium" VerticalOptions="Start" HorizontalOptions="CenterAndExpand"
+                       FontAttributes="Bold" TextColor="#FF4B4B" TextDecorations="Underline" />
+            </StackLayout>
+            <WebView x:Name="webView" WidthRequest="1000" HeightRequest="2000" android:WebView.EnableZoomControls="true"
+             android:WebView.DisplayZoomControls="true" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
