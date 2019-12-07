@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="FOI"
-            android:textSize="75sp"
+            android:textSize="55sp"
             android:textColor="@android:color/holo_red_dark"
             android:textStyle="bold"/>
 
@@ -30,7 +30,7 @@
             android:gravity="center"
             android:layout_marginLeft="15dp"
             android:text="Library"
-            android:textSize="75sp"
+            android:textSize="55sp"
             android:textColor="@android:color/black" />
     </LinearLayout>
 
