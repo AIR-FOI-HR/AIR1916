@@ -8,6 +8,8 @@ using Android.Widget;
 using Android.OS;
 using FFImageLoading.Forms.Platform;
 using Lottie.Forms.Droid;
+using Plugin.Fingerprint;
+using Plugin.CurrentActivity;
 
 namespace FOIKnjiznica.Droid
 {
@@ -23,6 +25,10 @@ namespace FOIKnjiznica.Droid
 
             //Inicijalizacija POPUP nugget paketa
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
+
+            //Inicijalizacija Fingerprint nugget paketa
+            CrossFingerprint.SetCurrentActivityResolver(() => CrossCurrentActivity.Current.Activity);
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);

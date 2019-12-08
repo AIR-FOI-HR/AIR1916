@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FOIKnjiznica.Login">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Margin="0, 160, 0, -110">
+                <Image Source="icon_login.png" WidthRequest="100" HeightRequest="100"/>
+                <Label Text="FOI Library" TextColor="White" FontSize="50"
+                   HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label.FontFamily>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <On Platform="Android" Value="KeepCalm.ttf#KeepCalm" />
+                        </OnPlatform>
+                    </Label.FontFamily>
+                </Label>
+            </StackLayout>
+            <StackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+                    <Button BackgroundColor="White" Text="Login" TextColor="Red" WidthRequest="250" HeightRequest="40" CornerRadius="13" x:Name="login_button" Clicked="login_button_Clicked"></Button>
+                </StackLayout>
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

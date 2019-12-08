@@ -10,7 +10,7 @@ namespace FOIKnjiznica
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainMenu());
+            MainPage = new NavigationPage(new Login());
         }
 
         protected override void OnStart()
