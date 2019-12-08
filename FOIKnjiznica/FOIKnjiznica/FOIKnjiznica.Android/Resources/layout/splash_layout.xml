@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginLeft="15dp"
-            android:text="Library"
+            android:text="Knjižnica"
             android:textSize="55sp"
             android:textColor="@android:color/black" />
     </LinearLayout>
