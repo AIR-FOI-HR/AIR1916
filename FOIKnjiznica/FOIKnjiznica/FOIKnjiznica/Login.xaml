@@ -9,7 +9,7 @@
         <StackLayout>
             <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Margin="0, 160, 0, -110">
                 <Image Source="icon_login.png" WidthRequest="100" HeightRequest="100"/>
-                <Label Text="FOI Library" TextColor="White" FontSize="50"
+                <Label Text="FOI Knjižnica" TextColor="White" FontSize="50"
                    HorizontalOptions="Center" VerticalOptions="Center">
                     <Label.FontFamily>
                         <OnPlatform x:TypeArguments="x:String">
