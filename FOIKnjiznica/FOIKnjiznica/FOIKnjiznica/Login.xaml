@@ -7,7 +7,7 @@
              x:Class="FOIKnjiznica.Login">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Margin="0, 160, 0, -110">
+            <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Margin="0, 160, 0, -70">
                 <Image Source="icon_login.png" WidthRequest="100" HeightRequest="100"/>
                 <Label Text="FOI Knjižnica" TextColor="White" FontSize="50"
                    HorizontalOptions="Center" VerticalOptions="Center">
@@ -19,7 +19,13 @@
                 </Label>
             </StackLayout>
             <StackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
-                    <Button BackgroundColor="White" Text="Login" TextColor="Red" WidthRequest="250" HeightRequest="40" CornerRadius="13" x:Name="login_button" Clicked="login_button_Clicked"></Button>
+                <Button BackgroundColor="White" Text="&#xf577;" TextColor="Black" FontSize="35" WidthRequest="70" HeightRequest="70" CornerRadius="35" x:Name="login_button" Clicked="login_button_Clicked">
+                    <Button.FontFamily>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <On Platform="Android" Value="FontAwesome5Solid.otf#FontAwesome5Solid" />
+                        </OnPlatform>
+                    </Button.FontFamily>
+                </Button>
                 </StackLayout>
             </StackLayout>
     </ContentPage.Content>
