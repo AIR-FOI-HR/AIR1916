@@ -24,6 +24,7 @@ namespace FOIKnjiznica
             InitializeComponent();
             BindingContext = this;
             DohvatiPublikacije();
+            Classes.Clanovi.DohvatiFavorite();
 
             //Listener koji prima događaj od popup prozora te osvjezava listu
             MessagingCenter.Subscribe<App>((App)Application.Current, "sortiranjeAZ", (sender) => { OsvjeziListuPublikacija(); });
