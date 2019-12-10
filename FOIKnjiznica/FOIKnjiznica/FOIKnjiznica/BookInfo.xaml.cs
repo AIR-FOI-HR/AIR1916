@@ -17,10 +17,17 @@ namespace FOIKnjiznica
     {
         public static List<Classes.Publikacije> listaSvihPublikacija;
         Publikacije publikacijeD;
+
+        bool jeFavorit = false;
+        public string slikaFavorita { get; private set; }
         public BookInfo(Publikacije publikacijeU)
         {
             publikacijeD = publikacijeU;
+
             InitializeComponent();
+
+            ProvjeriJeLiFavorit();
+
             Naziv.Text = publikacijeD.naziv;
             Image.Source = publikacijeD.slika_url;
             Autor.Text = "Autor: " + publikacijeD.Autor;
@@ -32,6 +39,7 @@ namespace FOIKnjiznica
             Godina.Text = "Godina izdanja: " + publikacijeD.godina_izdanja.ToString();
             Izdanje.Text = "Izdanje: " + publikacijeD.izdanje;
             Izdavac.Text = "Izdavac: " + publikacijeD.Izdavac;
+
             DohvatiPublikaciju(publikacijeD.id);
         }
 
@@ -47,6 +55,23 @@ namespace FOIKnjiznica
         {
 
             await Navigation.PushAsync(new Sadrzaj(publikacijeD));
+        }
+
+        private void ProvjeriJeLiFavorit()
+        {
+            jeFavorit = Classes.Clanovi.listaFavorita.Any(x => x.id == publikacijeD.id);
+
+            if (jeFavorit)
+            {
+                slikaFavorita = "jeFavorit.png";
+                ZvijezdaFavorita.Source = slikaFavorita;
+            }
+            else
+            {
+                slikaFavorita = "nijeFavorit.png";
+                ZvijezdaFavorita.Source = slikaFavorita;
+            }
+
         }
     }
 }
