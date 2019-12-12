@@ -25,6 +25,7 @@ namespace FOIKnjiznica
             publikacijeD = publikacijeU;
 
             InitializeComponent();
+            this.Disappearing += PosaljiPorukuOsvjezavanja;
 
             ProvjeriJeLiFavorit();
 
@@ -42,7 +43,6 @@ namespace FOIKnjiznica
 
             DohvatiPublikaciju(publikacijeD.id);
         }
-
         private async void DohvatiPublikaciju(int id)
         {
             HttpClient client = new HttpClient();
@@ -73,5 +73,30 @@ namespace FOIKnjiznica
             }
 
         }
+
+        //TODO: Dodati u kontroler dodavanje i brisanje favorita te implementirati u metodi ispod
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            jeFavorit = Classes.Clanovi.listaFavorita.Any(x => x.id == publikacijeD.id);
+
+            if (jeFavorit)
+            {
+                Classes.Clanovi.listaFavorita.RemoveAll(x => x.id == publikacijeD.id);
+                ProvjeriJeLiFavorit();
+            }
+            else
+            {
+                Classes.Clanovi.listaFavorita.Add(publikacijeD);
+                ProvjeriJeLiFavorit();
+            }
+        }
+
+        private void PosaljiPorukuOsvjezavanja(object sender, EventArgs e)
+        {
+            MessagingCenter.Send<App>((App)Application.Current, "osvjeziFavorite");
+        }
+
+
     }
 }

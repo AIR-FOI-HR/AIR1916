@@ -19,7 +19,11 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Grid.Row="0" x:Name="Naziv" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold, Italic" TextColor="Black" FontSize="25" Margin="10"/>
-                <Image Grid.Column="1" Grid.Row="0" x:Name="ZvijezdaFavorita" Source="{Binding slikaFavorita}" WidthRequest="30" HeightRequest="30" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,10,10,10"></Image>
+                <Image Grid.Column="1" Grid.Row="0" x:Name="ZvijezdaFavorita" Source="{Binding slikaFavorita}" WidthRequest="30" HeightRequest="30" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,10,10,10">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>
+                </Image>
             </Grid>
             <Grid Padding="10" RowSpacing="10" ColumnSpacing="15">
                 <Grid.RowDefinitions>

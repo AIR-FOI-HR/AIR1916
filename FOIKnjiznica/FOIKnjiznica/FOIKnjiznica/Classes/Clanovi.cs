@@ -18,12 +18,22 @@ namespace FOIKnjiznica.Classes
 
         public async static void DohvatiFavorite()
         {
-            
-
             HttpClient client = new HttpClient();
-            var response = await client.GetStringAsync("http://foiknjiznica.azurewebsites.net/api/Favoriti/" + id);
-            var favoriti = JsonConvert.DeserializeObject<List<Classes.Publikacije>>(response);
-            listaFavorita = favoriti;
+
+            try
+            {
+                var response = await client.GetStringAsync("http://foiknjiznica.azurewebsites.net/api/Favoriti/" + id);
+                var favoriti = JsonConvert.DeserializeObject<List<Classes.Publikacije>>(response);
+                listaFavorita = favoriti;
+            }
+            catch (Exception socketException) when (socketException is System.Net.Sockets.SocketException || socketException is HttpRequestException)
+            {
+                
+            }
+            finally
+            {
+                client.Dispose();
+            } 
         }
 
     }
