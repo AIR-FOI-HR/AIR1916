@@ -19,10 +19,12 @@ namespace FOIKnjiznica.Classes
         public string slika_url { get; set; }
         public string Izdavac { get; set; }
         public string Autor { get; set; }
-        public string Kopija { get; set; }
+        public int Kopija { get; set; }
         public string Stanje { get; set; }
         public string Vrsta { get; set; }
         public int Kategorija { get; set; }
+        public string GodinaOd { get; set; }
+        public string GodinaDo { get; set; }
 
     }
 }
