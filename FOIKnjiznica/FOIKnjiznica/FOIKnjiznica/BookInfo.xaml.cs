@@ -56,6 +56,11 @@ namespace FOIKnjiznica
         {
             Classes.Publikacije tappedItem = e.Item as Classes.Publikacije;
             await PopupNavigation.PushAsync(new RezerviranjePopupPage(tappedItem));
+
+        private async void ButtonSadrzaj(object sender, EventArgs e)
+        {
+
+            await Navigation.PushAsync(new Sadrzaj(publikacijeD));
         }
     }
 }

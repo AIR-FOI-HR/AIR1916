@@ -162,7 +162,7 @@ namespace FOIKnjiznica
         //Metoda koja se izvršava kad korisnik pritisne na gumb za reset odabira.
         //Metoda je implementirana tako da se za svaku ListView kontrolu napravi
         //refresh te se dohvate podaci u slučaju neke promjene podataka
-        private void Reset_Clicked(object sender, EventArgs e)
+        private async void Reset_Clicked(object sender, EventArgs e)
         {
             Classes.Filtar.filtarAutori.Clear();
             Classes.Filtar.filtarIzdavaci.Clear();
@@ -184,6 +184,9 @@ namespace FOIKnjiznica
             FiltarSlova.BeginRefresh();
             DohvatiSlova();
             FiltarSlova.EndRefresh();
+
+            MessagingCenter.Send<App>((App)Application.Current, "resetiranjeFiltera");
+            await PopupNavigation.Instance.PopAsync();
         }
 
         private async void Accept_Clicked(object sender, EventArgs e)
@@ -303,5 +306,9 @@ namespace FOIKnjiznica
             }
         }
 
+        private async void izlazak_Clicked(object sender, EventArgs e)
+        {
+            await PopupNavigation.Instance.PopAsync();
+        }
     }
 }

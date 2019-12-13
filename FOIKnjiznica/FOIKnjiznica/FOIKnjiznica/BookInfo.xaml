@@ -53,7 +53,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Text="Sadržaj" x:Name="Sadrzaj" BackgroundColor="#ae2323" TextColor="White"></Button>
+            <Button Text="Sadržaj" x:Name="Sadrzaj" BackgroundColor="#ae2323" TextColor="White" Clicked="ButtonSadrzaj"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
