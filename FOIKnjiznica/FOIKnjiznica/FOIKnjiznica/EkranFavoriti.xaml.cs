@@ -36,6 +36,5 @@ namespace FOIKnjiznica
             await Navigation.PushAsync(new BookInfo(tappedItem));
         }
 
-   //     private async
     }
 }

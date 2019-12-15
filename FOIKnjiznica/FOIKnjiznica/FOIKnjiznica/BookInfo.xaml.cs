@@ -1,5 +1,6 @@
 ﻿using FOIKnjiznica.Classes;
 using Newtonsoft.Json;
+using Plugin.Toast;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace FOIKnjiznica
         Publikacije publikacijeD;
 
         bool jeFavorit = false;
+        bool prvaProvjera = true;
         public string slikaFavorita { get; private set; }
         public BookInfo(Publikacije publikacijeU)
         {
@@ -63,13 +65,31 @@ namespace FOIKnjiznica
 
             if (jeFavorit)
             {
+                //TODO: kreirati dodavanje favorita u bazu podataka 
+
                 slikaFavorita = "jeFavorit.png";
                 ZvijezdaFavorita.Source = slikaFavorita;
+
+                if (prvaProvjera==false)
+                {
+                    CrossToastPopUp.Current.ShowCustomToast($"Uspješno ste dodali {publikacijeD.naziv} u favorite", "#ae2323","White");
+                }
+
+                prvaProvjera = false ;
             }
             else
             {
+                //TODO: kreirati brisanje favorita iz baze podataka
+
                 slikaFavorita = "nijeFavorit.png";
                 ZvijezdaFavorita.Source = slikaFavorita;
+
+                if (prvaProvjera==false)
+                {
+                    CrossToastPopUp.Current.ShowCustomToast($"Uspješno ste izbrisali {publikacijeD.naziv} iz favorita", "#ae2323", "White");
+                }
+
+                prvaProvjera = false;
             }
 
         }
