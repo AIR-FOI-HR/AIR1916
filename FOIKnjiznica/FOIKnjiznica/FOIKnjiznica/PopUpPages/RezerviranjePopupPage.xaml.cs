@@ -46,7 +46,7 @@ namespace FOIKnjiznica.PopUpPages
         private async void DohvatiPublikaciju(int id)
         {
             HttpClient client = new HttpClient();
-            var response = await client.GetStringAsync("http://foiknjiznica.azurewebsites.net/api/Rezervacije/" + id);
+            var response = await client.GetStringAsync("http://foiknjiznica1.azurewebsites.net/api/Rezervacije/" + id);
             var publikacije = JsonConvert.DeserializeObject<List<Classes.Publikacije>>(response);
             listaSvihPublikacija = publikacije;
             ListaPublikacije.ItemsSource = listaSvihPublikacija;
@@ -61,7 +61,7 @@ namespace FOIKnjiznica.PopUpPages
         {
             HttpClient client = new HttpClient();
             var content = new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("kopija_id", publikacijeD.Kopija.ToString()) });
-            var request = await client.PutAsync("http://foiknjiznica.azurewebsites.net/api/GumbRezerviraj/" + publikacijeD.Kopija, content);
+            var request = await client.PutAsync("http://foiknjiznica1.azurewebsites.net/api/GumbRezerviraj/" + publikacijeD.Kopija, content);
             var response = await request.Content.ReadAsStringAsync();
             var publikacije = JsonConvert.DeserializeObject<List<Classes.Publikacije>>(response);
             listaSvihPublikacija = publikacije;

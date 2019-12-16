@@ -238,16 +238,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Models\FOIKnjiznicaDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FOIKnjiznicaDB.edmx</DependentUpon>
-      <LastGenOutput>FOIKnjiznicaDB.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\FOIKnjiznicaDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FOIKnjiznicaDB.edmx</DependentUpon>
-      <LastGenOutput>FOIKnjiznicaDB.cs</LastGenOutput>
-    </Content>
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
@@ -267,20 +257,22 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <EntityDeploy Include="Models\FOIKnjiznicaDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FOIKnjiznicaDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\FOIKnjiznicaDB.edmx.diagram">
-      <DependentUpon>FOIKnjiznicaDB.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-reboot.min.css.map" />
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <None Include="Properties\PublishProfiles\FOIKnjiznica - Web Deploy.pubxml" />
+    <Content Include="Models\FOIKnjiznicaDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FOIKnjiznicaDB.edmx</DependentUpon>
+      <LastGenOutput>FOIKnjiznicaDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\FOIKnjiznicaDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FOIKnjiznicaDB.edmx</DependentUpon>
+      <LastGenOutput>FOIKnjiznicaDB.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -298,6 +290,14 @@
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <EntityDeploy Include="Models\FOIKnjiznicaDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FOIKnjiznicaDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\FOIKnjiznicaDB.edmx.diagram">
+      <DependentUpon>FOIKnjiznicaDB.edmx</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\foiknjiznica1 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

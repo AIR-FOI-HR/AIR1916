@@ -40,7 +40,7 @@ namespace FOIKnjiznica
             HttpClient client = new HttpClient();
             try
             {
-                var response = await client.GetStringAsync("http://foiknjiznica.azurewebsites.net/api/Publikacije");
+                var response = await client.GetStringAsync("http://foiknjiznica1.azurewebsites.net/api/Publikacije");
                 var publikacije = JsonConvert.DeserializeObject<List<Classes.Publikacije>>(response);
                 listaSvihPublikacija = publikacije;
                 ListaPublikacije.ItemsSource = publikacije;
@@ -71,7 +71,7 @@ namespace FOIKnjiznica
                 HttpClient client = new HttpClient();
                 try
                 {
-                    var response = await client.GetStringAsync("http://foiknjiznica.azurewebsites.net/api/Publikacije");
+                    var response = await client.GetStringAsync("http://foiknjiznica1.azurewebsites.net/api/Publikacije");
                     var publikacije = JsonConvert.DeserializeObject<List<Classes.Publikacije>>(response);
                     listaSvihPublikacija = publikacije;
                     ListaPublikacije.ItemsSource = publikacije;
@@ -97,7 +97,7 @@ namespace FOIKnjiznica
             if (id.Length > 0)
             {
                 HttpClient client = new HttpClient();
-                var response = await client.GetStringAsync("http://foiknjiznica.azurewebsites.net/api/PretragaPublikacija/" + id);
+                var response = await client.GetStringAsync("http://foiknjiznica1.azurewebsites.net/api/PretragaPublikacija/" + id);
                 var publikacije = JsonConvert.DeserializeObject<List<Classes.Publikacije>>(response);
                 ListaPublikacije.ItemsSource = publikacije;
             }
