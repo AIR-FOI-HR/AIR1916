@@ -7,11 +7,11 @@
              x:Class="FOIKnjiznica.MainMenuMaster"
              Title="Master">
   <StackLayout>
-    <ListView x:Name="MenuItemsListView"
+        <ListView x:Name="MenuItemsListView"
               SeparatorVisibility="None"
               HasUnevenRows="true"
               ItemsSource="{Binding MenuItems}">
-      <d:ListView.ItemsSource>
+            <d:ListView.ItemsSource>
           <x:Array Type="{x:Type x:String}">
               <x:String>Moj profil</x:String>
               <x:String>Pretraži knjižnicu</x:String>

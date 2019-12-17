@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             mc:Ignorable="d"
+             x:Class="FOIKnjiznica.EkranFavoriti"
+             Title="Moji favoriti">
+    <ContentPage.Content>
+        <StackLayout WidthRequest="75" MinimumWidthRequest="60">
+            <ListView x:Name="ListaPublikacije" HasUnevenRows="True" SeparatorVisibility="None" ItemTapped="OnListViewItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10" RowSpacing="10" ColumnSpacing="15">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <ff:CachedImage x:Name="Image" Source="{Binding slika_url}" WidthRequest="120" HeightRequest="200" HorizontalOptions="Center" VerticalOptions="Center" Margin="30, 0, 0, 0"/>
+                                <ActivityIndicator Color="OrangeRed" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" BindingContext="{x:Reference Name=Image}" />
+                                <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1">
+                                    <Label Text="{Binding naziv}" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold, Italic" TextColor="Black" FontSize="15"/>
+                                    <Label Text="{Binding Autor}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Label Text="{Binding Izdavac}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Label Text="{Binding godina_izdanja}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
