@@ -44,6 +44,10 @@ namespace FOIKnjiznica
                 brojac--;
             }
         }
+        private void BtnBack(object sender, EventArgs e)
+        {
+            
+        }
         private void BtnJedan(object sender, EventArgs e)
         {
             DodajBroj("1");
