@@ -39,7 +39,7 @@ namespace FOIKnjiznica
         private async void DohvatiAutore()
         {
             HttpClient client = new HttpClient();
-            var response = await client.GetStringAsync("http://foiknjiznica.azurewebsites.net/api/Autori");
+            var response = await client.GetStringAsync("http://foiknjiznica1.azurewebsites.net/api/Autori");
             autori = JsonConvert.DeserializeObject<List<Classes.Autori>>(response);
             ProvjeriPostojeceFiltreAutor();
             FiltarAutora.ItemsSource = autori;
@@ -50,7 +50,7 @@ namespace FOIKnjiznica
         private async void DohvatiIzdavace()
         {
             HttpClient client = new HttpClient();
-            var response = await client.GetStringAsync("http://foiknjiznica.azurewebsites.net/api/Izdavaci");
+            var response = await client.GetStringAsync("http://foiknjiznica1.azurewebsites.net/api/Izdavaci");
             izdavaci = JsonConvert.DeserializeObject<List<Classes.Izdavaci>>(response);
             ProvjeriPostojeceFiltreIzdavac();
             FiltarIzdavaca.ItemsSource = izdavaci;
@@ -80,7 +80,7 @@ namespace FOIKnjiznica
         private async void DohvatiKategorije()
         {
             HttpClient client = new HttpClient();
-            var response = await client.GetStringAsync("http://foiknjiznica.azurewebsites.net/api/Kategorije");
+            var response = await client.GetStringAsync("http://foiknjiznica1.azurewebsites.net/api/Kategorije");
             kategorije = JsonConvert.DeserializeObject<List<Classes.Kategorije>>(response);
             ProvjeriPostojeceFiltreKategorija();
             FiltarKategorija.ItemsSource = kategorije;
