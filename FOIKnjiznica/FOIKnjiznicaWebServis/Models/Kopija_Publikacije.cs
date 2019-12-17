@@ -20,8 +20,8 @@ namespace FOIKnjiznicaWebServis.Models
             this.Stanje_Publikacije = new HashSet<Stanje_Publikacije>();
         }
     
-        public int PublikacijeId { get; set; }
         public int kopija_id { get; set; }
+        public int PublikacijeId { get; set; }
     
         public virtual Publikacije Publikacije { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

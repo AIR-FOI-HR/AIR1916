@@ -46,7 +46,7 @@
                     <Label x:Name="Izdavac" HorizontalOptions="Start" VerticalOptions="Center" FontAttributes="Bold"/>
                 </StackLayout>
             </Grid>
-            <ListView x:Name="ListaPublikacije" HasUnevenRows="True" SeparatorVisibility="None">
+            <ListView x:Name="ListaPublikacije" HasUnevenRows="True" SeparatorVisibility="None" ItemTapped="OnListViewItemTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

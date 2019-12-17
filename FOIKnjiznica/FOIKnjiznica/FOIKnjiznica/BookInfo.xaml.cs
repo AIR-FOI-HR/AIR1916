@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Rg.Plugins.Popup.Services;
+using FOIKnjiznica.PopUpPages;
 
 namespace FOIKnjiznica
 {
@@ -44,6 +46,12 @@ namespace FOIKnjiznica
             Izdavac.Text = "Izdavac: " + publikacijeD.Izdavac;
 
             DohvatiPublikaciju(publikacijeD.id);
+            MessagingCenter.Subscribe<App>((App)Application.Current, "RezervacijaPublikacije", (sender) => { OsvjeziListuPublikacija(); });
+        }
+
+        private void OsvjeziListuPublikacija()
+        {
+            DohvatiPublikaciju(publikacijeD.id);
         }
         private async void DohvatiPublikaciju(int id)
         {
@@ -53,6 +61,13 @@ namespace FOIKnjiznica
             listaSvihPublikacija = publikacije;
             ListaPublikacije.ItemsSource = listaSvihPublikacija;
         }
+
+        public async void OnListViewItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            Classes.Publikacije tappedItem = e.Item as Classes.Publikacije;
+            await PopupNavigation.PushAsync(new RezerviranjePopupPage(tappedItem));
+        }
+
         private async void ButtonSadrzaj(object sender, EventArgs e)
         {
 
