@@ -7,9 +7,45 @@
              x:Class="FOIKnjiznica.PinLogin">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Unesite svoj PIN" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" TextColor="#FD8638"  FontSize="25" FontAttributes="Bold"></Label>
+            
+            <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Spacing="30">
+                <StackLayout Orientation="Horizontal" Spacing="25">
+                    <Button x:Name="Gumb1" Text="1" WidthRequest="60" HeightRequest="60" BorderRadius="30" HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="#FD8638" Font="25" FontAttributes="Bold" />
+                    <Button x:Name="Gumb2" Text="2" WidthRequest="60" HeightRequest="60" BorderRadius="30" HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="#FD8638" Font="25" FontAttributes="Bold" />
+                    <Button x:Name="Gumb3" Text="3" WidthRequest="60" HeightRequest="60" BorderRadius="30" HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="#FD8638" Font="25" FontAttributes="Bold" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Spacing="25">
+                    <Button x:Name="Gumb4" Text="4" WidthRequest="60" HeightRequest="60" BorderRadius="30" HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="#FD8638" Font="25" FontAttributes="Bold" />
+                    <Button x:Name="Gumb5" Text="5" WidthRequest="60" HeightRequest="60" BorderRadius="30" HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="#FD8638" Font="25" FontAttributes="Bold" />
+                    <Button x:Name="Gumb6" Text="6" WidthRequest="60" HeightRequest="60" BorderRadius="30" HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="#FD8638" Font="25" FontAttributes="Bold" />
+                </StackLayout>
+                
+                <StackLayout Orientation="Horizontal" Spacing="25">
+                    <Button x:Name="Gumb7" Text="7" WidthRequest="60" HeightRequest="60" BorderRadius="30" HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="#FD8638" Font="25" FontAttributes="Bold" />
+                    <Button x:Name="Gumb8" Text="8" WidthRequest="60" HeightRequest="60" BorderRadius="30" HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="#FD8638" Font="25" FontAttributes="Bold" />
+                    <Button x:Name="Gumb9" Text="9" WidthRequest="60" HeightRequest="60" BorderRadius="30" HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="#FD8638" Font="25" FontAttributes="Bold" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="32">
+                    <Button x:Name="GumbBack" Text="Back" WidthRequest="50" HeightRequest="50" BorderRadius="25" HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="#FD8638" Font="10" FontAttributes="Bold"  />
+                    <Button x:Name="Gumb0" Text="0" WidthRequest="60" HeightRequest="60" BorderRadius="30" HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="#FD8638" Font="25" FontAttributes="Bold" />
+                    <Button x:Name="GumbDelete" Text="Del" WidthRequest="50" HeightRequest="50" BorderRadius="25" HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="#FD8638" Font="10" FontAttributes="Bold" />
+                </StackLayout>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
