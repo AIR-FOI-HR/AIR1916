@@ -7,7 +7,20 @@
              x:Class="FOIKnjiznica.PinLogin">
     <ContentPage.Content>
         <StackLayout>
+            <Label VerticalOptions="Start" HorizontalOptions="CenterAndExpand"></Label>
+            <Label VerticalOptions="Start" HorizontalOptions="CenterAndExpand"></Label>
+            <Label VerticalOptions="Start" HorizontalOptions="CenterAndExpand"></Label>
             <Label Text="Unesite svoj PIN" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" TextColor="#FD8638"  FontSize="25" FontAttributes="Bold"></Label>
+
+            <StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10">
+                    <Button x:Name="GumbUnos1" WidthRequest="30" HeightRequest="30" BorderRadius="15" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#FFFFFF" BorderColor="#050505" BorderWidth="2" />
+                    <Button x:Name="GumbUnos2" WidthRequest="30" HeightRequest="30" BorderRadius="15" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#FFFFFF" BorderColor="#050505" BorderWidth="2" />
+                    <Button x:Name="GumbUnos3" WidthRequest="30" HeightRequest="30" BorderRadius="15" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#FFFFFF" BorderColor="#050505" BorderWidth="2" />
+                    <Button x:Name="GumbUnos4" WidthRequest="30" HeightRequest="30" BorderRadius="15" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#FFFFFF" BorderColor="#050505" BorderWidth="2" />
+                </StackLayout>
+                <Label x:Name="IspisKrivo" FontSize="Micro" HorizontalOptions="CenterAndExpand" TextColor="#A80202"></Label>
+            </StackLayout>
             
             <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Spacing="30">
                 <StackLayout Orientation="Horizontal" Spacing="25">
@@ -45,6 +58,9 @@
                     <Button x:Name="GumbDelete" Text="Del" WidthRequest="50" HeightRequest="50" BorderRadius="25" HorizontalOptions="Center" VerticalOptions="Center"
                     BackgroundColor="#FD8638" Font="10" FontAttributes="Bold" />
                 </StackLayout>
+                
+                <StackLayout></StackLayout>
+                <Label VerticalOptions="End" HorizontalOptions="CenterAndExpand"></Label>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
