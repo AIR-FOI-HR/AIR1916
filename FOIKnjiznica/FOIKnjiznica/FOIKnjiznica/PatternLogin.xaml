@@ -8,8 +8,12 @@
              BackgroundColor="White"
              x:Class="FOIKnjiznica.PatternLogin">
     <ContentPage.Content>
-        <StackLayout>
-            <gesturePatternView:GesturePatternView x:Name="MyGesturePatternView" Grid.Row="1"
+        <StackLayout Orientation="Vertical" Spacing="100" Margin="30,60,30,30">
+            <StackLayout VerticalOptions="Start" HorizontalOptions="CenterAndExpand">
+                <Label Text="Unesite svoj uzorak" TextColor="#FD8638"  FontSize="25" FontAttributes="Bold" />
+            </StackLayout>
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <gesturePatternView:GesturePatternView x:Name="MyGesturePatternView" Grid.Row="1"
                                                    HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
                                                    BackgroundColor="White"
                                                    HorizontalTouchPoints="3" VerticalTouchPoints="3"
@@ -21,6 +25,7 @@
                                                    TouchPointInnerCircleStrokeWidth="50"
                                                    GesturePatternCompleted="MyGesturePatternView_OnGesturePatternCompleted"
                                                    Vibrate="False" IsTabStop="True"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
