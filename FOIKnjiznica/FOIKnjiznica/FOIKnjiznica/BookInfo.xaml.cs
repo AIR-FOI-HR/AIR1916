@@ -93,7 +93,7 @@ namespace FOIKnjiznica
                     var httpClient = new HttpClient();
                     var Json = JsonConvert.SerializeObject(new Je_Favorit() { PublikacijeId = publikacijeD.id, ClanoviId = Classes.Clanovi.id, pomocno = "null" });
                     var content = new StringContent(Json, Encoding.UTF8, "application/json");
-                    var odgovor = await httpClient.PostAsync("http://foiknjiznica1.azurewebsites.net/api/TestFavoriti", content);
+                    var odgovor = await httpClient.PostAsync("http://foiknjiznica1.azurewebsites.net/api/Favoriti", content);
                 }
 
                 prvaProvjera = false ;
@@ -109,6 +109,11 @@ namespace FOIKnjiznica
                 if (prvaProvjera==false)
                 {
                     CrossToastPopUp.Current.ShowCustomToast($"Uspješno ste izbrisali {publikacijeD.naziv} iz favorita", "#ae2323", "White");
+
+                    var httpClient = new HttpClient();
+                    var Json = JsonConvert.SerializeObject(new Je_Favorit() { PublikacijeId = publikacijeD.id, ClanoviId = Classes.Clanovi.id, pomocno = "null" });
+                    var content = new StringContent(Json, Encoding.UTF8, "application/json");
+                    var odgovor = await httpClient.PostAsync("http://foiknjiznica1.azurewebsites.net/api/Favoriti", content);
                 }
 
                 prvaProvjera = false;               

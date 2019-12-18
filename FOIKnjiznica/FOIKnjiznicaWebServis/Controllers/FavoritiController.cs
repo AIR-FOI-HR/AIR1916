@@ -15,7 +15,7 @@ namespace FOIKnjiznicaWebServis.Controllers
         public string pomocno { get; set; }
 
     }
-    public class TestFavoritiController : ApiController
+    public class FavoritiController : ApiController
     {
         KnjiznicaEntities db = new KnjiznicaEntities();
 
@@ -65,17 +65,33 @@ namespace FOIKnjiznicaWebServis.Controllers
         // POST: api/TestFavoriti
         public IHttpActionResult Post([FromBody]Je_Favorit_API content)
         {
+            //Ova metoda se koristi za brisanje i dodavanje favorita u bazu iz razloga što se u DELETE metodu mogu proslijediti samo jednostavni 
+            //tipovi podataka, a nama treba objekt tipa Je_Favorit_API/Je_Favorit jer tablica ima dvokomponentni primarni ključ
 
             if (!ModelState.IsValid)
                 return BadRequest("Invalid data.");
 
             using (var ctx = new KnjiznicaEntities())
             {
-                ctx.Je_Favorit.Add(new Je_Favorit()
+                //Provjera postoji li dobiven objekt u bazi podataka ako postoji on se sprema u favorit a ako ne postoji favorit je null
+                var favorit = ctx.Je_Favorit
+                .Where(s => s.PublikacijeId == content.PublikacijeId && s.ClanoviId == content.ClanoviId)
+                .FirstOrDefault();
+
+                if(favorit != null)
                 {
-                    ClanoviId = content.ClanoviId,
-                    PublikacijeId = content.PublikacijeId,
-                });
+                    //Označavanje favorita za brisanje prilikom sljedećeg poziva SaveChanges() funkcije
+                    ctx.Entry(favorit).State = System.Data.Entity.EntityState.Deleted;
+                }
+                else
+                {
+                    //Dodavanje favorita ako nije pronađen u bazi podataka
+                    ctx.Je_Favorit.Add(new Je_Favorit()
+                    {
+                        ClanoviId = content.ClanoviId,
+                        PublikacijeId = content.PublikacijeId,
+                    });
+                }
 
                 ctx.SaveChanges();
             }

@@ -170,7 +170,7 @@
     <Compile Include="Controllers\PretragaPublikacijaController.cs" />
     <Compile Include="Controllers\PublikacijeController.cs" />
     <Compile Include="Controllers\RezervacijeController.cs" />
-    <Compile Include="Controllers\TestFavoritiController.cs" />
+    <Compile Include="Controllers\FavoritiController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\KategorijeController.cs" />
     <Compile Include="Global.asax.cs">
