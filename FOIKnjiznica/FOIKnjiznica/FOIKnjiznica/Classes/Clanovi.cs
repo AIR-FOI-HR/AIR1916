@@ -22,7 +22,7 @@ namespace FOIKnjiznica.Classes
 
             try
             {
-                var response = await client.GetStringAsync("http://foiknjiznica1.azurewebsites.net/api/Favoriti/" + id);
+                var response = await client.GetStringAsync("http://foiknjiznica1.azurewebsites.net/api/TestFavoriti/" + id);
                 var favoriti = JsonConvert.DeserializeObject<List<Classes.Publikacije>>(response);
                 listaFavorita = favoriti;
             }

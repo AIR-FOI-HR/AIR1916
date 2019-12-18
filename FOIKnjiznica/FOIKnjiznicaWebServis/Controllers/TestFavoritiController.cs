@@ -8,11 +8,18 @@ using System.Web.Http;
 
 namespace FOIKnjiznicaWebServis.Controllers
 {
-    public class FavoritiController : ApiController
+    public class Je_Favorit_API
+    {
+        public int PublikacijeId { get; set; }
+        public int ClanoviId { get; set; }
+        public string pomocno { get; set; }
+
+    }
+    public class TestFavoritiController : ApiController
     {
         KnjiznicaEntities db = new KnjiznicaEntities();
 
-        // GET api/Favoriti
+        // GET: api/TestFavoriti
         public IEnumerable<Object> Get()
         {
             var upit = from Je_Favorit in db.Je_Favorit
@@ -25,7 +32,7 @@ namespace FOIKnjiznicaWebServis.Controllers
             return upit.ToList<Object>();
         }
 
-        // GET api/Favoriti/5
+        // GET: api/TestFavoriti/5
         public List<Object> Get(int id)
         {
             var upit = from Publikacije in db.Publikacije
@@ -55,31 +62,33 @@ namespace FOIKnjiznicaWebServis.Controllers
             return upit.ToList<Object>();
         }
 
-        public HttpResponseMessage DohvatiFavorite()
+        // POST: api/TestFavoriti
+        public IHttpActionResult Post([FromBody]Je_Favorit_API content)
         {
-            var favorit = db.Je_Favorit.FirstOrDefault();
 
-            if (favorit == null)
+            if (!ModelState.IsValid)
+                return BadRequest("Invalid data.");
+
+            using (var ctx = new KnjiznicaEntities())
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
+                ctx.Je_Favorit.Add(new Je_Favorit()
+                {
+                    ClanoviId = content.ClanoviId,
+                    PublikacijeId = content.PublikacijeId,
+                });
+
+                ctx.SaveChanges();
             }
-            else
-            {
-                return Request.CreateResponse(HttpStatusCode.OK);
-            }
+
+            return Ok();
         }
 
-        // POST api/Favoriti
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/Favoriti/5
+        // PUT: api/TestFavoriti/5
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE api/Favoriti/5
+        // DELETE: api/TestFavoriti/5
         public void Delete(int id)
         {
         }
