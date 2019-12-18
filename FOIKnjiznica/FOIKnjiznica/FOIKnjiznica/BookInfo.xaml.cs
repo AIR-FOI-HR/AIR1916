@@ -12,6 +12,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Rg.Plugins.Popup.Services;
 using FOIKnjiznica.PopUpPages;
+using System.Net.Http.Headers;
 
 namespace FOIKnjiznica
 {
@@ -74,7 +75,7 @@ namespace FOIKnjiznica
             await Navigation.PushAsync(new Sadrzaj(publikacijeD));
         }
 
-        private void ProvjeriJeLiFavorit()
+        private async void ProvjeriJeLiFavorit()
         {
             jeFavorit = Classes.Clanovi.listaFavorita.Any(x => x.id == publikacijeD.id);
 
@@ -88,9 +89,15 @@ namespace FOIKnjiznica
                 if (prvaProvjera==false)
                 {
                     CrossToastPopUp.Current.ShowCustomToast($"Uspješno ste dodali {publikacijeD.naziv} u favorite", "#ae2323","White");
+
+                    var httpClient = new HttpClient();
+                    var Json = JsonConvert.SerializeObject(new Je_Favorit() { PublikacijeId = publikacijeD.id, ClanoviId = Classes.Clanovi.id, pomocno = "null" });
+                    var content = new StringContent(Json, Encoding.UTF8, "application/json");
+                    var odgovor = await httpClient.PostAsync("http://foiknjiznica1.azurewebsites.net/api/Favoriti", content);
                 }
 
                 prvaProvjera = false ;
+
             }
             else
             {
@@ -102,9 +109,14 @@ namespace FOIKnjiznica
                 if (prvaProvjera==false)
                 {
                     CrossToastPopUp.Current.ShowCustomToast($"Uspješno ste izbrisali {publikacijeD.naziv} iz favorita", "#ae2323", "White");
+
+                    var httpClient = new HttpClient();
+                    var Json = JsonConvert.SerializeObject(new Je_Favorit() { PublikacijeId = publikacijeD.id, ClanoviId = Classes.Clanovi.id, pomocno = "null" });
+                    var content = new StringContent(Json, Encoding.UTF8, "application/json");
+                    var odgovor = await httpClient.PostAsync("http://foiknjiznica1.azurewebsites.net/api/Favoriti", content);
                 }
 
-                prvaProvjera = false;
+                prvaProvjera = false;               
             }
 
         }

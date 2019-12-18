@@ -8,11 +8,18 @@ using System.Web.Http;
 
 namespace FOIKnjiznicaWebServis.Controllers
 {
+    public class Je_Favorit_API
+    {
+        public int PublikacijeId { get; set; }
+        public int ClanoviId { get; set; }
+        public string pomocno { get; set; }
+
+    }
     public class FavoritiController : ApiController
     {
         KnjiznicaEntities db = new KnjiznicaEntities();
 
-        // GET api/Favoriti
+        // GET: api/TestFavoriti
         public IEnumerable<Object> Get()
         {
             var upit = from Je_Favorit in db.Je_Favorit
@@ -25,7 +32,7 @@ namespace FOIKnjiznicaWebServis.Controllers
             return upit.ToList<Object>();
         }
 
-        // GET api/Favoriti/5
+        // GET: api/TestFavoriti/5
         public List<Object> Get(int id)
         {
             var upit = from Publikacije in db.Publikacije
@@ -55,31 +62,49 @@ namespace FOIKnjiznicaWebServis.Controllers
             return upit.ToList<Object>();
         }
 
-        public HttpResponseMessage DohvatiFavorite()
+        // POST: api/TestFavoriti
+        public IHttpActionResult Post([FromBody]Je_Favorit_API content)
         {
-            var favorit = db.Je_Favorit.FirstOrDefault();
+            //Ova metoda se koristi za brisanje i dodavanje favorita u bazu iz razloga što se u DELETE metodu mogu proslijediti samo jednostavni 
+            //tipovi podataka, a nama treba objekt tipa Je_Favorit_API/Je_Favorit jer tablica ima dvokomponentni primarni ključ
 
-            if (favorit == null)
+            if (!ModelState.IsValid)
+                return BadRequest("Invalid data.");
+
+            using (var ctx = new KnjiznicaEntities())
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
+                //Provjera postoji li dobiven objekt u bazi podataka ako postoji on se sprema u favorit a ako ne postoji favorit je null
+                var favorit = ctx.Je_Favorit
+                .Where(s => s.PublikacijeId == content.PublikacijeId && s.ClanoviId == content.ClanoviId)
+                .FirstOrDefault();
+
+                if(favorit != null)
+                {
+                    //Označavanje favorita za brisanje prilikom sljedećeg poziva SaveChanges() funkcije
+                    ctx.Entry(favorit).State = System.Data.Entity.EntityState.Deleted;
+                }
+                else
+                {
+                    //Dodavanje favorita ako nije pronađen u bazi podataka
+                    ctx.Je_Favorit.Add(new Je_Favorit()
+                    {
+                        ClanoviId = content.ClanoviId,
+                        PublikacijeId = content.PublikacijeId,
+                    });
+                }
+
+                ctx.SaveChanges();
             }
-            else
-            {
-                return Request.CreateResponse(HttpStatusCode.OK);
-            }
+
+            return Ok();
         }
 
-        // POST api/Favoriti
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/Favoriti/5
+        // PUT: api/TestFavoriti/5
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE api/Favoriti/5
+        // DELETE: api/TestFavoriti/5
         public void Delete(int id)
         {
         }
