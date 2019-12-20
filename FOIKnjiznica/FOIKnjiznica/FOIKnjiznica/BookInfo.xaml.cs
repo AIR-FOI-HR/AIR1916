@@ -38,7 +38,7 @@ namespace FOIKnjiznica
         private async void DohvatiPublikaciju(int id)
         {
             HttpClient client = new HttpClient();
-            var response = await client.GetStringAsync("http://foiknjiznica.azurewebsites.net/api/Publikacije/"+id);
+            var response = await client.GetStringAsync("http://foiknjiznica1.azurewebsites.net/api/Publikacije/"+id);
             var publikacije = JsonConvert.DeserializeObject<List<Classes.Publikacije>>(response);
             listaSvihPublikacija = publikacije;
             ListaPublikacije.ItemsSource = listaSvihPublikacija;
