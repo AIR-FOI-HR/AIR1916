@@ -19,7 +19,7 @@ namespace FOIKnjiznicaWebServis.Controllers
         }
 
         // GET: api/PovijestPosudbi/5
-        public List<Object> Get(int id)
+        public IEnumerable<Object> Get(int id)
         {
             var upit = from Stanje in db.Stanje_Publikacije
                        join Kopija in db.Kopija_Publikacije on Stanje.KopijaId equals Kopija.kopija_id
