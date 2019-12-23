@@ -8,114 +8,31 @@
              Title="Profil"
              x:Class="FOIKnjiznica.Profil">
     <ContentPage.Content>
-        
-        <!--Lista povijesti posudbi/rezervacija-->
-            <!-- Rezervacije -->
-        <StackLayout Orientation="Vertical">
-            <Label Text="Rezervacije" Padding="0,0,0,20" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="32"/>
-            <ListView x:Name="StavkePovijestiRezervacije">
-                <ListView.Header>
-                    <Grid BackgroundColor="#ae2323">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="4*"></ColumnDefinition>
-                            <ColumnDefinition Width="3*"></ColumnDefinition>
-                            <ColumnDefinition Width="3*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Label Text="Naziv" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0" TextColor="White"/>
-                        <Label Text="Početak" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1" TextColor="White"/>
-                        <Label Text="Istek" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2" TextColor="White"/>
-                    </Grid>
-                </ListView.Header>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid BackgroundColor="{Binding bojaPozadine}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="4*"></ColumnDefinition>
-                                    <ColumnDefinition Width="3*"></ColumnDefinition>
-                                    <ColumnDefinition Width="3*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Label Text="{Binding nazivPublikacije }" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0"/>
-                                <Label Text="{Binding datum, StringFormat='{0:dd/MM/yy}'}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1"/>
-                                <Label Text="{Binding datum_do, StringFormat='{0:dd/MM/yy}'}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2"/>
-                                <BoxView Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="Black" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            
-            <!-- Posudbe -->
-            <StackLayout Orientation="Vertical">
-                <Label Text="Posudbe" Padding="0,0,0,20" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="32"/>
-                <ListView x:Name="StavkePovijestiPosudbe">
-                    <ListView.Header>
-                        <Grid BackgroundColor="#ae2323">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="4*"></ColumnDefinition>
-                                <ColumnDefinition Width="3*"></ColumnDefinition>
-                                <ColumnDefinition Width="3*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Label Text="Naziv" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0"/>
-                            <Label Text="Početak" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1" />
-                            <Label Text="Istek" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2" />
-                        </Grid>
-                    </ListView.Header>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid BackgroundColor="{Binding bojaPozadine}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="4*"></ColumnDefinition>
-                                        <ColumnDefinition Width="3*"></ColumnDefinition>
-                                        <ColumnDefinition Width="3*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <Label Text="{Binding nazivPublikacije }" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0"/>
-                                    <Label Text="{Binding datum, StringFormat='{0:dd/MM/yy}'}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1"/>
-                                    <Label Text="{Binding datum_do, StringFormat='{0:dd/MM/yy}'}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2"/>
-                                    <BoxView Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="Black" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+        <ScrollView  Orientation="Vertical">
+            <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+                <!--Informacije o korisniku-->
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Ime:" Padding="10,10,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                    <Label x:Name="imeKorisnikaLabela" Text="" Padding="10,10,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Prezime:" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                    <Label x:Name="prezimeKorisnikaLabela" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="e-Mail:" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                    <Label x:Name="emailKorisnikaLabela" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Povezani mobitel:" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                    <Label x:Name="mobitelKorisnikaLabela" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                </StackLayout>
+                <BoxView Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="#ae2323" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+                <StackLayout Orientation="Horizontal">
+                <Label Text="Povijest korisnika" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                    <Button Text="Otvori" Clicked="GumbPovijest" BackgroundColor="#ae2323" TextColor="White" CornerRadius="20"></Button>
+                </StackLayout>
             </StackLayout>
-            
-            <!-- Vraćeno -->
-            <StackLayout Orientation="Vertical">
-                <Label Text="Vraćeno" Padding="0,0,0,20" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="32"/>
-                <ListView x:Name="StavkePovijestiVraceno">
-                    <ListView.Header>
-                        <Grid BackgroundColor="#ae2323">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="4*"></ColumnDefinition>
-                                <ColumnDefinition Width="3*"></ColumnDefinition>
-                                <ColumnDefinition Width="3*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Label Text="Naziv" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0"/>
-                            <Label Text="Početak" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1" />
-                            <Label Text="Istek" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2" />
-                        </Grid>
-                    </ListView.Header>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid BackgroundColor="{Binding bojaPozadine}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="4*"></ColumnDefinition>
-                                        <ColumnDefinition Width="3*"></ColumnDefinition>
-                                        <ColumnDefinition Width="3*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <Label Text="{Binding nazivPublikacije }" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0"/>
-                                    <Label Text="{Binding datum, StringFormat='{0:dd/MM/yy}'}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1"/>
-                                    <Label Text="{Binding datum_do, StringFormat='{0:dd/MM/yy}'}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2"/>
-                                    <BoxView Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="Black" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
