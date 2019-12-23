@@ -33,7 +33,7 @@ namespace FOIKnjiznica
             {
                 MenuItems = new ObservableCollection<MainMenuMasterMenuItem>(new[]
                 {
-                    new MainMenuMasterMenuItem { Id = 0, Title = "Moj profil" },
+                    new MainMenuMasterMenuItem { Id = 0, Title = "Moj profil", TargetType = typeof(Profil)},
                     new MainMenuMasterMenuItem { Id = 1, Title = "Pretraži knjižnicu",  TargetType = typeof(MainMenuDetail)},
                     new MainMenuMasterMenuItem { Id = 2, Title = "Favoriti", TargetType = typeof(EkranFavoriti)},
                     new MainMenuMasterMenuItem { Id = 3, Title = "Postavke" },

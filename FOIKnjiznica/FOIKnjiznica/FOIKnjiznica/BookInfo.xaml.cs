@@ -81,8 +81,6 @@ namespace FOIKnjiznica
 
             if (jeFavorit)
             {
-                //TODO: kreirati dodavanje favorita u bazu podataka 
-
                 slikaFavorita = "jeFavorit.png";
                 ZvijezdaFavorita.Source = slikaFavorita;
 
@@ -101,7 +99,6 @@ namespace FOIKnjiznica
             }
             else
             {
-                //TODO: kreirati brisanje favorita iz baze podataka
 
                 slikaFavorita = "nijeFavorit.png";
                 ZvijezdaFavorita.Source = slikaFavorita;
@@ -120,8 +117,6 @@ namespace FOIKnjiznica
             }
 
         }
-
-        //TODO: Dodati u kontroler dodavanje i brisanje favorita te implementirati u metodi ispod
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
