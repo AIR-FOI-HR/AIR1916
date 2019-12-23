@@ -29,7 +29,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid>
+                            <Grid BackgroundColor="{Binding bojaPozadine}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="4*"></ColumnDefinition>
                                     <ColumnDefinition Width="3*"></ColumnDefinition>
@@ -38,6 +38,7 @@
                                 <Label Text="{Binding nazivPublikacije }" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0"/>
                                 <Label Text="{Binding datum, StringFormat='{0:dd/MM/yy}'}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1"/>
                                 <Label Text="{Binding datum_do, StringFormat='{0:dd/MM/yy}'}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2"/>
+                                <BoxView Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="Black" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
@@ -63,7 +64,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid>
+                                <Grid BackgroundColor="{Binding bojaPozadine}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="4*"></ColumnDefinition>
                                         <ColumnDefinition Width="3*"></ColumnDefinition>
@@ -72,6 +73,7 @@
                                     <Label Text="{Binding nazivPublikacije }" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0"/>
                                     <Label Text="{Binding datum, StringFormat='{0:dd/MM/yy}'}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1"/>
                                     <Label Text="{Binding datum_do, StringFormat='{0:dd/MM/yy}'}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2"/>
+                                    <BoxView Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="Black" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
@@ -98,7 +100,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid>
+                                <Grid BackgroundColor="{Binding bojaPozadine}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="4*"></ColumnDefinition>
                                         <ColumnDefinition Width="3*"></ColumnDefinition>
@@ -107,6 +109,7 @@
                                     <Label Text="{Binding nazivPublikacije }" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0"/>
                                     <Label Text="{Binding datum, StringFormat='{0:dd/MM/yy}'}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1"/>
                                     <Label Text="{Binding datum_do, StringFormat='{0:dd/MM/yy}'}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2"/>
+                                    <BoxView Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="Black" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>

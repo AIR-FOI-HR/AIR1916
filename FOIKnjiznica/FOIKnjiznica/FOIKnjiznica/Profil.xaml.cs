@@ -42,6 +42,15 @@ namespace FOIKnjiznica
 
             foreach (PovijestPublikacije trenutnaPovijest in povijestPosudbi)
             {
+                if(trenutnaPovijest.datum_do <= DateTime.Now)
+                {
+                    trenutnaPovijest.bojaPozadine = Color.FromHex("dea7a7"); 
+                }
+                else
+                {
+                    trenutnaPovijest.bojaPozadine = Color.FromHex("c4f6b9");
+                }
+
                 if (trenutnaPovijest.nazivStatusa == "Rezervirano")
                 {
                     povijestPosudbiRezervirano.Add(trenutnaPovijest);

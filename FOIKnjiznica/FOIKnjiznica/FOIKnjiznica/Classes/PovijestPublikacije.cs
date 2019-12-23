@@ -15,5 +15,7 @@ namespace FOIKnjiznica.Classes
         public DateTime datum_do { get; set; }
         public string nazivPublikacije { get; set; }
         public string nazivStatusa { get; set; }
+
+        public Xamarin.Forms.Color bojaPozadine { get; set; }
     }
 }
