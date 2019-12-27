@@ -27,7 +27,7 @@
                     <Label Text="Početak" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1" TextColor="White"/>
                     <Label Text="Istek" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2" TextColor="White"/>
                 </Grid>
-                <ListView x:Name="StavkePovijestiRezervacije">
+                <ListView x:Name="StavkePovijestiRezervacije" ItemTapped="PritisakRezerviranePublikacije">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>

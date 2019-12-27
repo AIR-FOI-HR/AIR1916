@@ -1,5 +1,8 @@
 ﻿using FOIKnjiznica.Classes;
+using FOIKnjiznica.PopUpPages;
 using Newtonsoft.Json;
+using Plugin.Toast;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,6 +84,20 @@ namespace FOIKnjiznica
             client.Dispose();
 
             SortirajPovijest();
+        }
+
+        private async void PritisakRezerviranePublikacije(object sender, ItemTappedEventArgs e)
+        {
+            PovijestPublikacije pritisnutaPublikacija = e.Item as PovijestPublikacije;
+
+            if (pritisnutaPublikacija.datum_do <= DateTime.Now)
+            {
+                CrossToastPopUp.Current.ShowCustomToast($"Ne možete prekinuti rezervaciju koja istekla ili ističe danas", "#ae2323", "White");
+            }
+            else
+            {
+                await PopupNavigation.PushAsync(new PrekidRezervacijePopupPage(pritisnutaPublikacija));
+            }
         }
     }
 }
