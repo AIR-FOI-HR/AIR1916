@@ -22,8 +22,17 @@
     </pages:PopupPage.Animation>
 
     <ContentPage.Content>
-        <StackLayout>
-            <Label x:Name="TekstPrekidaKorisniku"></Label>
+        <StackLayout VerticalOptions="Center"  Padding="20,0" HorizontalOptions="FillAndExpand">
+            <Frame CornerRadius="15" Padding="10" Margin="10" BackgroundColor="#ae2323">
+                <StackLayout>
+                    <Label Text="Jeste li sigurni da želite prekinuti rezervaciju?" TextColor="White" HorizontalTextAlignment="Center"></Label>
+                    <Label x:Name="TekstPrekidaKorisniku" TextColor="Yellow" HorizontalTextAlignment="Center"></Label>
+                    <StackLayout Orientation="Horizontal">
+                        <Button Text="Nazad" HorizontalOptions="Start" Margin="50,0,0,0" TextColor="Black" BorderWidth="0" FontSize="17" FontFamily="Roboto" FontAttributes="Bold" Padding="2" HeightRequest="35" Clicked="NazadPritisnuto"></Button>
+                        <Button Text="Potvrdi" HorizontalOptions="End" Margin="0,0,50,0" TextColor="Black" BorderWidth="0" FontSize="17" FontFamily="Roboto" FontAttributes="Bold" Padding="2" HeightRequest="35"></Button>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </pages:PopupPage>

@@ -1,4 +1,5 @@
 ﻿using FOIKnjiznica.Classes;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,12 @@ namespace FOIKnjiznica.PopUpPages
         {
             InitializeComponent();
 
-            TekstPrekidaKorisniku.Text = "Jeste li sigurni da želite prekinuti rezervaciju publikacije "+rezerviranaPublikacija.nazivPublikacije;
+            TekstPrekidaKorisniku.Text = rezerviranaPublikacija.nazivPublikacije;
+        }
+
+        private async void NazadPritisnuto(object sender, EventArgs e)
+        {
+            await PopupNavigation.Instance.PopAsync();
         }
     }
 }
