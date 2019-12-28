@@ -42,12 +42,13 @@ namespace FOIKnjiznicaWebServis.Controllers
             var upit = db.Stanje_Publikacije.Where(x => x.id == trenutnoStanjePublikacije.id).SingleOrDefault();
 
             //Promjena datuma do kad je rezervacija vrijedila na datum prekida rezervacije
-            upit.datum_do = DateTime.Now;
+            upit.datum_do = DateTime.Now.AddHours(-1);
 
             //Kreiranje novog stanja publikacije (slobodno)
             Stanje_Publikacije novoStanje = new Stanje_Publikacije() 
             {
                 datum = DateTime.Now, 
+                datum_do = DateTime.Now,
                 KopijaId = trenutnoStanjePublikacije.kopijaId, 
                 Vrsta_StatusaId = 1, 
                 ClanoviId = trenutnoStanjePublikacije.clanoviId

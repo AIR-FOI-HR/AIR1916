@@ -13,9 +13,25 @@ namespace FOIKnjiznicaWebServis.Controllers
         KnjiznicaEntities db = new KnjiznicaEntities();
 
         // GET: api/PovijestPosudbi
-        public IEnumerable<string> Get()
+        public IEnumerable<Object> Get()
         {
-            return new string[] { "value1", "value2" };
+            var upit = from Stanje in db.Stanje_Publikacije
+                       join Kopija in db.Kopija_Publikacije on Stanje.KopijaId equals Kopija.kopija_id
+                       join Publikacija in db.Publikacije on Kopija.PublikacijeId equals Publikacija.id
+                       join VrstaStatusa in db.Vrsta_Statusa on Stanje.Vrsta_StatusaId equals VrstaStatusa.id
+                       join Clan in db.Clanovi on Stanje.ClanoviId equals Clan.id
+                       select new
+                       {
+                           Stanje.id,
+                           Stanje.KopijaId,
+                           Stanje.Vrsta_StatusaId,
+                           Stanje.ClanoviId,
+                           Stanje.datum,
+                           Stanje.datum_do,
+                           nazivPublikacije = Publikacija.naziv,
+                           nazivStatusa = VrstaStatusa.naziv_vrste
+                       };
+            return upit.ToList<Object>();
         }
 
         // GET: api/PovijestPosudbi/5
