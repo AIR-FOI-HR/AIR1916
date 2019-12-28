@@ -43,9 +43,13 @@ namespace FOIKnjiznica
 
             foreach (PovijestPublikacije trenutnaPovijest in povijestPosudbi)
             {
-                if (trenutnaPovijest.datum_do <= DateTime.Now)
+                if (trenutnaPovijest.datum_do < DateTime.Now)
                 {
                     trenutnaPovijest.bojaPozadine = Color.FromHex("dea7a7");
+                }
+                else if (trenutnaPovijest.datum_do == DateTime.Now)
+                {
+                    trenutnaPovijest.bojaPozadine = Color.FromHex("ffeb7f");
                 }
                 else
                 {
