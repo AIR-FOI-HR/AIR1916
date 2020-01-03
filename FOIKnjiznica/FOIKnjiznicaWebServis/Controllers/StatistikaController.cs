@@ -61,56 +61,67 @@ namespace FOIKnjiznicaWebServis.Controllers
             trenutnaStatistika.ukupniBrojPosudba = db.Stanje_Publikacije.Where(x => x.ClanoviId == id && x.Vrsta_StatusaId == 2).Count();
             //Dohvacanje ukupnog broja rezerviranih dana
             var upitRezervacije = (from zapis in db.Stanje_Publikacije
-                        where zapis.ClanoviId == id && zapis.Vrsta_StatusaId == 3
-                        select new
-                        {
-                            zapis.id,
-                            zapis.datum,
-                            zapis.datum_do,
-                            zapis.KopijaId,
-                            zapis.Vrsta_StatusaId,
-                            zapis.ClanoviId
-                        }).Select(z => (z.datum_do < z.datum) ? DbFunctions.DiffDays(z.datum_do.Value, z.datum).Value : DbFunctions.DiffDays(z.datum, z.datum_do.Value).Value).DefaultIfEmpty(0).Sum();
+                                   where zapis.ClanoviId == id && zapis.Vrsta_StatusaId == 3
+                                   select new
+                                   {
+                                       zapis.id,
+                                       zapis.datum,
+                                       zapis.datum_do,
+                                       zapis.KopijaId,
+                                       zapis.Vrsta_StatusaId,
+                                       zapis.ClanoviId
+                                   }).Select(z => (z.datum_do < z.datum) ? DbFunctions.DiffDays(z.datum_do.Value, z.datum).Value : DbFunctions.DiffDays(z.datum, z.datum_do.Value).Value).DefaultIfEmpty(0).Sum();
 
             trenutnaStatistika.ukupniBrojRezerviranihDana = upitRezervacije;
             //Dohvacanje ukupnog broja posudenih dana
             var upitPosudbe = (from zapis in db.Stanje_Publikacije
-                        where zapis.ClanoviId == id && zapis.Vrsta_StatusaId == 2
-                        select new
-                        {
-                            zapis.id,
-                            zapis.datum,
-                            zapis.datum_do,
-                            zapis.KopijaId,
-                            zapis.Vrsta_StatusaId,
-                            zapis.ClanoviId
-                        }).Select(z => (z.datum_do < z.datum) ? DbFunctions.DiffDays(z.datum_do.Value, z.datum).Value : DbFunctions.DiffDays(z.datum, z.datum_do.Value).Value).DefaultIfEmpty(0).Sum();
+                               where zapis.ClanoviId == id && zapis.Vrsta_StatusaId == 2
+                               select new
+                               {
+                                   zapis.id,
+                                   zapis.datum,
+                                   zapis.datum_do,
+                                   zapis.KopijaId,
+                                   zapis.Vrsta_StatusaId,
+                                   zapis.ClanoviId
+                               }).Select(z => (z.datum_do < z.datum) ? DbFunctions.DiffDays(z.datum_do.Value, z.datum).Value : DbFunctions.DiffDays(z.datum, z.datum_do.Value).Value).DefaultIfEmpty(0).Sum();
 
             trenutnaStatistika.ukupniBrojPosudenihDana = upitPosudbe;
 
             //Najraniji istek rezervacije
-            int idRezerviraneKopije = db.Stanje_Publikacije.Where(x => x.ClanoviId == id && x.Vrsta_StatusaId == 3 && x.datum_do.Value == db.Stanje_Publikacije.Where(z => z.ClanoviId == id && z.Vrsta_StatusaId == 3 && z.datum_do.Value > DateTime.Now).Min(v => v.datum_do.Value)).Select(z => z.KopijaId).FirstOrDefault();
-            var nazivRezerviraneKopije = (from Publikacija in db.Publikacije
-                                          join Kopija in db.Kopija_Publikacije on Publikacija.id equals Kopija.PublikacijeId
-                                          where Kopija.kopija_id == idRezerviraneKopije
-                                          select Publikacija.naziv).FirstOrDefault();
+            int idRezerviraneKopije = db.Stanje_Publikacije.Where(x => x.ClanoviId == id && x.Vrsta_StatusaId == 3 && x.datum_do.Value == db.Stanje_Publikacije.Where(z => z.ClanoviId == id && z.Vrsta_StatusaId == 3 && z.datum_do.Value > DateTime.Now).Min(v => v.datum_do.Value)).Select(z => z.KopijaId).DefaultIfEmpty(0).First();
+            if (idRezerviraneKopije != 0) 
+            { 
+                var nazivRezerviraneKopije = (from Publikacija in db.Publikacije
+                                             join Kopija in db.Kopija_Publikacije on Publikacija.id equals Kopija.PublikacijeId
+                                             where Kopija.kopija_id == idRezerviraneKopije
+                                             select Publikacija.naziv).FirstOrDefault();
+                trenutnaStatistika.najranijiIstekRezervacijeNaziv = nazivRezerviraneKopije;
+                trenutnaStatistika.najranijiIstekRezervacijeDatum = db.Stanje_Publikacije.Where(z => z.ClanoviId == id && z.Vrsta_StatusaId == 3 && z.datum_do.Value > DateTime.Now).Min(v => v.datum_do.Value);
+            }
+            else
+            {
+                trenutnaStatistika.najranijiIstekRezervacijeNaziv = null;
+            }
 
-            trenutnaStatistika.najranijiIstekRezervacijeNaziv = nazivRezerviraneKopije;
-
-            trenutnaStatistika.najranijiIstekRezervacijeDatum = db.Stanje_Publikacije.Where(z => z.ClanoviId == id && z.Vrsta_StatusaId == 3 && z.datum_do > DateTime.Now).Min(v => v.datum_do.Value);
             //Najraniji istek posudbe
 
-            int idPosudeneKopije = db.Stanje_Publikacije.Where(x => x.ClanoviId == id && x.Vrsta_StatusaId == 2 && x.datum_do.Value == db.Stanje_Publikacije.Where(z => z.ClanoviId == id && z.Vrsta_StatusaId == 2 && z.datum_do.Value > DateTime.Now).Min(v => v.datum_do.Value)).Select(z => z.KopijaId).FirstOrDefault();
-            var nazivPosudeneKopije = (from Publikacija in db.Publikacije
-                                       join Kopija in db.Kopija_Publikacije on Publikacija.id equals Kopija.PublikacijeId
-                                       where Kopija.kopija_id == idPosudeneKopije
-                                       select Publikacija.naziv).FirstOrDefault();
+            int idPosudeneKopije = db.Stanje_Publikacije.Where(x => x.ClanoviId == id && x.Vrsta_StatusaId == 2 && x.datum_do.Value == db.Stanje_Publikacije.Where(z => z.ClanoviId == id && z.Vrsta_StatusaId == 2 && z.datum_do.Value > DateTime.Now).Min(v => v.datum_do.Value)).Select(z => z.KopijaId).DefaultIfEmpty(0).First();
+            if (idPosudeneKopije != 0)
+            {
+                var nazivPosudeneKopije = (from Publikacija in db.Publikacije
+                                           join Kopija in db.Kopija_Publikacije on Publikacija.id equals Kopija.PublikacijeId
+                                           where Kopija.kopija_id == idPosudeneKopije
+                                           select Publikacija.naziv).FirstOrDefault();
 
-            trenutnaStatistika.najranijiIstekPosudbeNaziv = nazivPosudeneKopije;
+                trenutnaStatistika.najranijiIstekPosudbeNaziv = nazivPosudeneKopije;
+                trenutnaStatistika.najranijiIstekPosudbeDatum = db.Stanje_Publikacije.Where(z => z.ClanoviId == id && z.Vrsta_StatusaId == 2 && z.datum_do.Value > DateTime.Now).Min(v => v.datum_do.Value);
 
-            trenutnaStatistika.najranijiIstekPosudbeDatum = db.Stanje_Publikacije.Where(z => z.ClanoviId == id && z.Vrsta_StatusaId == 2 && z.datum_do > DateTime.Now).Min(v => v.datum_do.Value);
-
-
+            }
+            else
+            {
+                trenutnaStatistika.najranijiIstekPosudbeNaziv = null;
+            }
             return trenutnaStatistika;
         }
 
