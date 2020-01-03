@@ -11,6 +11,7 @@
         <ScrollView  Orientation="Vertical">
             <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
                 <!--Informacije o korisniku-->
+                <Label Text="Podaci o korisniku" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="24"/>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Ime:" Padding="10,10,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
                     <Label x:Name="imeKorisnikaLabela" Text="" Padding="10,10,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
@@ -32,6 +33,41 @@
                 <Label Text="Povijest korisnika" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
                     <Button Text="Otvori" Clicked="GumbPovijest" BackgroundColor="#ae2323" TextColor="White" CornerRadius="20"></Button>
                 </StackLayout>
+                <BoxView Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="#ae2323" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+                <Label Text="Aktivnost korisnika" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="24"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Trenutni broj rezervacija:" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                    <Label x:Name="trenutniBrojRezervacija" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Trenutni broj posudbi:" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                    <Label x:Name="trenutniBrojPosudbi" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Ukupan broj rezervacija:" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                    <Label x:Name="ukupniBrojRezervacija" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Ukupan broj posudbi:" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                    <Label x:Name="ukupniBrojPosudbi" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Ukupan broj rezerviranih dana:" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                    <Label x:Name="ukupniBrojRezerviranihDana" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Ukupan broj posuđenih dana:" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                    <Label x:Name="ukupniBrojPosudenihDana" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                </StackLayout>
+                <BoxView Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="#ae2323" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+                <Label Text="Najraniji istek rezervacije" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="24"/>
+                <Label x:Name="najranijiIstekRezervacijeNaziv" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                <Label x:Name="najranijiIstekRezervacijeDatum" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                <BoxView Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="#ae2323" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+                <Label Text="Najraniji istek posudbe" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="24"/>
+                <Label x:Name="najranijiIstekPosudbeNaziv" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                <Label x:Name="najranijiIstekPosudbeDatum" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                <BoxView Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="#ae2323" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
