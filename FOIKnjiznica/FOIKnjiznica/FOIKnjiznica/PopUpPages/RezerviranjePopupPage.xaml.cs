@@ -49,7 +49,11 @@ namespace FOIKnjiznica.PopUpPages
             var response = await client.GetStringAsync("http://foiknjiznica1.azurewebsites.net/api/Rezervacije/" + id);
             var publikacije = JsonConvert.DeserializeObject<List<Classes.Publikacije>>(response);
             listaSvihPublikacija = publikacije;
-            ListaPublikacije.ItemsSource = listaSvihPublikacija;
+
+            List<Classes.Publikacije> posljednjeStanjePublikacije = new List<Publikacije>();
+            posljednjeStanjePublikacije.Add(listaSvihPublikacija[listaSvihPublikacija.Count - 1]);
+
+            ListaPublikacije.ItemsSource = posljednjeStanjePublikacije;
             foreach (var item in listaSvihPublikacija)
             {
                 item.GodinaOd = DateTime.Parse(item.GodinaOd).ToString();
@@ -59,11 +63,22 @@ namespace FOIKnjiznica.PopUpPages
 
         public async void GumbRezervirajKliknut(object sender, EventArgs e)
         {
+            PovijestPublikacije novoStanjePublikacije = new PovijestPublikacije() {datum = DateTime.Now, 
+                                                                                   datum_do = DateTime.Now.AddDays(5), 
+                                                                                   nazivPublikacije = publikacijeD.naziv,
+                                                                                   nazivStatusa = "Rezervirano",
+                                                                                   kopijaId = publikacijeD.Kopija,
+                                                                                   clanoviId = Clanovi.id,
+                                                                                   vrsta_statusaId = 3};
+
             HttpClient client = new HttpClient();
-            var content = new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("kopija_id", publikacijeD.Kopija.ToString()) });
-            var request = await client.PutAsync("http://foiknjiznica1.azurewebsites.net/api/GumbRezerviraj/" + publikacijeD.Kopija, content);
+            var Json = JsonConvert.SerializeObject(novoStanjePublikacije);
+            var content = new StringContent(Json, Encoding.UTF8, "application/json");
+            var request = await client.PutAsync("http://foiknjiznica1.azurewebsites.net/api/GumbRezerviraj", content);
+
             var response = await request.Content.ReadAsStringAsync();
             var publikacije = JsonConvert.DeserializeObject<List<Classes.Publikacije>>(response);
+
             listaSvihPublikacija = publikacije;
             ListaPublikacije.ItemsSource = listaSvihPublikacija;
             MessagingCenter.Send<App>((App)Application.Current, "RezervacijaPublikacije");

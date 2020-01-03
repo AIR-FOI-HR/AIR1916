@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using FFImageLoading.Forms.Platform;
 using Lottie.Forms.Droid;
+using Rg.Plugins.Popup.Services;
 
 namespace FOIKnjiznica.Droid
 {
@@ -36,6 +37,16 @@ namespace FOIKnjiznica.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+
+        // Služi za zatvaranje popup ekrana kod pritiska gumba za nazad na mobilnome uređaju
+        public async override void OnBackPressed()
+        {
+            if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))
+            {
+                await PopupNavigation.Instance.PopAsync();
+            }
         }
     }
 }

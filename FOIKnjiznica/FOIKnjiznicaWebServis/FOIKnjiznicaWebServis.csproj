@@ -168,6 +168,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IzdavaciController.cs" />
     <Compile Include="Controllers\PovijestPosudbiController.cs" />
+    <Compile Include="Controllers\PrekidRezervacijeController.cs" />
     <Compile Include="Controllers\PretragaPublikacijaController.cs" />
     <Compile Include="Controllers\PublikacijeController.cs" />
     <Compile Include="Controllers\RezervacijeController.cs" />

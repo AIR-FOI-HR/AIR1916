@@ -1,5 +1,8 @@
 ﻿using FOIKnjiznica.Classes;
+using FOIKnjiznica.PopUpPages;
 using Newtonsoft.Json;
+using Plugin.Toast;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,9 +43,13 @@ namespace FOIKnjiznica
 
             foreach (PovijestPublikacije trenutnaPovijest in povijestPosudbi)
             {
-                if (trenutnaPovijest.datum_do <= DateTime.Now)
+                if (trenutnaPovijest.datum_do < DateTime.Now)
                 {
                     trenutnaPovijest.bojaPozadine = Color.FromHex("dea7a7");
+                }
+                else if (trenutnaPovijest.datum_do == DateTime.Now)
+                {
+                    trenutnaPovijest.bojaPozadine = Color.FromHex("ffeb7f");
                 }
                 else
                 {
@@ -63,9 +70,17 @@ namespace FOIKnjiznica
                 }
             }
 
-            povijestPosudbiRezervirano = povijestPosudbiRezervirano.OrderBy(stavka => stavka.datum).ToList<PovijestPublikacije>();
-            povijestPosudbiPosudeno = povijestPosudbiPosudeno.OrderBy(stavka => stavka.datum).ToList<PovijestPublikacije>();
-            povijestPosudbiVraceno = povijestPosudbiVraceno.OrderBy(stavka => stavka.datum).ToList<PovijestPublikacije>();
+            povijestPosudbiRezervirano = povijestPosudbiRezervirano.OrderByDescending(stavka => stavka.datum).ToList<PovijestPublikacije>();
+            povijestPosudbiPosudeno = povijestPosudbiPosudeno.OrderByDescending(stavka => stavka.datum).ToList<PovijestPublikacije>();
+
+            povijestPosudbiVraceno = povijestPosudbiVraceno.OrderByDescending(stavka => stavka.datum).ToList<PovijestPublikacije>();
+            foreach (PovijestPublikacije stavkaPovijesti in povijestPosudbiVraceno.ToList())
+            {
+                if(povijestPosudbiRezervirano.Exists(x => x.datum_do.AddHours(1) == stavkaPovijesti.datum))
+                {
+                    povijestPosudbiVraceno.Remove(stavkaPovijesti);
+                }
+            }
 
             StavkePovijestiRezervacije.ItemsSource = povijestPosudbiRezervirano;
             StavkePovijestiPosudbe.ItemsSource = povijestPosudbiPosudeno;
@@ -81,6 +96,20 @@ namespace FOIKnjiznica
             client.Dispose();
 
             SortirajPovijest();
+        }
+
+        private async void PritisakRezerviranePublikacije(object sender, ItemTappedEventArgs e)
+        {
+            PovijestPublikacije pritisnutaPublikacija = e.Item as PovijestPublikacije;
+
+            if (pritisnutaPublikacija.datum_do <= DateTime.Now)
+            {
+                CrossToastPopUp.Current.ShowCustomToast($"Ne možete prekinuti rezervaciju koja istekla ili ističe danas", "#ae2323", "White");
+            }
+            else
+            {
+                await PopupNavigation.PushAsync(new PrekidRezervacijePopupPage(pritisnutaPublikacija));
+            }
         }
     }
 }
