@@ -30,6 +30,7 @@ namespace FOIKnjiznica.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             CachedImageRenderer.Init(true);
+            /*
             SetContentView(Resource.Layout.WebFOIPrijava);
             if (true)
             {
@@ -41,10 +42,10 @@ namespace FOIKnjiznica.Droid
                 webView.Settings.LoadWithOverviewMode = true;
 
                 webView.SetWebViewClient(new HelloWebViewClient());
-                webView.LoadUrl("https://192.168.0.125:45455/");
+                webView.LoadUrl("https://192.168.0.110:45455/");
 
-            }
-            //LoadApplication(new App());
+            }*/
+            LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
