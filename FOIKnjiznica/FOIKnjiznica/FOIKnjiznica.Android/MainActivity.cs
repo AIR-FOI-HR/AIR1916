@@ -7,13 +7,18 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using FFImageLoading.Forms.Platform;
+
 using System.Net;
 using Android.Webkit;
 using Android.Net.Http;
 
+using Lottie.Forms.Droid;
+using Rg.Plugins.Popup.Services;
+
+
 namespace FOIKnjiznica.Droid
 {
-    [Activity(Label = "FOIKnjiznica", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "FOIKnjiznica", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         WebView webView;
@@ -29,6 +34,8 @@ namespace FOIKnjiznica.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            //Inicijalizacija Android Lottie nugget paketa
+            AnimationViewRenderer.Init();
             CachedImageRenderer.Init(true);
             /*
             SetContentView(Resource.Layout.WebFOIPrijava);
@@ -52,6 +59,16 @@ namespace FOIKnjiznica.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+
+        // Služi za zatvaranje popup ekrana kod pritiska gumba za nazad na mobilnome uređaju
+        public async override void OnBackPressed()
+        {
+            if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))
+            {
+                await PopupNavigation.Instance.PopAsync();
+            }
         }
     }
 

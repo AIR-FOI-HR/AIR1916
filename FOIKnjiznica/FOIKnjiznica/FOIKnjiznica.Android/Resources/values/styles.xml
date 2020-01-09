@@ -28,6 +28,11 @@
   </style>
   <color name="ListViewHighlight">#F3F3F3</color>
 
+  <style name="Theme.Splash" parent="Theme.AppCompat.NoActionBar">
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowFullscreen">true</item>
+  </style>
+
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
     <item name="colorAccent">#FF0000</item>
   </style>

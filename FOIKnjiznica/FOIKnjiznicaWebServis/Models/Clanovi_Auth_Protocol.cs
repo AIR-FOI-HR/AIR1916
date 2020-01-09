@@ -19,6 +19,7 @@ namespace FOIKnjiznicaWebServis.Models
         public string podaci { get; set; }
         public Nullable<bool> odabrano { get; set; }
     
+        public virtual Auth_Protocol Auth_Protocol { get; set; }
         public virtual Clanovi Clanovi { get; set; }
     }
 }

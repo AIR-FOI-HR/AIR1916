@@ -1,5 +1,6 @@
 ﻿using FOIKnjiznica.Classes;
 using Newtonsoft.Json;
+using Plugin.Toast;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,9 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Rg.Plugins.Popup.Services;
+using FOIKnjiznica.PopUpPages;
+using System.Net.Http.Headers;
 
 namespace FOIKnjiznica
 {
@@ -17,10 +21,19 @@ namespace FOIKnjiznica
     {
         public static List<Classes.Publikacije> listaSvihPublikacija;
         Publikacije publikacijeD;
+
+        bool jeFavorit = false;
+        bool prvaProvjera = true;
+        public string slikaFavorita { get; private set; }
         public BookInfo(Publikacije publikacijeU)
         {
             publikacijeD = publikacijeU;
+
             InitializeComponent();
+            this.Disappearing += PosaljiPorukuOsvjezavanja;
+
+            ProvjeriJeLiFavorit();
+
             Naziv.Text = publikacijeD.naziv;
             Image.Source = publikacijeD.slika_url;
             Autor.Text = "Autor: " + publikacijeD.Autor;
@@ -32,9 +45,15 @@ namespace FOIKnjiznica
             Godina.Text = "Godina izdanja: " + publikacijeD.godina_izdanja.ToString();
             Izdanje.Text = "Izdanje: " + publikacijeD.izdanje;
             Izdavac.Text = "Izdavac: " + publikacijeD.Izdavac;
+
             DohvatiPublikaciju(publikacijeD.id);
+            MessagingCenter.Subscribe<App>((App)Application.Current, "RezervacijaPublikacije", (sender) => { OsvjeziListuPublikacija(); });
         }
 
+        private void OsvjeziListuPublikacija()
+        {
+            DohvatiPublikaciju(publikacijeD.id);
+        }
         private async void DohvatiPublikaciju(int id)
         {
             HttpClient client = new HttpClient();
@@ -43,10 +62,83 @@ namespace FOIKnjiznica
             listaSvihPublikacija = publikacije;
             ListaPublikacije.ItemsSource = listaSvihPublikacija;
         }
+
+        public async void OnListViewItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            Classes.Publikacije tappedItem = e.Item as Classes.Publikacije;
+            await PopupNavigation.PushAsync(new RezerviranjePopupPage(tappedItem));
+        }
+
         private async void ButtonSadrzaj(object sender, EventArgs e)
         {
 
             await Navigation.PushAsync(new Sadrzaj(publikacijeD));
         }
+
+        private async void ProvjeriJeLiFavorit()
+        {
+            jeFavorit = Classes.Clanovi.listaFavorita.Any(x => x.id == publikacijeD.id);
+
+            if (jeFavorit)
+            {
+                slikaFavorita = "jeFavorit.png";
+                ZvijezdaFavorita.Source = slikaFavorita;
+
+                if (prvaProvjera==false)
+                {
+                    CrossToastPopUp.Current.ShowCustomToast($"Uspješno ste dodali {publikacijeD.naziv} u favorite", "#ae2323","White");
+
+                    var httpClient = new HttpClient();
+                    var Json = JsonConvert.SerializeObject(new Je_Favorit() { PublikacijeId = publikacijeD.id, ClanoviId = Classes.Clanovi.id, pomocno = "null" });
+                    var content = new StringContent(Json, Encoding.UTF8, "application/json");
+                    var odgovor = await httpClient.PostAsync("http://foiknjiznica1.azurewebsites.net/api/Favoriti", content);
+                }
+
+                prvaProvjera = false ;
+
+            }
+            else
+            {
+
+                slikaFavorita = "nijeFavorit.png";
+                ZvijezdaFavorita.Source = slikaFavorita;
+
+                if (prvaProvjera==false)
+                {
+                    CrossToastPopUp.Current.ShowCustomToast($"Uspješno ste izbrisali {publikacijeD.naziv} iz favorita", "#ae2323", "White");
+
+                    var httpClient = new HttpClient();
+                    var Json = JsonConvert.SerializeObject(new Je_Favorit() { PublikacijeId = publikacijeD.id, ClanoviId = Classes.Clanovi.id, pomocno = "null" });
+                    var content = new StringContent(Json, Encoding.UTF8, "application/json");
+                    var odgovor = await httpClient.PostAsync("http://foiknjiznica1.azurewebsites.net/api/Favoriti", content);
+                }
+
+                prvaProvjera = false;               
+            }
+
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            jeFavorit = Classes.Clanovi.listaFavorita.Any(x => x.id == publikacijeD.id);
+
+            if (jeFavorit)
+            {
+                Classes.Clanovi.listaFavorita.RemoveAll(x => x.id == publikacijeD.id);
+                ProvjeriJeLiFavorit();
+            }
+            else
+            {
+                Classes.Clanovi.listaFavorita.Add(publikacijeD);
+                ProvjeriJeLiFavorit();
+            }
+        }
+
+        private void PosaljiPorukuOsvjezavanja(object sender, EventArgs e)
+        {
+            MessagingCenter.Send<App>((App)Application.Current, "osvjeziFavorite");
+        }
+
+
     }
 }
