@@ -19,6 +19,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Mono.Android">
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v9.0\Mono.Android.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Update="EkranFavoriti.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

@@ -36,8 +36,10 @@
     <EnableLLVM>false</EnableLLVM>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <BundleAssemblies>false</BundleAssemblies>
-    <AndroidTlsProvider>btls</AndroidTlsProvider>
-    <AndroidHttpClientHandlerType>System.Net.Http.HttpClientHandler</AndroidHttpClientHandlerType>
+    <AndroidTlsProvider>
+    </AndroidTlsProvider>
+    <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
+    <AndroidSupportedAbis />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -92,7 +94,9 @@
     <AndroidAsset Include="Assets\loading.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
-    <None Include="Properties\AndroidManifest.xml" />
+    <None Include="Properties\AndroidManifest.xml">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Tabbar.xml" />
@@ -114,12 +118,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\xml\network_security_config.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FOIKnjiznica\FOIKnjiznica.csproj">
-      <Project>{EF5C2CE9-2D43-496D-8C44-20DAB761F0F4}</Project>
-      <Name>FOIKnjiznica</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\foi_header.jpg" />
@@ -152,6 +150,16 @@
     <AndroidResource Include="Resources\drawable\Rezervirano.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FOIKnjiznica\FOIKnjiznica.csproj">
+      <Project>{ffed30d8-4d6b-472a-a1c6-90e0b9a0795a}</Project>
+      <Name>FOIKnjiznica</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\WebFOIPrijava.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
     <AndroidResource Include="Resources\layout\splash_layout.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
