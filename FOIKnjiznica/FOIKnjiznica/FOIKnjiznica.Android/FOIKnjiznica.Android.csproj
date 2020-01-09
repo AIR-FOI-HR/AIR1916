@@ -159,7 +159,6 @@
     <AndroidResource Include="Resources\layout\WebFOIPrijava.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-  </ItemGroup>
     <AndroidResource Include="Resources\layout\splash_layout.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
