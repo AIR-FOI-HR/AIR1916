@@ -18,6 +18,7 @@ using Rg.Plugins.Popup.Services;
 using System.Collections.Generic;
 using Plugin.DeviceInfo;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace FOIKnjiznica.Droid
 {
@@ -31,6 +32,7 @@ namespace FOIKnjiznica.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+            
 
             //Inicijalizacija DeviceInfo nuget paketa
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
@@ -43,17 +45,29 @@ namespace FOIKnjiznica.Droid
             //Inicijalizacija Android Lottie nugget paketa
             AnimationViewRenderer.Init();
             CachedImageRenderer.Init(true);
-            
+
             //Provjeravanje postojanja mobitela te otvaranje logina ukoliko id nije upisan u bazi
-            await Task.Run(() => Classes.Clanovi.DohvatiMobiteleSvihClanova());
+            string trenutacniID = CrossDeviceInfo.Current.Id;
+            List<Classes.Mobitel> sviMobiteli = await Classes.Clanovi.DohvatiMobiteleSvihClanova();
+
             bool postoji = false;
-            
-            foreach (var item in Classes.Clanovi.ListaMobitela) 
+            foreach (var item in sviMobiteli) 
             {
-                if(item.MobitelId == CrossDeviceInfo.Current.Id) { postoji = true; }
-                else { postoji = false; }
+                if (item.MobitelId == trenutacniID)
+                {
+                    postoji = true;
+                    break;
+                }
+                else
+                {
+                    postoji = false;
+                }
             }
-            if (postoji == false)
+            if (postoji == true)
+            {
+                LoadApplication(new App());
+            }
+            else if (postoji == false)
             {
                 SetContentView(Resource.Layout.WebFOIPrijava);
                 webView = FindViewById<WebView>(Resource.Id.prijavawebview);
@@ -65,10 +79,6 @@ namespace FOIKnjiznica.Droid
 
                 webView.SetWebViewClient(new HelloWebViewClient());
                 webView.LoadUrl("https://192.168.0.36:45455/");
-            }
-            else
-            {
-                LoadApplication(new App());
             }
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

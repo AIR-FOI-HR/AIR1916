@@ -17,7 +17,7 @@ namespace FOIKnjiznica.Classes
         public static string mobitelID { get; set; } = "00012223111223";
         public static List<Publikacije> listaFavorita { get; set; }
 
-        public static List<Mobitel> ListaMobitela = new List<Mobitel>();
+        public static List<Mobitel> ListaMobitela { get; set; }
 
         public async static void DohvatiFavorite()
         {
@@ -39,23 +39,13 @@ namespace FOIKnjiznica.Classes
             } 
         }
 
-        public async static void DohvatiMobiteleSvihClanova()
+        public async static Task<List<Mobitel>> DohvatiMobiteleSvihClanova()
         {
             HttpClient client = new HttpClient();
-            try
-            {
-                var response = await client.GetStringAsync("http://foiknjiznica1.azurewebsites.net/api/Mobitel/");
-                var mobiteli = JsonConvert.DeserializeObject<List<Mobitel>>(response);
-                ListaMobitela = mobiteli;
-            }
-            catch (Exception socketException) when (socketException is System.Net.Sockets.SocketException || socketException is HttpRequestException)
-            {
-
-            }
-            finally
-            {
-                client.Dispose();
-            }
+            var response = await client.GetStringAsync("http://foiknjiznica1.azurewebsites.net/api/Mobitel/");
+            var mobiteli = JsonConvert.DeserializeObject<List<Mobitel>>(response);
+            ListaMobitela = mobiteli;
+            return ListaMobitela;
         }
     }
 
