@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FOIKnjiznica.Classes
 {
@@ -15,6 +16,8 @@ namespace FOIKnjiznica.Classes
         public static string prezime { get; set; } = "Drvoderić";
         public static string mobitelID { get; set; } = "00012223111223";
         public static List<Publikacije> listaFavorita { get; set; }
+
+        public static List<Mobitel> ListaMobitela = new List<Mobitel>();
 
         public async static void DohvatiFavorite()
         {
@@ -36,5 +39,32 @@ namespace FOIKnjiznica.Classes
             } 
         }
 
+        public async static void DohvatiMobiteleSvihClanova()
+        {
+            HttpClient client = new HttpClient();
+            try
+            {
+                var response = await client.GetStringAsync("http://foiknjiznica1.azurewebsites.net/api/Mobitel/");
+                var mobiteli = JsonConvert.DeserializeObject<List<Mobitel>>(response);
+                ListaMobitela = mobiteli;
+            }
+            catch (Exception socketException) when (socketException is System.Net.Sockets.SocketException || socketException is HttpRequestException)
+            {
+
+            }
+            finally
+            {
+                client.Dispose();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Pomoćna klasa kako bi mogli dohvatiti id mobitela u pozivu api-a.
+    /// </summary>o.
+    public class Mobitel
+    {
+        public int Id { get; set; }
+        public string MobitelId { get; set; }
     }
 }
