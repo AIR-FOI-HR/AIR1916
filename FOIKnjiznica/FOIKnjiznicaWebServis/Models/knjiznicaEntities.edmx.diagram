@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="49213797271f45febcc3fd182e24184d" Name="Diagram1">
+        <EntityTypeShape EntityType="foiknjiznicaModel.Auth_Protocol" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="foiknjiznicaModel.Autori" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="foiknjiznicaModel.Clanovi" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="foiknjiznicaModel.Clanovi_Auth_Protocol" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="foiknjiznicaModel.Izdavaci" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="foiknjiznicaModel.Je_Autor" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="foiknjiznicaModel.Je_Favorit" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="foiknjiznicaModel.Kategorije" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="foiknjiznicaModel.Kopija_Publikacije" Width="1.5" PointX="5.25" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="foiknjiznicaModel.Publikacije" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="foiknjiznicaModel.Stanje_Publikacije" Width="1.5" PointX="7.5" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="foiknjiznicaModel.Vrsta_Statusa" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
+        <AssociationConnector Association="foiknjiznicaModel.FK__Clanovi_A__Auth___5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="foiknjiznicaModel.FK__Je_Autor__Autori__693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="foiknjiznicaModel.FK__Clanovi_A__Clano__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="foiknjiznicaModel.FK__Je_Favori__Clano__6E01572D" ManuallyRouted="false" />
+        <AssociationConnector Association="foiknjiznicaModel.FK__Stanje_Pu__Clano__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="foiknjiznicaModel.FK__Publikaci__Izdav__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="foiknjiznicaModel.FK__Je_Autor__Publik__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="foiknjiznicaModel.FK__Je_Favori__Publi__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="foiknjiznicaModel.FK__Publikaci__Kateg__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="foiknjiznicaModel.FK__Kopija_Pu__Publi__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="foiknjiznicaModel.FK__Stanje_Pu__Kopij__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="foiknjiznicaModel.FK__Stanje_Pu__Vrsta__656C112C" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

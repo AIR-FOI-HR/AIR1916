@@ -36,7 +36,7 @@ namespace FOIKnjiznica
         {
             HttpClient client = new HttpClient();
 
-            var response = await client.GetStringAsync("http://foiknjiznica1.azurewebsites.net/api/Statistika/"+Classes.Clanovi.id);
+            var response = await client.GetStringAsync(WebServisInfo.PutanjaWebServisa + "Statistika/" + Classes.Clanovi.id);
             var publikacije = JsonConvert.DeserializeObject<Classes.StatistikaKorisnika>(response);
             statistikaTrenutnogKorisnika = publikacije;
 

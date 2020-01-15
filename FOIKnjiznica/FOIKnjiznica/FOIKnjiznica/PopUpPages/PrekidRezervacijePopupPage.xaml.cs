@@ -36,7 +36,7 @@ namespace FOIKnjiznica.PopUpPages
             var httpClient = new HttpClient();
             var Json = JsonConvert.SerializeObject(rezervacija);
             var content = new StringContent(Json, Encoding.UTF8, "application/json");
-            var odgovor = await httpClient.PostAsync("http://foiknjiznica1.azurewebsites.net/api/PrekidRezervacije", content);
+            var odgovor = await httpClient.PostAsync(WebServisInfo.PutanjaWebServisa + "PrekidRezervacije", content);
 
             await PopupNavigation.Instance.PopAsync();
         }

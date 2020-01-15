@@ -10,7 +10,7 @@ namespace FOIKnjiznicaWebServis.Controllers
 {
     public class RezervacijeController : ApiController
     {
-        KnjiznicaEntities db = new KnjiznicaEntities();
+        foiknjiznicaEntities db = new foiknjiznicaEntities();
         // GET: api/Rezervacije
         public IEnumerable<string> Get()
         {

@@ -22,7 +22,7 @@ namespace FOIKnjiznicaWebServis.Controllers
     }
     public class PrekidRezervacijeController : ApiController
     {
-        KnjiznicaEntities db = new KnjiznicaEntities();
+        foiknjiznicaEntities db = new foiknjiznicaEntities();
 
         // GET: api/PrekidRezervacije
         public IEnumerable<string> Get()

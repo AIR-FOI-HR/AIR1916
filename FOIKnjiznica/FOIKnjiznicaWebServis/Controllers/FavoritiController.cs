@@ -17,7 +17,7 @@ namespace FOIKnjiznicaWebServis.Controllers
     }
     public class FavoritiController : ApiController
     {
-        KnjiznicaEntities db = new KnjiznicaEntities();
+        foiknjiznicaEntities db = new foiknjiznicaEntities();
 
         // GET: api/TestFavoriti
         public IEnumerable<Object> Get()
@@ -71,7 +71,7 @@ namespace FOIKnjiznicaWebServis.Controllers
             if (!ModelState.IsValid)
                 return BadRequest("Invalid data.");
 
-            using (var ctx = new KnjiznicaEntities())
+            using (var ctx = new foiknjiznicaEntities())
             {
                 //Provjera postoji li dobiven objekt u bazi podataka ako postoji on se sprema u favorit a ako ne postoji favorit je null
                 var favorit = ctx.Je_Favorit

@@ -13,10 +13,10 @@ namespace FOIKnjiznicaWebServis.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class KnjiznicaEntities : DbContext
+    public partial class foiknjiznicaEntities : DbContext
     {
-        public KnjiznicaEntities()
-            : base("name=KnjiznicaEntities")
+        public foiknjiznicaEntities()
+            : base("name=foiknjiznicaEntities")
         {
         }
     

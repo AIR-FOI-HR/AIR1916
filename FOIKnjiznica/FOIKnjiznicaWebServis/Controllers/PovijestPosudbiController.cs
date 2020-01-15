@@ -10,7 +10,7 @@ namespace FOIKnjiznicaWebServis.Controllers
 {
     public class PovijestPosudbiController : ApiController
     {
-        KnjiznicaEntities db = new KnjiznicaEntities();
+        foiknjiznicaEntities db = new foiknjiznicaEntities();
 
         // GET: api/PovijestPosudbi
         public IEnumerable<Object> Get()

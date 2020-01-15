@@ -185,55 +185,55 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Auth_Protocol.cs">
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Autori.cs">
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Clanovi.cs">
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Clanovi_Auth_Protocol.cs">
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FOIKnjiznicaDB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FOIKnjiznicaDB.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FOIKnjiznicaDB.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FOIKnjiznicaDB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FOIKnjiznicaDB.edmx</DependentUpon>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Izdavaci.cs">
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Je_Autor.cs">
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Je_Favorit.cs">
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Kategorije.cs">
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\knjiznicaEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>knjiznicaEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\knjiznicaEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\knjiznicaEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>knjiznicaEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Kopija_Publikacije.cs">
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Publikacije.cs">
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Stanje_Publikacije.cs">
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Vrsta_Statusa.cs">
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -272,15 +272,15 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <Content Include="Models\FOIKnjiznicaDB.Context.tt">
+    <Content Include="Models\knjiznicaEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FOIKnjiznicaDB.edmx</DependentUpon>
-      <LastGenOutput>FOIKnjiznicaDB.Context.cs</LastGenOutput>
+      <DependentUpon>knjiznicaEntities.edmx</DependentUpon>
+      <LastGenOutput>knjiznicaEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\FOIKnjiznicaDB.tt">
+    <Content Include="Models\knjiznicaEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FOIKnjiznicaDB.edmx</DependentUpon>
-      <LastGenOutput>FOIKnjiznicaDB.cs</LastGenOutput>
+      <DependentUpon>knjiznicaEntities.edmx</DependentUpon>
+      <LastGenOutput>knjiznicaEntities.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -299,23 +299,20 @@
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
-    <EntityDeploy Include="Models\FOIKnjiznicaDB.edmx">
+    <EntityDeploy Include="Models\knjiznicaEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FOIKnjiznicaDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>knjiznicaEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\FOIKnjiznicaDB.edmx.diagram">
-      <DependentUpon>FOIKnjiznicaDB.edmx</DependentUpon>
+    <Content Include="Models\knjiznicaEntities.edmx.diagram">
+      <DependentUpon>knjiznicaEntities.edmx</DependentUpon>
     </Content>
-    <None Include="Properties\PublishProfiles\foiknjiznica1 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\foiknjiznica2 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -387,13 +384,6 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Content\Site.css" />
     <Content Include="Views\Web.config" />
@@ -413,6 +403,13 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
