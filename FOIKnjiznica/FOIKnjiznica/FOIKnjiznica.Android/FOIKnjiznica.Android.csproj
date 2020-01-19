@@ -50,6 +50,10 @@
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -69,6 +73,12 @@
     </PackageReference>
     <PackageReference Include="FirebaseDatabase.net">
       <Version>4.0.4</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AppCenter">
+      <Version>2.6.4</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AppCenter.Push">
+      <Version>2.6.4</Version>
     </PackageReference>
     <PackageReference Include="Plugin.Toast">
       <Version>2.1.2</Version>
@@ -92,6 +102,7 @@
     <AndroidAsset Include="Assets\FontAwesome5Solid.otf" />
     <AndroidAsset Include="Assets\KeepCalm.ttf" />
     <AndroidAsset Include="Assets\loading.json" />
+    <GoogleServicesJson Include="google-services.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml">
