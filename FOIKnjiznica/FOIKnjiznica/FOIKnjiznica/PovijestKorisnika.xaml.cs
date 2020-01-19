@@ -22,6 +22,7 @@ namespace FOIKnjiznica
         public List<PovijestPublikacije> povijestPosudbiRezervirano;
         public List<PovijestPublikacije> povijestPosudbiPosudeno;
         public List<PovijestPublikacije> povijestPosudbiVraceno;
+        public List<PovijestPublikacije> povijestPosudbiVracenoTemp;
         public PovijestKorisnika()
         {
             InitializeComponent();
@@ -29,6 +30,7 @@ namespace FOIKnjiznica
             BindingContext = this;
 
             povijestPosudbiRezervirano = new List<PovijestPublikacije>();
+            povijestPosudbiVracenoTemp = new List<PovijestPublikacije>();
             povijestPosudbiPosudeno = new List<PovijestPublikacije>();
             povijestPosudbiVraceno = new List<PovijestPublikacije>();
 
@@ -66,19 +68,19 @@ namespace FOIKnjiznica
                 }
                 else
                 {
-                    povijestPosudbiVraceno.Add(trenutnaPovijest);
+                    povijestPosudbiVracenoTemp.Add(trenutnaPovijest);
                 }
             }
 
             povijestPosudbiRezervirano = povijestPosudbiRezervirano.OrderByDescending(stavka => stavka.datum).ToList<PovijestPublikacije>();
             povijestPosudbiPosudeno = povijestPosudbiPosudeno.OrderByDescending(stavka => stavka.datum).ToList<PovijestPublikacije>();
 
-            povijestPosudbiVraceno = povijestPosudbiVraceno.OrderByDescending(stavka => stavka.datum).ToList<PovijestPublikacije>();
-            foreach (PovijestPublikacije stavkaPovijesti in povijestPosudbiVraceno.ToList())
+            povijestPosudbiVracenoTemp = povijestPosudbiVracenoTemp.OrderByDescending(stavka => stavka.datum).ToList<PovijestPublikacije>();
+            foreach (PovijestPublikacije stavkaPovijesti in povijestPosudbiVracenoTemp.ToList())
             {
-                if(povijestPosudbiRezervirano.Exists(x => x.datum_do.AddHours(1) == stavkaPovijesti.datum))
+                if(povijestPosudbiPosudeno.Exists(x => x.datum_do.Date == stavkaPovijesti.datum.Date))
                 {
-                    povijestPosudbiVraceno.Remove(stavkaPovijesti);
+                    povijestPosudbiVraceno.Add(stavkaPovijesti);
                 }
             }
 
