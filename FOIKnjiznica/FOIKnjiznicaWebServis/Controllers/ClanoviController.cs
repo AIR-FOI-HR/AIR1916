@@ -10,7 +10,7 @@ namespace FOIKnjiznicaWebServis.Controllers
 {
     public class ClanoviController : ApiController
     {
-        KnjiznicaEntities db = new KnjiznicaEntities();
+        foiknjiznicaEntities db = new foiknjiznicaEntities();
 
         // GET: api/Clanovi
         public IEnumerable<Object> Get()
@@ -33,8 +33,6 @@ namespace FOIKnjiznicaWebServis.Controllers
                        where Clan.id == id
                        select new
                        {
-                           Clan.ime,
-                           Clan.prezime,
                            Clan.hrEduPersonUniqueID,
                            Clan.mobitelID
                        };

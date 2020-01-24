@@ -8,7 +8,7 @@ namespace FOIKnjiznicaWebServis.Controllers
 {
     public class GumbRezervirajController : ApiController
     {
-        KnjiznicaEntities db = new KnjiznicaEntities();
+        foiknjiznicaEntities db = new foiknjiznicaEntities();
         // GET: api/GumbRezerviraj
         public IEnumerable<string> Get()
         {

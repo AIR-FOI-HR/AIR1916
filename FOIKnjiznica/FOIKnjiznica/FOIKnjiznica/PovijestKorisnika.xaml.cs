@@ -90,7 +90,7 @@ namespace FOIKnjiznica
         private async void DohvatiPovijest()
         {
             HttpClient client = new HttpClient();
-            var response = await client.GetStringAsync("http://foiknjiznica1.azurewebsites.net/api/PovijestPosudbi/" + Clanovi.id);
+            var response = await client.GetStringAsync("http://foiknjiznica2.azurewebsites.net/api/PovijestPosudbi/" + Clanovi.id);
             var publikacije = JsonConvert.DeserializeObject<List<PovijestPublikacije>>(response);
             povijestPosudbi = publikacije;
             client.Dispose();

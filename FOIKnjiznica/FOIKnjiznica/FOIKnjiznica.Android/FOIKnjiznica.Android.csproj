@@ -70,6 +70,9 @@
     <PackageReference Include="FirebaseDatabase.net">
       <Version>4.0.4</Version>
     </PackageReference>
+    <PackageReference Include="PCLStorage">
+      <Version>1.0.2</Version>
+    </PackageReference>
     <PackageReference Include="Plugin.Toast">
       <Version>2.1.2</Version>
     </PackageReference>
@@ -153,6 +156,10 @@
     <AndroidResource Include="Resources\drawable\Rezervirano.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\PomocniProjekt\PomocniProjekt\PomocniProjekt.csproj">
+      <Project>{2fb4ebec-20b1-4596-a00b-9e54d4be102b}</Project>
+      <Name>PomocniProjekt</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FOIKnjiznica\FOIKnjiznica.csproj">
       <Project>{ffed30d8-4d6b-472a-a1c6-90e0b9a0795a}</Project>
       <Name>FOIKnjiznica</Name>

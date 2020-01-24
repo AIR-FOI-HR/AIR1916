@@ -25,7 +25,7 @@ namespace FOIKnjiznica.Classes
 
             try
             {
-                var response = await client.GetStringAsync("http://foiknjiznica1.azurewebsites.net/api/Favoriti/" + id);
+                var response = await client.GetStringAsync("http://foiknjiznica2.azurewebsites.net/api/Favoriti/" + id);
                 var favoriti = JsonConvert.DeserializeObject<List<Classes.Publikacije>>(response);
                 listaFavorita = favoriti;
             }
@@ -42,7 +42,7 @@ namespace FOIKnjiznica.Classes
         public async static Task<List<Mobitel>> DohvatiMobiteleSvihClanova()
         {
             HttpClient client = new HttpClient();
-            var response = await client.GetStringAsync("http://foiknjiznica1.azurewebsites.net/api/Mobitel/");
+            var response = await client.GetStringAsync("http://foiknjiznica2.azurewebsites.net/api/Mobitel/");
             var mobiteli = JsonConvert.DeserializeObject<List<Mobitel>>(response);
             ListaMobitela = mobiteli;
             return ListaMobitela;

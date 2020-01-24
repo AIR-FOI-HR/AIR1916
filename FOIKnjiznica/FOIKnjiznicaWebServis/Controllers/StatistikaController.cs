@@ -38,7 +38,7 @@ namespace FOIKnjiznicaWebServis.Controllers
     }
     public class StatistikaController : ApiController
     {
-        KnjiznicaEntities db = new KnjiznicaEntities();
+        foiknjiznicaEntities db = new foiknjiznicaEntities();
 
         // GET: api/Statistika
         public IEnumerable<string> Get()

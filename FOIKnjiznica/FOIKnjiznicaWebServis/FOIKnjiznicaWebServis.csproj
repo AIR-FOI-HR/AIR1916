@@ -65,6 +65,15 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PCLStorage, Version=1.0.2.0, Culture=neutral, PublicKeyToken=286fe515a2c35b64, processorArchitecture=MSIL">
+      <HintPath>..\packages\PCLStorage.1.0.2\lib\net45\PCLStorage.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLStorage.Abstractions, Version=1.0.2.0, Culture=neutral, PublicKeyToken=286fe515a2c35b64, processorArchitecture=MSIL">
+      <HintPath>..\packages\PCLStorage.1.0.2\lib\net45\PCLStorage.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.DeviceInfo, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugin.DeviceInfo.4.1.1\lib\net45\Plugin.DeviceInfo.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -167,9 +176,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\AutentikacijaController.cs" />
     <Compile Include="Controllers\AutoriController.cs" />
     <Compile Include="Controllers\ClanoviController.cs" />
+    <Compile Include="Controllers\FOIAutentikacijaController.cs" />
     <Compile Include="Controllers\GumbRezervirajController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IzdavaciController.cs" />
@@ -187,55 +196,55 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Auth_Protocol.cs">
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Autori.cs">
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Clanovi.cs">
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Clanovi_Auth_Protocol.cs">
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FOIKnjiznicaDB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FOIKnjiznicaDB.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FOIKnjiznicaDB.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FOIKnjiznicaDB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FOIKnjiznicaDB.edmx</DependentUpon>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Izdavaci.cs">
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Je_Autor.cs">
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Je_Favorit.cs">
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Kategorije.cs">
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\knjiznicaEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>knjiznicaEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\knjiznicaEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\knjiznicaEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>knjiznicaEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Kopija_Publikacije.cs">
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Publikacije.cs">
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Stanje_Publikacije.cs">
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Vrsta_Statusa.cs">
-      <DependentUpon>FOIKnjiznicaDB.tt</DependentUpon>
+      <DependentUpon>knjiznicaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -274,15 +283,15 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <Content Include="Models\FOIKnjiznicaDB.Context.tt">
+    <Content Include="Models\knjiznicaEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FOIKnjiznicaDB.edmx</DependentUpon>
-      <LastGenOutput>FOIKnjiznicaDB.Context.cs</LastGenOutput>
+      <DependentUpon>knjiznicaEntities.edmx</DependentUpon>
+      <LastGenOutput>knjiznicaEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\FOIKnjiznicaDB.tt">
+    <Content Include="Models\knjiznicaEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FOIKnjiznicaDB.edmx</DependentUpon>
-      <LastGenOutput>FOIKnjiznicaDB.cs</LastGenOutput>
+      <DependentUpon>knjiznicaEntities.edmx</DependentUpon>
+      <LastGenOutput>knjiznicaEntities.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -301,14 +310,14 @@
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
-    <EntityDeploy Include="Models\FOIKnjiznicaDB.edmx">
+    <EntityDeploy Include="Models\knjiznicaEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FOIKnjiznicaDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>knjiznicaEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\FOIKnjiznicaDB.edmx.diagram">
-      <DependentUpon>FOIKnjiznicaDB.edmx</DependentUpon>
+    <Content Include="Models\knjiznicaEntities.edmx.diagram">
+      <DependentUpon>knjiznicaEntities.edmx</DependentUpon>
     </Content>
-    <None Include="Properties\PublishProfiles\foiknjiznica1 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\foiknjiznica2 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -391,6 +400,7 @@
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -430,6 +440,12 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PomocniProjekt\PomocniProjekt\PomocniProjekt.csproj">
+      <Project>{2fb4ebec-20b1-4596-a00b-9e54d4be102b}</Project>
+      <Name>PomocniProjekt</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

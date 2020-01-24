@@ -57,7 +57,7 @@ namespace FOIKnjiznica
         private async void DohvatiPublikaciju(int id)
         {
             HttpClient client = new HttpClient();
-            var response = await client.GetStringAsync("http://foiknjiznica1.azurewebsites.net/api/Publikacije/"+id);
+            var response = await client.GetStringAsync("http://foiknjiznica2.azurewebsites.net/api/Publikacije/"+id);
             var publikacije = JsonConvert.DeserializeObject<List<Classes.Publikacije>>(response);
             listaSvihPublikacija = publikacije;
             ListaPublikacije.ItemsSource = listaSvihPublikacija;
@@ -91,7 +91,7 @@ namespace FOIKnjiznica
                     var httpClient = new HttpClient();
                     var Json = JsonConvert.SerializeObject(new Je_Favorit() { PublikacijeId = publikacijeD.id, ClanoviId = Classes.Clanovi.id, pomocno = "null" });
                     var content = new StringContent(Json, Encoding.UTF8, "application/json");
-                    var odgovor = await httpClient.PostAsync("http://foiknjiznica1.azurewebsites.net/api/Favoriti", content);
+                    var odgovor = await httpClient.PostAsync("http://foiknjiznica2.azurewebsites.net/api/Favoriti", content);
                 }
 
                 prvaProvjera = false ;
@@ -110,7 +110,7 @@ namespace FOIKnjiznica
                     var httpClient = new HttpClient();
                     var Json = JsonConvert.SerializeObject(new Je_Favorit() { PublikacijeId = publikacijeD.id, ClanoviId = Classes.Clanovi.id, pomocno = "null" });
                     var content = new StringContent(Json, Encoding.UTF8, "application/json");
-                    var odgovor = await httpClient.PostAsync("http://foiknjiznica1.azurewebsites.net/api/Favoriti", content);
+                    var odgovor = await httpClient.PostAsync("http://foiknjiznica2.azurewebsites.net/api/Favoriti", content);
                 }
 
                 prvaProvjera = false;               
