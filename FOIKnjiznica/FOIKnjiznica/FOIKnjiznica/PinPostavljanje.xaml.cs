@@ -37,6 +37,12 @@ namespace FOIKnjiznica
                 Naslov.Text = "Unesite PIN";
             }
         }
+        protected override bool OnBackButtonPressed()
+        {
+            App.Current.MainPage = new Profil();
+            return base.OnBackButtonPressed();
+        }
+
         private void BtnJedan(object sender, EventArgs e)
         {
             DodajBroj("1");
