@@ -31,6 +31,24 @@ namespace FOIKnjiznica
             KreirajStatistiku();
 
         }
+        public Profil(int odabir)
+        {
+            InitializeComponent();
+
+            BindingContext = this;
+
+            imeKorisnikaLabela.Text = Classes.Clanovi.ime;
+            prezimeKorisnikaLabela.Text = Classes.Clanovi.prezime;
+            emailKorisnikaLabela.Text = Classes.Clanovi.hrEduPersonUniqueID;
+            mobitelKorisnikaLabela.Text = Classes.Clanovi.mobitelID;
+
+            KreirajStatistiku();
+            if(odabir == 1)
+            {
+                PinCheck.IsChecked = true;
+                lblPinCheck.Text = "Dodano";
+            }  
+        }
 
         private async void KreirajStatistiku()
         {
@@ -76,5 +94,11 @@ namespace FOIKnjiznica
         {
             await Navigation.PushAsync(new PovijestKorisnika());
         }
+
+        private void GumbPin(object sender, EventArgs e)
+        {
+            App.Current.MainPage = new PinPostavljanje(false);
+        }
+
     }
 }
