@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using FOIKnjiznica.Classes;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
 using System.Security.Cryptography;
+using System.Net.Http;
+using Plugin.DeviceInfo;
 
 namespace FOIKnjiznica
 {
@@ -21,15 +25,18 @@ namespace FOIKnjiznica
         private SHA256 sha256;
         private bool noviPin = true;
         private string pinIzBaze = "";
+        private string staraLozinka;
         
-        public PinPostavljanje(bool postoji)
+        public PinPostavljanje(bool postoji, string lozinka)
         {
             InitializeComponent();
+            //string idUredaja = CrossDeviceInfo.Current.Id;
             sha256 = SHA256.Create();
             if (postoji)
             {
                 Naslov.Text = "Unesite novi PIN za promjenu";
                 noviPin = false;
+                staraLozinka = lozinka;
             }
             else
             {
@@ -136,9 +143,14 @@ namespace FOIKnjiznica
 
         }
 
-        private void PohraniPinUBazu(int odabraniPin)
+        private async void PohraniPinUBazu(int odabraniPin)
         {
             string pinHash = HashirajPin(odabraniPin);
+            HttpClient httpClient = new HttpClient();
+            var Json = JsonConvert.SerializeObject(new ClanoviAuthProtokol() {ClanoviId = Clanovi.id, Auth_ProtocolId = 4, podaci=pinHash, odabrano=1 });
+            var content = new StringContent(Json, Encoding.UTF8, "application/json");
+            var odgovor = await httpClient.PostAsync(WebServisInfo.PutanjaWebServisa + "DodajPin", content);
+
             App.Current.MainPage = new Profil(1);
         }
 
