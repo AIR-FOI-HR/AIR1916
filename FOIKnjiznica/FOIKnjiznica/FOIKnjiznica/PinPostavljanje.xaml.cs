@@ -136,6 +136,20 @@ namespace FOIKnjiznica
 
         }
 
+        private void PohraniPinUBazu(int odabraniPin)
+        {
+            string pinHash = HashirajPin(odabraniPin);
+            App.Current.MainPage = new Profil(1);
+        }
+
+        private string HashirajPin(int pin)
+        {
+            byte[] pinByte = Encoding.UTF8.GetBytes(pin.ToString());
+            byte[] izracunatiPinByte = sha256.ComputeHash(pinByte);
+            string pinHash = Convert.ToBase64String(izracunatiPinByte);
+            return pinHash;
+        }
+
         private void IzbrisiPrethodnuBrojku()
         {
             if (brojac > 0)
