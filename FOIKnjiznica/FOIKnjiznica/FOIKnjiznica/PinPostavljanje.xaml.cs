@@ -74,6 +74,20 @@ namespace FOIKnjiznica
                 GumbUnos4.BackgroundColor = Color.FromHex("#FFFFFF");
             }
         }
+        private void ProvjeriIspravnostPina()
+        {
+            int pin = SpojiBrojeve();
+            if (noviPin)
+            {
+                IspravnostNovogPina(pin);
+            }
+            else
+            {
+                IspravnostStarogPina(pin);
+            }
+                        
+        }
+
         private void BtnJedan(object sender, EventArgs e)
         {
             DodajBroj("1");
