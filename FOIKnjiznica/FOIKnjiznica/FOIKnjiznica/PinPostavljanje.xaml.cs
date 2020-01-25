@@ -88,6 +88,54 @@ namespace FOIKnjiznica
                         
         }
 
+        private void IspravnostNovogPina(int pin)
+        {
+            ispravnibroj++;
+            if (ispravnibroj < 2)
+            {
+                ponovljeniPin = pin;
+                pinNumber.Clear();
+                IspisKrivo.Text = "Potvrdite svoj PIN";
+            }
+            else if (ispravnibroj == 2)
+            {
+                if (pin == ponovljeniPin)
+                {
+                    ispravnibroj = 0;
+                    pinNumber.Clear();
+                    PohraniPinUBazu(pin);
+                    IspisKrivo.Text = "Ispravni PIN";
+                }
+                else
+                {
+                    ispravnibroj = 0;
+                    Vibration.Vibrate();
+                    IspisKrivo.Text = "Vaš uneseni PIN je netočan!";
+                    pinNumber.Clear();
+                    GumbUnos1.BackgroundColor = Color.FromHex("#FFFFFF");
+                    GumbUnos2.BackgroundColor = Color.FromHex("#FFFFFF");
+                    GumbUnos3.BackgroundColor = Color.FromHex("#FFFFFF");
+                    GumbUnos4.BackgroundColor = Color.FromHex("#FFFFFF");
+                }
+            }
+            else if (ispravnibroj > 2)
+            {
+                ispravnibroj = 0;
+                Vibration.Vibrate();
+                IspisKrivo.Text = "Vaš uneseni PIN je netočan!";
+                pinNumber.Clear();
+                GumbUnos1.BackgroundColor = Color.FromHex("#FFFFFF");
+                GumbUnos2.BackgroundColor = Color.FromHex("#FFFFFF");
+                GumbUnos3.BackgroundColor = Color.FromHex("#FFFFFF");
+                GumbUnos4.BackgroundColor = Color.FromHex("#FFFFFF");
+            }
+        }
+
+        private void IspravnostStarogPina(int Pin)
+        {
+
+        }
+
         private void IzbrisiPrethodnuBrojku()
         {
             if (brojac > 0)
