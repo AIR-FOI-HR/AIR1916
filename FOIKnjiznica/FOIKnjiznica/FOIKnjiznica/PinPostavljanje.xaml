@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             mc:Ignorable="d"
+             Title="PinPostavljanje"
+             x:Class="FOIKnjiznica.PinPostavljanje">
+    <ContentPage.Content>
+
+        <StackLayout>
+            <Label VerticalOptions="Start" HorizontalOptions="CenterAndExpand"></Label>
+            <Label VerticalOptions="Start" HorizontalOptions="CenterAndExpand"></Label>
+            <Label VerticalOptions="Start" HorizontalOptions="CenterAndExpand"></Label>
+            <Label x:Name="Naslov" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" TextColor="#FD8638"  FontSize="25" FontAttributes="Bold" />
+
+            <StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10">
+                    <Button x:Name="GumbUnos1" WidthRequest="30" HeightRequest="30" BorderRadius="15" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#FFFFFF" BorderColor="#050505" BorderWidth="2" />
+                    <Button x:Name="GumbUnos2" WidthRequest="30" HeightRequest="30" BorderRadius="15" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#FFFFFF" BorderColor="#050505" BorderWidth="2" />
+                    <Button x:Name="GumbUnos3" WidthRequest="30" HeightRequest="30" BorderRadius="15" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#FFFFFF" BorderColor="#050505" BorderWidth="2" />
+                    <Button x:Name="GumbUnos4" WidthRequest="30" HeightRequest="30" BorderRadius="15" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#FFFFFF" BorderColor="#050505" BorderWidth="2" />
+                </StackLayout>
+                <Label x:Name="IspisKrivo" FontSize="Micro" HorizontalOptions="CenterAndExpand" TextColor="#A80202"></Label>
+            </StackLayout>
+
+
+            <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Spacing="30">
+                <StackLayout Orientation="Horizontal" Spacing="25">
+                    <Button x:Name="Gumb1" Text="1" WidthRequest="60" HeightRequest="60" BorderRadius="30" HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="#FD8638" Font="25" FontAttributes="Bold" Clicked="BtnJedan"/>
+                    <Button x:Name="Gumb2" Text="2" WidthRequest="60" HeightRequest="60" BorderRadius="30" HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="#FD8638" Font="25" FontAttributes="Bold" Clicked="BtnDva"/>
+                    <Button x:Name="Gumb3" Text="3" WidthRequest="60" HeightRequest="60" BorderRadius="30" HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="#FD8638" Font="25" FontAttributes="Bold" Clicked="BtnTri"/>
+                </StackLayout>
+
+                <StackLayout  Orientation="Horizontal" Spacing="25">
+                    <Button x:Name="Gumb4" Text="4" WidthRequest="60" HeightRequest="60" BorderRadius="30" HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="#FD8638" Font="25" FontAttributes="Bold" Clicked="BtnCetiri"/>
+                    <Button x:Name="Gumb5" Text="5" WidthRequest="60" HeightRequest="60" BorderRadius="30" HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="#FD8638" Font="25" FontAttributes="Bold" Clicked="BtnPet"/>
+                    <Button x:Name="Gumb6" Text="6" WidthRequest="60" HeightRequest="60" BorderRadius="30" HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="#FD8638" Font="25" FontAttributes="Bold" Clicked="BtnSest"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Spacing="25">
+                    <Button x:Name="Gumb7" Text="7" WidthRequest="60" HeightRequest="60" BorderRadius="30" HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="#FD8638" Font="25" FontAttributes="Bold" Clicked="BtnSedam"/>
+                    <Button x:Name="Gumb8" Text="8" WidthRequest="60" HeightRequest="60" BorderRadius="30" HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="#FD8638" Font="25" FontAttributes="Bold" Clicked="BtnOsam"/>
+                    <Button x:Name="Gumb9" Text="9" WidthRequest="60" HeightRequest="60" BorderRadius="30" HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="#FD8638" Font="25" FontAttributes="Bold" Clicked="BtnDevet"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="32">
+                    <Button x:Name="GumbBack" Text="Back" WidthRequest="50" HeightRequest="50" BorderRadius="25" HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="#FD8638" Font="10" FontAttributes="Bold" Clicked="BtnBack" />
+                    <Button x:Name="Gumb0" Text="0" WidthRequest="60" HeightRequest="60" BorderRadius="30" HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="#FD8638" Font="25" FontAttributes="Bold" Clicked="BtnNula"/>
+                    <Button x:Name="GumbDelete" Text="Del" WidthRequest="50" HeightRequest="50" BorderRadius="25" HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="#FD8638" Font="10" FontAttributes="Bold" Clicked="BtnDelete"/>
+                </StackLayout>
+
+                <StackLayout></StackLayout>
+                <Label VerticalOptions="End" HorizontalOptions="CenterAndExpand"></Label>
+
+            </StackLayout>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
