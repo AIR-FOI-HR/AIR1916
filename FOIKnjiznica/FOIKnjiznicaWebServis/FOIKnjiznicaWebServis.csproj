@@ -65,6 +65,9 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.DeviceInfo, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugin.DeviceInfo.4.1.1\lib\net45\Plugin.DeviceInfo.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -169,6 +172,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AutentikacijaController.cs" />
     <Compile Include="Controllers\AutoriController.cs" />
+    <Compile Include="Controllers\DodajPinController.cs" />
     <Compile Include="Controllers\GumbRezervirajController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IzdavaciController.cs" />
@@ -414,6 +418,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Autentikacija\" />
+    <Folder Include="Views\DodajPin\" />
     <Folder Include="Views\FOIAutentikacija\" />
   </ItemGroup>
   <ItemGroup>
