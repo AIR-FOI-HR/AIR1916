@@ -14,9 +14,6 @@ using System.Windows.Input;
 using Rg.Plugins.Popup.Services;
 using FOIKnjiznica.Classes;
 
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Push;
-
 namespace FOIKnjiznica
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -37,8 +34,6 @@ namespace FOIKnjiznica
             MessagingCenter.Subscribe<App>((App)Application.Current, "sortiranjePoAutoru", (sender) => { OsvjeziListuPublikacija(); });
             MessagingCenter.Subscribe<App>((App)Application.Current, "filtriranjePublikacija", (sender) => { OsvjeziListuPublikacija(); });
             MessagingCenter.Subscribe<App>((App)Application.Current, "resetiranjeFiltera", (sender) => { OsvjeziListuPublikacija(); });
-
-            AppCenter.Start("65068ce7-ba56-49b6-bc9e-03c39018c505", typeof(Push));
         }
 
         //Dohvacanje Publikacije za prikaz na zaslonu
