@@ -88,6 +88,33 @@ namespace FOIKnjiznica
                         
         }
 
+        private void IzbrisiPrethodnuBrojku()
+        {
+            if (brojac > 0)
+            {
+                pinNumber.RemoveAt(pinNumber.Count - 1);
+                if (brojac == 1)
+                {
+                    GumbUnos1.BackgroundColor = Color.FromHex("#FFFFFF");
+                }
+                else if (brojac == 2)
+                {
+                    GumbUnos2.BackgroundColor = Color.FromHex("#FFFFFF");
+                }
+                else if (brojac == 3)
+                {
+                    GumbUnos3.BackgroundColor = Color.FromHex("#FFFFFF");
+                }
+                brojac--;
+            }
+        }
+
+        private int SpojiBrojeve()
+        {
+            string stringPin = String.Join("", pinNumber.ToArray());
+            int pin = Int32.Parse(stringPin);
+            return pin;
+        }
         private void BtnJedan(object sender, EventArgs e)
         {
             DodajBroj("1");
