@@ -1,5 +1,6 @@
 ﻿using FOIKnjiznica.Classes;
 using Newtonsoft.Json;
+using Plugin.Toast;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,10 @@ namespace FOIKnjiznica
     public partial class Profil : ContentPage
     {
         public StatistikaKorisnika statistikaTrenutnogKorisnika;
+        public ClanoviAuthProtokol lozinke;
+        public List<ClanoviAuthProtokol> listaLozinki { get; set; }
+        private string lozinka;
+        private int odabranOdabirLozinke;
         public Profil()
         {
             InitializeComponent();
@@ -29,6 +34,7 @@ namespace FOIKnjiznica
             mobitelKorisnikaLabela.Text = Classes.Clanovi.mobitelID;
 
             KreirajStatistiku();
+            ProvjeriLozinke();
 
         }
         public Profil(int odabir)
@@ -43,10 +49,12 @@ namespace FOIKnjiznica
             mobitelKorisnikaLabela.Text = Classes.Clanovi.mobitelID;
 
             KreirajStatistiku();
+            ProvjeriLozinke();
             if(odabir == 1)
             {
                 PinCheck.IsChecked = true;
                 lblPinCheck.Text = "Dodano";
+                CrossToastPopUp.Current.ShowCustomToast($"Uspješno ste dodali Pin opciju za bržu prijavu", "#ae2323", "White");
             }  
         }
 
@@ -90,6 +98,48 @@ namespace FOIKnjiznica
 
         }
 
+        private async void ProvjeriLozinke()
+        {
+            HttpClient client = new HttpClient();
+
+            try
+            {
+                var response = await client.GetStringAsync(WebServisInfo.PutanjaWebServisa + "DodajPin/" + Classes.Clanovi.id);
+                var odgovor = JsonConvert.DeserializeObject<Classes.ClanoviAuthProtokol>(response);
+                lozinke = odgovor;
+            }
+            catch (Exception socketException) when (socketException is System.Net.Sockets.SocketException || socketException is HttpRequestException)
+            {
+
+            }
+            finally
+            {
+                client.Dispose();
+            }
+            
+
+            if(lozinke.Auth_ProtocolId == 2)
+            {
+                UzorakPotvrdeno.IsChecked = true;
+                PinCheck.IsChecked = false;
+                OtisakPotvrdeno.IsChecked = false;
+                odabranOdabirLozinke = 2;
+            }else if(lozinke.Auth_ProtocolId == 3)
+            {
+                UzorakPotvrdeno.IsChecked = false;
+                PinCheck.IsChecked = false;
+                OtisakPotvrdeno.IsChecked = true;
+                odabranOdabirLozinke = 3;
+            }else if(lozinke.Auth_ProtocolId == 4)
+            {
+                UzorakPotvrdeno.IsChecked = false;
+                PinCheck.IsChecked = true;
+                OtisakPotvrdeno.IsChecked = false;
+                odabranOdabirLozinke = 4;
+            }
+            lozinka = lozinke.podaci;
+        }
+
         private async void GumbPovijest(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new PovijestKorisnika());
@@ -97,7 +147,15 @@ namespace FOIKnjiznica
 
         private void GumbPin(object sender, EventArgs e)
         {
-            App.Current.MainPage = new PinPostavljanje(false);
+            if(odabranOdabirLozinke == 4)
+            {
+                App.Current.MainPage = new PinPostavljanje(true, lozinka);
+            }
+            else
+            {
+                App.Current.MainPage = new PinPostavljanje(false, lozinka);
+            }
+            
         }
 
     }
