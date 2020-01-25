@@ -43,6 +43,37 @@ namespace FOIKnjiznica
             return base.OnBackButtonPressed();
         }
 
+        private void DodajBroj(string broj)
+        {
+            brojac++;
+            if (brojac == 1)
+            {
+                GumbUnos1.BackgroundColor = Color.FromHex("#FD8638");
+                pinNumber.Add(broj);
+            }
+            else if (brojac == 2)
+            {
+                GumbUnos2.BackgroundColor = Color.FromHex("#FD8638");
+                pinNumber.Add(broj);
+            }
+            else if (brojac == 3)
+            {
+                GumbUnos3.BackgroundColor = Color.FromHex("#FD8638");
+                pinNumber.Add(broj);
+            }
+            else if (brojac == 4)
+            {
+                GumbUnos4.BackgroundColor = Color.FromHex("#FD8638");
+                pinNumber.Add(broj);
+                System.Threading.Thread.Sleep(400);
+                ProvjeriIspravnostPina();
+                brojac = 0;
+                GumbUnos1.BackgroundColor = Color.FromHex("#FFFFFF");
+                GumbUnos2.BackgroundColor = Color.FromHex("#FFFFFF");
+                GumbUnos3.BackgroundColor = Color.FromHex("#FFFFFF");
+                GumbUnos4.BackgroundColor = Color.FromHex("#FFFFFF");
+            }
+        }
         private void BtnJedan(object sender, EventArgs e)
         {
             DodajBroj("1");
