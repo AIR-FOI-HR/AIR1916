@@ -14,6 +14,8 @@ using Android.Util;
 using Firebase.Messaging;
 using Android.Support.V4.App;
 using WindowsAzure.Messaging;
+using Plugin.DeviceInfo;
+using Android.Media;
 
 namespace FOIKnjiznica.Droid.FirebaseItems
 {
@@ -48,11 +50,15 @@ namespace FOIKnjiznica.Droid.FirebaseItems
             intent.AddFlags(ActivityFlags.ClearTop);
             var pendingIntent = PendingIntent.GetActivity(this, 0, intent, PendingIntentFlags.OneShot);
 
+            NotificationCompat.BigTextStyle bigTextStyle = new NotificationCompat.BigTextStyle();
+
             var notificationBuilder = new NotificationCompat.Builder(this, MainActivity.CHANNEL_ID);
 
-            notificationBuilder.SetContentTitle("FCM Message")
-                        .SetSmallIcon(Resource.Drawable.ic_launcher)
+            notificationBuilder.SetContentTitle("Novosti u knjižnici")
+                        .SetSmallIcon(Resource.Drawable.icon)
+                        .SetSound(RingtoneManager.GetDefaultUri(RingtoneType.Alarm))
                         .SetContentText(messageBody)
+                        .SetStyle(bigTextStyle)
                         .SetAutoCancel(true)
                         .SetShowWhen(false)
                         .SetContentIntent(pendingIntent);
@@ -74,7 +80,8 @@ namespace FOIKnjiznica.Droid.FirebaseItems
             hub = new NotificationHub(ConstantsFirebase.NotificationHubName,
                                         ConstantsFirebase.ListenConnectionString, this);
 
-            var tags = new List<string>() { };
+            string idUredaja = CrossDeviceInfo.Current.Id;
+            var tags = new List<string>() {idUredaja};
             var regID = hub.Register(token, tags.ToArray()).RegistrationId;
 
             Log.Debug(TAG, $"Successful registration of ID {regID}");

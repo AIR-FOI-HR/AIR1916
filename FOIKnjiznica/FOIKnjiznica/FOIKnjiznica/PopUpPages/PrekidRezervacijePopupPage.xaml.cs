@@ -38,6 +38,8 @@ namespace FOIKnjiznica.PopUpPages
             var content = new StringContent(Json, Encoding.UTF8, "application/json");
             var odgovor = await httpClient.PostAsync(WebServisInfo.PutanjaWebServisa + "PrekidRezervacije", content);
 
+            await httpClient.GetAsync("https://foiknjiznicaazurefunkcije.azurewebsites.net/api/OslobodenjeKnjigeNotifikacija?code=FE9IUHyiPZcyzcca7DEzTlBRVWh5HUElZIeLX4UE6JA73cPdoTyP9A==&idPublikacije=" + rezervacija.nazivPublikacije);
+
             await PopupNavigation.Instance.PopAsync();
         }
     }

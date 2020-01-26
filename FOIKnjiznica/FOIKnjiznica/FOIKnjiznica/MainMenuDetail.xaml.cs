@@ -13,6 +13,7 @@ using FOIKnjiznicaWebServis.Controllers;
 using System.Windows.Input;
 using Rg.Plugins.Popup.Services;
 using FOIKnjiznica.Classes;
+using Plugin.DeviceInfo;
 
 namespace FOIKnjiznica
 {
