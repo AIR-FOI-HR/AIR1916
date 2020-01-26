@@ -37,6 +37,7 @@ namespace FOIKnjiznicaAzureFunkcije
                 conn.Open();
 
                 var text = $"SELECT id FROM Publikacije WHERE naziv = '{nazivKnjige}'";
+                log.LogInformation($"Vracena je {nazivKnjige}");
 
                 using (SqlCommand cmd = new SqlCommand(text, conn))
                 {
@@ -59,6 +60,7 @@ namespace FOIKnjiznicaAzureFunkcije
                 conn.Open();
 
                 var text = $"SELECT mobitelID FROM Clanovi JOIN Je_Favorit ON Clanovi.id = Je_Favorit.ClanoviId WHERE PublikacijeId = '{idPublikacije}'";
+                log.LogInformation($"SELECT mobitelID FROM Clanovi JOIN Je_Favorit ON Clanovi.id = Je_Favorit.ClanoviId WHERE PublikacijeId = '{idPublikacije}'");
 
                 using (SqlCommand cmd = new SqlCommand(text, conn))
                 {

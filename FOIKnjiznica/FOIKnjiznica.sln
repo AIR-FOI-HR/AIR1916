@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FOIKnjiznica", "FOIKnjiznic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FOIKnjiznicaWebServis", "FOIKnjiznicaWebServis\FOIKnjiznicaWebServis.csproj", "{D704807F-4844-4DF1-B8E8-ECBBF8379E1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FOIKnjiznicaAzureFunkcije", "FOIKnjiznicaAzureFunkcije\FOIKnjiznicaAzureFunkcije.csproj", "{189EA841-A3A2-4E66-AE80-8BFE30A7C1EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FOIKnjiznicaAzureFunkcije", "FOIKnjiznicaAzureFunkcije\FOIKnjiznicaAzureFunkcije.csproj", "{189EA841-A3A2-4E66-AE80-8BFE30A7C1EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
