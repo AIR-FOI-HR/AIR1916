@@ -34,7 +34,7 @@ namespace FOIKnjiznica
             sha256 = SHA256.Create();
             if (postoji)
             {
-                Naslov.Text = "Unesite novi PIN za promjenu";
+                Naslov.Text = "Unesite svoj PIN za promjenu";
                 noviPin = false;
                 staraLozinka = lozinka;
             }
@@ -128,23 +128,45 @@ namespace FOIKnjiznica
             else if (ispravnibroj > 2)
             {
                 ispravnibroj = 0;
-                Vibration.Vibrate();
-                IspisKrivo.Text = "Vaš uneseni PIN je netočan!";
-                pinNumber.Clear();
-                GumbUnos1.BackgroundColor = Color.FromHex("#FFFFFF");
-                GumbUnos2.BackgroundColor = Color.FromHex("#FFFFFF");
-                GumbUnos3.BackgroundColor = Color.FromHex("#FFFFFF");
-                GumbUnos4.BackgroundColor = Color.FromHex("#FFFFFF");
+                NeispravnaLozinka();
             }
         }
 
-        private void IspravnostStarogPina(int Pin)
+        private void NeispravnaLozinka()
         {
-
+            Vibration.Vibrate();
+            IspisKrivo.Text = "Vaš uneseni PIN je netočan!";
+            pinNumber.Clear();
+            GumbUnos1.BackgroundColor = Color.FromHex("#FFFFFF");
+            GumbUnos2.BackgroundColor = Color.FromHex("#FFFFFF");
+            GumbUnos3.BackgroundColor = Color.FromHex("#FFFFFF");
+            GumbUnos4.BackgroundColor = Color.FromHex("#FFFFFF");
         }
+
+        private void IspravnostStarogPina(int novaLozinka)
+        {
+            string noviPinHash = HashirajPin(novaLozinka);
+            if(noviPinHash == staraLozinka)
+            {
+                noviPin= true;
+                Naslov.Text = "Unesite novi PIN";
+
+            }
+            else
+            {
+                Naslov.Text = "Lozinka je neispravna";
+                NeispravnaLozinka();
+            }
+        }
+
+        //private async void UpdateBP(string odabraniPin)
+        //{
+
+        //}
 
         private async void PohraniPinUBazu(int odabraniPin)
         {
+            
             string pinHash = HashirajPin(odabraniPin);
             HttpClient httpClient = new HttpClient();
             var Json = JsonConvert.SerializeObject(new ClanoviAuthProtokol() {ClanoviId = Clanovi.id, Auth_ProtocolId = 4, podaci=pinHash, odabrano=1 });
