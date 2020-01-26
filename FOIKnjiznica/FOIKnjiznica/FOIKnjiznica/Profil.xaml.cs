@@ -175,6 +175,18 @@ namespace FOIKnjiznica
             }
             
         }
+        private void GumbUzorak(object sender, EventArgs e)
+        {
+            if (odabranOdabirLozinke == 2)
+            {
+                App.Current.MainPage = new PinPostavljanje(true, lozinkaPin);
+            }
+            else
+            {
+                App.Current.MainPage = new PinPostavljanje(false, lozinkaPin);
+            }
+
+        }
 
     }
 }
