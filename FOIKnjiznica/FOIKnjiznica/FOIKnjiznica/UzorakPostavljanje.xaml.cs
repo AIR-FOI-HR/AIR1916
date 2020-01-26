@@ -111,6 +111,17 @@ namespace FOIKnjiznica
 
         }
 
+        private bool ProvjeriVelicinuUnosa(int n)
+        {
+            if (n > 9 || n < 4)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
         }
     }
 }
