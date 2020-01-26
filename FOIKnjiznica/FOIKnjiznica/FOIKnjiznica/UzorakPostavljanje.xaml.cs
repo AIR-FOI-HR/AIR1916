@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using FaulandCc.XF.GesturePatternView;
+using System.Security.Cryptography;
+using Xamarin.Essentials;
 
 namespace FOIKnjiznica
 {
