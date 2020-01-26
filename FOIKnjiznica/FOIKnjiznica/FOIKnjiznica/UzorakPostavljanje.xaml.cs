@@ -122,6 +122,40 @@ namespace FOIKnjiznica
                 return true;
             }
         }
+        private bool ProvjeriPonavljanjeTocki(String e)
+        {
+            int unos = Int32.Parse(e);
+            if (ProvjeriBroj(unos))
+            {
+                return true;
+            }
+            else
+            {
+
+                return false;
+            }
+        }
+        private bool ProvjeriBroj(int n)
+        {
+            bool[] arr = new bool[10];
+
+            for (int i = 0; i < 10; i++)
+                arr[i] = false;
+
+            while (n > 0)
+            {
+                int digit = n % 10;
+                if (arr[digit])
+                    return false;
+                arr[digit] = true;
+                n = n / 10;
+            }
+            return true;
+        }
+
+        private void OcistiUzorak()
+        {
+            this.MyGesturePatternView.Clear();
         }
     }
 }
