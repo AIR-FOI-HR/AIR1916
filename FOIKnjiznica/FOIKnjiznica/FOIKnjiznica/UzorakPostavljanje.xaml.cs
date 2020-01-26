@@ -53,6 +53,64 @@ namespace FOIKnjiznica
         }
 
 
+        private void ProvjeriIspravnostUzorka(string uzorak)
+        {
+            if (noviPattern)
+            {
+                IspravnostNovogUzorka(uzorak);
+            }
+            else
+            {
+                IspravnostStarogUzorka(uzorak);
+            }
+        }
+
+        private void IspravnostNovogUzorka(string uzorak)
+        {
+            ispravniBroj++;
+            if(ispravniBroj < 2)
+            {
+                ponovljeniUzorak = uzorak;
+                OcistiUzorak();
+                Obavijest.Text = "Ponovite uzorak";
+
+
+            }else if(ispravniBroj == 2)
+            {
+                if(uzorak == ponovljeniUzorak)
+                {
+                    ispravniBroj = 0;
+                    OcistiUzorak();
+                    PohraniUzorakUBazu(uzorak);
+                    Obavijest.Text = "Ispravan uzorak";
+                }
+                else
+                {
+                    ispravniBroj = 0;
+                    Vibration.Vibrate();
+                    Obavijest.Text = "Vaš ponovljeni uzorak se ne poklapa!";
+                    OcistiUzorak();
+                }
+            }else if(ispravniBroj > 2)
+            {
+                ispravniBroj = 0;
+                ispravniBroj = 0;
+                Vibration.Vibrate();
+                Obavijest.Text = "Vaš uzorak je netočan!";
+                OcistiUzorak();
+            }
+        }
+
+        private void IspravnostStarogUzorka(string uzorak)
+        {
+
+        }
+
+        private void PohraniUzorakUBazu(string lozinka)
+        {
+
+        }
+
         }
     }
 }
