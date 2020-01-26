@@ -41,7 +41,7 @@ namespace FOIKnjiznicaWebServis.Controllers
         }
 
         // GET: api/Publikacije/5
-        public List<Object> Get(int id)
+        public Object Get(int id)
         {
             List<Object> listaStatusa = new List<object>();
 
@@ -88,8 +88,10 @@ namespace FOIKnjiznicaWebServis.Controllers
                                Vrsta = Vrsta_Statusa.naziv_vrste,
                                Kategorije = Kategorije.naziv_kategorije
                            }).OrderByDescending(x => x.Stanje).First();
-
-                listaStatusa.Add(upit);
+                if(upit != null)
+                {
+                    listaStatusa.Add(upit);
+                }
 
             } 
             

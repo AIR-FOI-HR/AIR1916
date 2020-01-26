@@ -13,7 +13,7 @@ namespace FOIKnjiznicaWebServis.Controllers
         public int ClanoviId { get; set; }
         public int Auth_ProtocolId { get; set; }
         public string podaci { get; set; }
-        public bool odabrano { get; set; }
+        public int odabrano { get; set; }
     }
     public class DodajPinController : ApiController
     {
@@ -25,9 +25,9 @@ namespace FOIKnjiznicaWebServis.Controllers
         }
 
         // GET: api/DodajPin/5
-        public ClientAuth Get(int id)
+        public List<Object> Get(int id)
         {
-            ClientAuth novi = new ClientAuth();
+
             var upit = (from s in db.Clanovi_Auth_Protocol
                         where s.ClanoviId == id
                         select new
@@ -36,9 +36,10 @@ namespace FOIKnjiznicaWebServis.Controllers
                             s.Auth_ProtocolId,
                             s.podaci,
                             s.odabrano
-                        });
+                        }) ;
+            
 
-            return novi;
+            return upit.ToList<Object>();
         }
 
         // POST: api/DodajPin
@@ -50,6 +51,7 @@ namespace FOIKnjiznicaWebServis.Controllers
                 var upit = db.Clanovi_Auth_Protocol.Where(x => x.ClanoviId == clijentAuth.ClanoviId).SingleOrDefault();
                 if(upit != null)
                 {
+                    upit.ClanoviId = clijentAuth.ClanoviId;
                     upit.Auth_ProtocolId = clijentAuth.Auth_ProtocolId;
                     upit.podaci = clijentAuth.podaci;
                     upit.odabrano = clijentAuth.odabrano;
