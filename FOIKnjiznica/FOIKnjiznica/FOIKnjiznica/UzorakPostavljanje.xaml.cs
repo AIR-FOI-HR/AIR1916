@@ -20,6 +20,18 @@ namespace FOIKnjiznica
         public UzorakPostavljanje(bool postoji, string lozinka)
         {
             InitializeComponent();
+            if (postoji)
+            {
+                Naslov.Text = "Unesite stari Uzorak za promjenu";
+                noviPattern = false;
+                staraLozinka = lozinka;
+            }
+            else
+            {
+                noviPattern = true;
+                Naslov.Text = "Unesite novi uzorak";
+            }
+        }
         }
     }
 }
