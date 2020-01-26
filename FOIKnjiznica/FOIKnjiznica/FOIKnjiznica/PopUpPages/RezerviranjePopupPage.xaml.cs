@@ -11,6 +11,7 @@ using Xamarin.Forms.Xaml;
 using FOIKnjiznica.Classes;
 using System.Net.Http;
 using Newtonsoft.Json;
+using System.Net.Mail;
 
 namespace FOIKnjiznica.PopUpPages
 {
@@ -81,10 +82,31 @@ namespace FOIKnjiznica.PopUpPages
 
             listaSvihPublikacija = publikacije;
             ListaPublikacije.ItemsSource = listaSvihPublikacija;
+
+            PosaljiObavijest(publikacijeD.Kopija);
+
             MessagingCenter.Send<App>((App)Application.Current, "RezervacijaPublikacije");
             await PopupNavigation.Instance.PopAsync();
         }
-        
+
+        public void PosaljiObavijest(int idKopije)
+        {
+            MailMessage mail = new MailMessage();
+            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+            mail.From = new MailAddress(Classes.Clanovi.hrEduPersonUniqueID);
+            mail.To.Add("sdrvoderi@foi.hr");
+            mail.Subject = "Nova rezervacija";
+            mail.Body = $"Korisnik {Classes.Clanovi.hrEduPersonUniqueID} je upravo rezervirao knjigu sa identifikacijskim brojem {idKopije.ToString()} \r\n Rezervacija vrijedi do {DateTime.Now.AddDays(5)}";
+
+            SmtpServer.Port = 587;
+            SmtpServer.Host = "smtp.gmail.com";
+            SmtpServer.EnableSsl = true;
+            SmtpServer.UseDefaultCredentials = false;
+            SmtpServer.Credentials = new System.Net.NetworkCredential("fknjiznica@gmail.com", "admin123!");
+
+            SmtpServer.Send(mail);
+        }
 
     }
 }
