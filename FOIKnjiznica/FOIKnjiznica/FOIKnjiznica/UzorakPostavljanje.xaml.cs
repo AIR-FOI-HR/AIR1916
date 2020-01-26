@@ -160,5 +160,11 @@ namespace FOIKnjiznica
         {
             this.MyGesturePatternView.Clear();
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            App.Current.MainPage = new Profil();
+            return base.OnBackButtonPressed();
+        }
     }
 }
