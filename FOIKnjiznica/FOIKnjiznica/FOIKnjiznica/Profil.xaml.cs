@@ -20,7 +20,7 @@ namespace FOIKnjiznica
         public StatistikaKorisnika statistikaTrenutnogKorisnika;
         private ClanoviAuthProtokol authProtokol = new ClanoviAuthProtokol();
         public List<ClanoviAuthProtokol> listaLozinki { get; set; }
-        private string lozinkaPin;
+        private string lozinka;
         private int odabranOdabirLozinke = 1;
         public Profil()
         {
@@ -144,7 +144,7 @@ namespace FOIKnjiznica
                     PinCheck.IsChecked = true;
                     OtisakPotvrdeno.IsChecked = false;
                     odabranOdabirLozinke = 4;
-                    lozinkaPin = authProtokol.podaci;
+                    lozinka = authProtokol.podaci;
                 }
             }
             else
@@ -167,11 +167,11 @@ namespace FOIKnjiznica
         {
             if(odabranOdabirLozinke == 4)
             {
-                App.Current.MainPage = new PinPostavljanje(true, lozinkaPin);
+                App.Current.MainPage = new PinPostavljanje(true, lozinka);
             }
             else
             {
-                App.Current.MainPage = new PinPostavljanje(false, lozinkaPin);
+                App.Current.MainPage = new PinPostavljanje(false, lozinka);
             }
             
         }
@@ -179,11 +179,11 @@ namespace FOIKnjiznica
         {
             if (odabranOdabirLozinke == 2)
             {
-                App.Current.MainPage = new PinPostavljanje(true, lozinkaPin);
+                App.Current.MainPage = new UzorakPostavljanje(false, lozinka);
             }
             else
             {
-                App.Current.MainPage = new PinPostavljanje(false, lozinkaPin);
+                App.Current.MainPage = new UzorakPostavljanje(false, lozinka);
             }
 
         }

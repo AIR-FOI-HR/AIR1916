@@ -3,13 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:gesturePatternView="clr-namespace:FaulandCc.XF.GesturePatternView;assembly=FaulandCc.XF.GesturePatternView"
              mc:Ignorable="d"
              x:Class="FOIKnjiznica.UzorakPostavljanje">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+            <StackLayout Orientation="Vertical" Spacing="100" Margin="30,60,30,30">
+            <StackLayout Orientation="Vertical" VerticalOptions="Start" HorizontalOptions="CenterAndExpand">
+                    <Label x:Name="Naslov" TextColor="#FD8638"  FontSize="25" FontAttributes="Bold" />
+                    <Label x:Name="Obavijest" TextColor="#FD8638"  FontSize="15" FontAttributes="Bold" />
+            </StackLayout>
+                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <gesturePatternView:GesturePatternView x:Name="MyGesturePatternView" Grid.Row="1"
+                                                   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                                   BackgroundColor="White"
+                                                   HorizontalTouchPoints="3" VerticalTouchPoints="3"
+                                                   GesturePatternValue="{Binding GestureValue, Mode=TwoWay}"
+                                                   TouchPointColor="#FD8638" TouchPointHighlightColor="#FD8638"
+                                                   LineDrawingColor="#FD8638" LineDrawnColor="#4B78FF"
+                                                   LineDrawingStrokeWidth="25" LineDrawnStrokeWidth="25"
+                                                   TouchPointStrokeWidth="5" TouchPointTouchedStrokeWidth="10"
+                                                   TouchPointInnerCircleStrokeWidth="50"
+                                                   GesturePatternCompleted="MyGesturePatternView_OnGesturePatternCompleted"
+                                                   Vibrate="False" IsTabStop="True"/>
+                </StackLayout>
+            </StackLayout>
+        </ContentPage.Content>
 </ContentPage>
