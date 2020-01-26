@@ -12,7 +12,12 @@ namespace FOIKnjiznica
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UzorakPostavljanje : ContentPage
     {
-        public UzorakPostavljanje()
+        private SHA256 sha256;
+        private bool noviPattern = false;
+        private string staraLozinka = "";
+        private int ispravniBroj = 0;
+        private string ponovljeniUzorak = "";
+        public UzorakPostavljanje(bool postoji, string lozinka)
         {
             InitializeComponent();
         }
