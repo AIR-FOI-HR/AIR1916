@@ -38,6 +38,7 @@ namespace FOIKnjiznica
                     new MainMenuMasterMenuItem { Id = 2, Title = "Favoriti", TargetType = typeof(EkranFavoriti)},
                     new MainMenuMasterMenuItem { Id = 3, Title = "Postavke" },
                     new MainMenuMasterMenuItem { Id = 4, Title = "Slanje poruke" },
+                    new MainMenuMasterMenuItem { Id = 6, Title = "O Knjižnici", TargetType = typeof(InformacijeOKnjiznici)},
                     new MainMenuMasterMenuItem { Id = 5, Title = "Odjava" },
                 });
             }

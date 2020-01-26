@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FOIKnjiznica.InformacijeOKnjiznici">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout>
+            <BoxView BackgroundColor="#ae2323" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand" Margin="50,5,50,0"/>
+            <Label Text="Kontakt informacije" Padding="10,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="24"/>
+            <BoxView BackgroundColor="#ae2323" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand" Margin="50,0,50,0"/>
+            <StackLayout Orientation="Horizontal">
+                <Image Source="phone.jpg" WidthRequest="20" HeightRequest="20" Margin="10" VerticalOptions="Center"></Image>
+                <Label Text="+385 42 390 878" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Image Source="phone.jpg" WidthRequest="20" HeightRequest="20" Margin="10" VerticalOptions="Center"></Image>
+                <Label Text="+385 42 390 877" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+            </StackLayout>
+            <BoxView BackgroundColor="#ae2323" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand" Margin="0,0,200,0"/>
+            <StackLayout Orientation="Horizontal">
+                <Image Source="mail.jpg" WidthRequest="20" HeightRequest="20" Margin="10" VerticalOptions="Center"></Image>
+                <Label Text="knjiga@foi.unizg.hr" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Image Source="mail.jpg" WidthRequest="20" HeightRequest="20" Margin="10" VerticalOptions="Center"></Image>
+                <Label Text="knjiznica@foi.unizg.hr " HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+            </StackLayout>
+            <BoxView BackgroundColor="#ae2323" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand" Margin="0,0,200,0"/>
+            <StackLayout Orientation="Horizontal">
+                <Image Source="map.jpg" WidthRequest="20" HeightRequest="20" Margin="10" VerticalOptions="Center"></Image>
+                <Label Text="Fakultet organizacije i informatike, Knjižnica, Pavlinska 2, 42000 Varaždin, Hrvatska" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+            </StackLayout>
+            <BoxView BackgroundColor="#ae2323" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand" Margin="50,20,50,0"/>
+            <Label Text="Radno vrijeme" Padding="10,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="24"/>
+            <BoxView BackgroundColor="#ae2323" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand" Margin="50,0,50,0"/>
+            <StackLayout Orientation="Horizontal">
+                <Image Source="calendar.jpg" WidthRequest="20" HeightRequest="20" Margin="10" VerticalOptions="Center"></Image>
+                <Label Text="pon-pet: 7:00-20:00" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Image Source="calendar.jpg" WidthRequest="20" HeightRequest="20" Margin="10" VerticalOptions="Center"></Image>
+                <Label Text="sub: 8:00-14:00, pauza 11:00-11:30" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+            </StackLayout>
+            <BoxView BackgroundColor="#ae2323" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand" Margin="50,20,50,0"/>
+            <Label Text="Lokacija" Padding="10,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="24"/>
+            <BoxView BackgroundColor="#ae2323" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand" Margin="50,0,50,0"/>
+            <Image Source="knjiznicalokacija.jpg" WidthRequest="150" HeightRequest="150" Margin="10" VerticalOptions="Center"></Image>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
