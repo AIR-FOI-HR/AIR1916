@@ -18,10 +18,10 @@ namespace FOIKnjiznica
     public partial class Profil : ContentPage
     {
         public StatistikaKorisnika statistikaTrenutnogKorisnika;
-        public ClanoviAuthProtokol lozinke;
+        private ClanoviAuthProtokol authProtokol = new ClanoviAuthProtokol();
         public List<ClanoviAuthProtokol> listaLozinki { get; set; }
-        private string lozinka;
-        private int odabranOdabirLozinke;
+        private string lozinkaPin;
+        private int odabranOdabirLozinke = 1;
         public Profil()
         {
             InitializeComponent();
@@ -104,9 +104,9 @@ namespace FOIKnjiznica
 
             try
             {
-                var response = await client.GetStringAsync(WebServisInfo.PutanjaWebServisa + "DodajPin/" + Classes.Clanovi.id);
-                var odgovor = JsonConvert.DeserializeObject<Classes.ClanoviAuthProtokol>(response);
-                lozinke = odgovor;
+                var response = await client.GetStringAsync(WebServisInfo.PutanjaWebServisa + "DodajPin/" + 4);
+                var odgovor = JsonConvert.DeserializeObject<List<Classes.ClanoviAuthProtokol>>(response);
+                listaLozinki = odgovor;
             }
             catch (Exception socketException) when (socketException is System.Net.Sockets.SocketException || socketException is HttpRequestException)
             {
@@ -117,27 +117,36 @@ namespace FOIKnjiznica
                 client.Dispose();
             }
             
+            foreach(var item in listaLozinki)
+            {
+                authProtokol.Auth_ProtocolId = item.Auth_ProtocolId;
+                authProtokol.odabrano = item.odabrano;
+                authProtokol.podaci = item.podaci;
+            }
 
-            if(lozinke.Auth_ProtocolId == 2)
+            if (authProtokol.Auth_ProtocolId == 2)
             {
                 UzorakPotvrdeno.IsChecked = true;
                 PinCheck.IsChecked = false;
                 OtisakPotvrdeno.IsChecked = false;
                 odabranOdabirLozinke = 2;
-            }else if(lozinke.Auth_ProtocolId == 3)
+            }
+            else if (authProtokol.Auth_ProtocolId == 3)
             {
                 UzorakPotvrdeno.IsChecked = false;
                 PinCheck.IsChecked = false;
                 OtisakPotvrdeno.IsChecked = true;
                 odabranOdabirLozinke = 3;
-            }else if(lozinke.Auth_ProtocolId == 4)
+            }
+            else if (authProtokol.Auth_ProtocolId == 4)
             {
                 UzorakPotvrdeno.IsChecked = false;
                 PinCheck.IsChecked = true;
                 OtisakPotvrdeno.IsChecked = false;
                 odabranOdabirLozinke = 4;
+                lozinkaPin = authProtokol.podaci;
             }
-            lozinka = lozinke.podaci;
+            
         }
 
         private async void GumbPovijest(object sender, EventArgs e)
@@ -149,11 +158,11 @@ namespace FOIKnjiznica
         {
             if(odabranOdabirLozinke == 4)
             {
-                App.Current.MainPage = new PinPostavljanje(true, lozinka);
+                App.Current.MainPage = new PinPostavljanje(true, lozinkaPin);
             }
             else
             {
-                App.Current.MainPage = new PinPostavljanje(false, lozinka);
+                App.Current.MainPage = new PinPostavljanje(false, lozinkaPin);
             }
             
         }
