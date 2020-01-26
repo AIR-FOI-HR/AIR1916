@@ -9,6 +9,5 @@ namespace FOIKnjiznica.Classes
         public int ClanoviId { get; set; }
         public int Auth_ProtocolId { get; set; }
         public string podaci { get; set; }
-        public int odabrano { get; set; }
     }
 }

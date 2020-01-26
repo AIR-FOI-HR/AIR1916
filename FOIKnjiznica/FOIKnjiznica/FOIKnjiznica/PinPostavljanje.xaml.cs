@@ -166,10 +166,9 @@ namespace FOIKnjiznica
 
         private async void PohraniPinUBazu(int odabraniPin)
         {
-            
             string pinHash = HashirajPin(odabraniPin);
             HttpClient httpClient = new HttpClient();
-            var Json = JsonConvert.SerializeObject(new ClanoviAuthProtokol() {ClanoviId = Clanovi.id, Auth_ProtocolId = 4, podaci=pinHash, odabrano=1 });
+            var Json = JsonConvert.SerializeObject(new ClanoviAuthProtokol() {ClanoviId = 5, Auth_ProtocolId = 4, podaci=pinHash});
             var content = new StringContent(Json, Encoding.UTF8, "application/json");
             var odgovor = await httpClient.PostAsync(WebServisInfo.PutanjaWebServisa + "DodajPin", content);
 

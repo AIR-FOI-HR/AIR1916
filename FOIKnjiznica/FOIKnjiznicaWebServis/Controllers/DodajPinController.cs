@@ -13,7 +13,6 @@ namespace FOIKnjiznicaWebServis.Controllers
         public int ClanoviId { get; set; }
         public int Auth_ProtocolId { get; set; }
         public string podaci { get; set; }
-        public int odabrano { get; set; }
     }
     public class DodajPinController : ApiController
     {
@@ -34,8 +33,7 @@ namespace FOIKnjiznicaWebServis.Controllers
                         {
                             s.ClanoviId,
                             s.Auth_ProtocolId,
-                            s.podaci,
-                            s.odabrano
+                            s.podaci
                         }) ;
             
 
@@ -49,13 +47,41 @@ namespace FOIKnjiznicaWebServis.Controllers
             using (var ctx = new foiknjiznicaEntities())
             {
                 var upit = db.Clanovi_Auth_Protocol.Where(x => x.ClanoviId == clijentAuth.ClanoviId).SingleOrDefault();
-                if(upit != null)
+                if (upit != null)
                 {
                     upit.ClanoviId = clijentAuth.ClanoviId;
                     upit.Auth_ProtocolId = clijentAuth.Auth_ProtocolId;
                     upit.podaci = clijentAuth.podaci;
-                    upit.odabrano = clijentAuth.odabrano;
-                    
+                    //upit.odabrano = clijentAuth.odabrano;
+
+                }
+                else
+                {
+                    ctx.Clanovi_Auth_Protocol.Add(new Clanovi_Auth_Protocol
+                    {
+                        ClanoviId = clijentAuth.ClanoviId,
+                        Auth_ProtocolId = clijentAuth.Auth_ProtocolId,
+                        podaci = clijentAuth.podaci,
+                        //odabrano = clijentAuth.odabrano
+                    });
+                }
+                ctx.SaveChanges();
+            }
+        }
+
+        // PUT: api/DodajPin/5
+        public void Put( [FromBody]ClientAuth clijentAuth)
+        {
+            using (var ctx = new foiknjiznicaEntities())
+            {
+                var upit = db.Clanovi_Auth_Protocol.Where(x => x.ClanoviId == clijentAuth.ClanoviId).SingleOrDefault();
+                if (upit != null)
+                {
+                    upit.ClanoviId = clijentAuth.ClanoviId;
+                    upit.Auth_ProtocolId = clijentAuth.Auth_ProtocolId;
+                    upit.podaci = clijentAuth.podaci;
+                    //upit.odabrano = clijentAuth.odabrano;
+
                 }
                 else
                 {
@@ -64,16 +90,12 @@ namespace FOIKnjiznicaWebServis.Controllers
                         ClanoviId = clijentAuth.ClanoviId,
                         Auth_ProtocolId = clijentAuth.Auth_ProtocolId,
                         podaci = clijentAuth.podaci,
-                        odabrano = clijentAuth.odabrano
+                        //odabrano = clijentAuth.odabrano
                     });
                 }
                 ctx.SaveChanges();
             }
-        }
 
-        // PUT: api/DodajPin/5
-        public void Put(int id, [FromBody]string value)
-        {
         }
 
         // DELETE: api/DodajPin/5

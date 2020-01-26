@@ -104,7 +104,7 @@ namespace FOIKnjiznica
 
             try
             {
-                var response = await client.GetStringAsync(WebServisInfo.PutanjaWebServisa + "DodajPin/" + 4);
+                var response = await client.GetStringAsync(WebServisInfo.PutanjaWebServisa + "DodajPin/" + Clanovi.id);
                 var odgovor = JsonConvert.DeserializeObject<List<Classes.ClanoviAuthProtokol>>(response);
                 listaLozinki = odgovor;
             }
@@ -116,36 +116,45 @@ namespace FOIKnjiznica
             {
                 client.Dispose();
             }
-            
-            foreach(var item in listaLozinki)
+            if(listaLozinki != null)
             {
-                authProtokol.Auth_ProtocolId = item.Auth_ProtocolId;
-                authProtokol.odabrano = item.odabrano;
-                authProtokol.podaci = item.podaci;
-            }
+                foreach (var item in listaLozinki)
+                {
+                    authProtokol.Auth_ProtocolId = item.Auth_ProtocolId;
+                    authProtokol.podaci = item.podaci;
+                }
 
-            if (authProtokol.Auth_ProtocolId == 2)
-            {
-                UzorakPotvrdeno.IsChecked = true;
-                PinCheck.IsChecked = false;
-                OtisakPotvrdeno.IsChecked = false;
-                odabranOdabirLozinke = 2;
+                if (authProtokol.Auth_ProtocolId == 2)
+                {
+                    UzorakPotvrdeno.IsChecked = true;
+                    PinCheck.IsChecked = false;
+                    OtisakPotvrdeno.IsChecked = false;
+                    odabranOdabirLozinke = 2;
+                }
+                else if (authProtokol.Auth_ProtocolId == 3)
+                {
+                    UzorakPotvrdeno.IsChecked = false;
+                    PinCheck.IsChecked = false;
+                    OtisakPotvrdeno.IsChecked = true;
+                    odabranOdabirLozinke = 3;
+                }
+                else if (authProtokol.Auth_ProtocolId == 4)
+                {
+                    UzorakPotvrdeno.IsChecked = false;
+                    PinCheck.IsChecked = true;
+                    OtisakPotvrdeno.IsChecked = false;
+                    odabranOdabirLozinke = 4;
+                    lozinkaPin = authProtokol.podaci;
+                }
             }
-            else if (authProtokol.Auth_ProtocolId == 3)
+            else
             {
                 UzorakPotvrdeno.IsChecked = false;
                 PinCheck.IsChecked = false;
-                OtisakPotvrdeno.IsChecked = true;
-                odabranOdabirLozinke = 3;
-            }
-            else if (authProtokol.Auth_ProtocolId == 4)
-            {
-                UzorakPotvrdeno.IsChecked = false;
-                PinCheck.IsChecked = true;
                 OtisakPotvrdeno.IsChecked = false;
-                odabranOdabirLozinke = 4;
-                lozinkaPin = authProtokol.podaci;
+                odabranOdabirLozinke = 1;
             }
+            
             
         }
 
