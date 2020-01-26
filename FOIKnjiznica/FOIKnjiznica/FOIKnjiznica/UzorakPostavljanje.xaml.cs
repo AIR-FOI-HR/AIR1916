@@ -32,6 +32,27 @@ namespace FOIKnjiznica
                 Naslov.Text = "Unesite novi uzorak";
             }
         }
+        private void MyGesturePatternView_OnGesturePatternCompleted(object sender, GesturePatternCompletedEventArgs e)
+        {
+            int n = e.GesturePatternValue.Length;
+            if (ProvjeriVelicinuUnosa(n))
+            {
+                if (ProvjeriPonavljanjeTocki(e.GesturePatternValue))
+                {
+                    ProvjeriIspravnostUzorka(e.GesturePatternValue);
+                }
+                else
+                {
+                    Obavijest.Text = "Tocke se ne smiju ponavljati!";
+                }
+            }
+            else
+            {
+                Obavijest.Text = "Predugi ili prektratki uzorak";
+            }
+        }
+
+
         }
     }
 }
