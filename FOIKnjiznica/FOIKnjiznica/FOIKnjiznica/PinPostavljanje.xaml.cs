@@ -26,22 +26,29 @@ namespace FOIKnjiznica
         private bool noviPin = true;
         private string pinIzBaze = "";
         private string staraLozinka;
+        private bool provjeraStareLozinke;
         
-        public PinPostavljanje(bool postoji, string lozinka)
+        public PinPostavljanje(bool postoji, string lozinka, bool provjera)
         {
             InitializeComponent();
             //string idUredaja = CrossDeviceInfo.Current.Id;
             sha256 = SHA256.Create();
-            if (postoji)
+            provjeraStareLozinke = provjera;
+            if (postoji && !provjeraStareLozinke)
             {
                 Naslov.Text = "Unesite svoj PIN za promjenu";
+                noviPin = false;
+                staraLozinka = lozinka;
+            }else if (!postoji && provjeraStareLozinke)
+            {
+                Naslov.Text = "Unesite Pin za provjeru";
                 noviPin = false;
                 staraLozinka = lozinka;
             }
             else
             {
                 noviPin = true;
-                Naslov.Text = "Unesite PIN";
+                Naslov.Text = "Unesite novi PIN";
             }
         }
         protected override bool OnBackButtonPressed()
@@ -146,17 +153,35 @@ namespace FOIKnjiznica
         private void IspravnostStarogPina(int novaLozinka)
         {
             string noviPinHash = HashirajPin(novaLozinka);
-            if(noviPinHash == staraLozinka)
+            if (provjeraStareLozinke)
             {
-                noviPin= true;
-                Naslov.Text = "Unesite novi PIN";
+                if (noviPinHash == staraLozinka)
+                {
+                    App.Current.MainPage = new UzorakPostavljanje(false, null, false);
 
+                }
+                else
+                {
+                    Naslov.Text = "Lozinka je neispravna";
+                    noviPin = false;
+                    NeispravnaLozinka();
+                }
             }
             else
             {
-                Naslov.Text = "Lozinka je neispravna";
-                NeispravnaLozinka();
+                if (noviPinHash == staraLozinka)
+                {
+                    noviPin = true;
+                    Naslov.Text = "Unesite novi PIN";
+
+                }
+                else
+                {
+                    Naslov.Text = "Lozinka je neispravna";
+                    NeispravnaLozinka();
+                }
             }
+            
         }
 
         //private async void UpdateBP(string odabraniPin)

@@ -130,6 +130,7 @@ namespace FOIKnjiznica
                     PinCheck.IsChecked = false;
                     OtisakPotvrdeno.IsChecked = false;
                     odabranOdabirLozinke = 2;
+                    lozinka = authProtokol.podaci;
                 }
                 else if (authProtokol.Auth_ProtocolId == 3)
                 {
@@ -167,11 +168,22 @@ namespace FOIKnjiznica
         {
             if(odabranOdabirLozinke == 4)
             {
-                App.Current.MainPage = new PinPostavljanje(true, lozinka);
+                App.Current.MainPage = new PinPostavljanje(true, lozinka, false);
             }
             else
             {
-                App.Current.MainPage = new PinPostavljanje(false, lozinka);
+                if(lozinka == null)
+                {
+                    App.Current.MainPage = new PinPostavljanje(false, lozinka, false);
+                }
+                else
+                {
+                    if(odabranOdabirLozinke == 2)
+                    {
+                        App.Current.MainPage = new UzorakPostavljanje(false, lozinka, true);
+                    }
+                }
+                
             }
             
         }
@@ -179,11 +191,22 @@ namespace FOIKnjiznica
         {
             if (odabranOdabirLozinke == 2)
             {
-                App.Current.MainPage = new UzorakPostavljanje(false, lozinka);
+                App.Current.MainPage = new UzorakPostavljanje(true, lozinka, false);
             }
             else
             {
-                App.Current.MainPage = new UzorakPostavljanje(false, lozinka);
+                if(lozinka == null)
+                {
+                    App.Current.MainPage = new UzorakPostavljanje(false, lozinka, false);
+                }
+                else
+                {
+                    if(odabranOdabirLozinke == 4)
+                    {
+                        App.Current.MainPage = new PinPostavljanje(false, lozinka, true);
+                    }
+                }
+                
             }
 
         }
