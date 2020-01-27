@@ -16,22 +16,30 @@ namespace FOIKnjiznica
     public partial class UzorakPostavljanje : ContentPage
     {
         private SHA256 sha256;
-        private bool noviPattern = false;
+        private bool noviUzorak = false;
         private string staraLozinka = "";
         private int ispravniBroj = 0;
         private string ponovljeniUzorak = "";
-        public UzorakPostavljanje(bool postoji, string lozinka)
+        private bool provjeraStareLozinke;
+        public UzorakPostavljanje(bool postoji, string lozinka, bool provjera)
         {
             InitializeComponent();
-            if (postoji)
+            sha256 = SHA256.Create();
+            provjeraStareLozinke = provjera;
+            if (postoji && !provjeraStareLozinke)
             {
                 Naslov.Text = "Unesite stari Uzorak za promjenu";
-                noviPattern = false;
+                noviUzorak = false;
+                staraLozinka = lozinka;
+            }else if (!postoji && provjeraStareLozinke)
+            {
+                Naslov.Text = "Unesite uzorak za provjeru";
+                noviUzorak = false;
                 staraLozinka = lozinka;
             }
             else
             {
-                noviPattern = true;
+                noviUzorak = true;
                 Naslov.Text = "Unesite novi uzorak";
             }
         }
@@ -47,18 +55,20 @@ namespace FOIKnjiznica
                 else
                 {
                     Obavijest.Text = "Tocke se ne smiju ponavljati!";
+                    OcistiUzorak();
                 }
             }
             else
             {
                 Obavijest.Text = "Predugi ili prektratki uzorak";
+                OcistiUzorak();
             }
         }
 
 
         private void ProvjeriIspravnostUzorka(string uzorak)
         {
-            if (noviPattern)
+            if (noviUzorak)
             {
                 IspravnostNovogUzorka(uzorak);
             }
@@ -70,6 +80,10 @@ namespace FOIKnjiznica
 
         private void IspravnostNovogUzorka(string uzorak)
         {
+            if (provjeraStareLozinke)
+            {
+                ispravniBroj++;
+            }
             ispravniBroj++;
             if(ispravniBroj < 2)
             {
@@ -106,12 +120,50 @@ namespace FOIKnjiznica
 
         private void IspravnostStarogUzorka(string uzorak)
         {
-
+            string noviUzorakHash = HashirajUzorak(uzorak);
+            if (provjeraStareLozinke)
+            {
+                if (noviUzorakHash == staraLozinka)
+                {
+                    OcistiUzorak();
+                    App.Current.MainPage = new PinPostavljanje(false, null, false);
+                }
+                else
+                {
+                    noviUzorak = false;
+                    Obavijest.Text = " Uzorak je neispravan!";
+                    OcistiUzorak();
+                }
+            }
+            else
+            {
+                if (noviUzorakHash == staraLozinka)
+                {
+                    noviUzorak = true;
+                    Naslov.Text = "Unesite novi uzorak";
+                    OcistiUzorak();
+                }
+                else
+                {
+                    noviUzorak = false;
+                    Obavijest.Text = " Uzorak je neispravan!";
+                    OcistiUzorak();
+                }
+            }
+            
         }
 
         private void PohraniUzorakUBazu(string lozinka)
         {
+            string uzorakHash = HashirajUzorak(lozinka);
+        }
 
+        private string HashirajUzorak(string uzorak)
+        {
+            byte[] uzorakByte = Encoding.UTF8.GetBytes(uzorak);
+            byte[] izracunatiUzorakByte = sha256.ComputeHash(uzorakByte);
+            string uzorakHash = Convert.ToBase64String(izracunatiUzorakByte);
+            return uzorakHash;
         }
 
         private bool ProvjeriVelicinuUnosa(int n)
