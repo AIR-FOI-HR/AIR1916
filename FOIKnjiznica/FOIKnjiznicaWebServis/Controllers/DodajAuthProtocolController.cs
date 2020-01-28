@@ -45,26 +45,21 @@ namespace FOIKnjiznicaWebServis.Controllers
         {
             using (var ctx = new foiknjiznicaEntities())
             {
-                    var upit = ctx.Clanovi_Auth_Protocol.Where(x => x.ClanoviId == clijentAuth.ClanoviId).SingleOrDefault();
-                    if (upit != null)
-                    {
-                        upit.ClanoviId = clijentAuth.ClanoviId;
-                        upit.Auth_ProtocolId = clijentAuth.Auth_ProtocolId;
-                        upit.podaci = clijentAuth.podaci;
-                        //upit.odabrano = clijentAuth.odabrano;
+                var upit = ctx.Clanovi_Auth_Protocol.Where(x => x.ClanoviId == clijentAuth.ClanoviId).FirstOrDefault();
+                if (upit != null)
+                {
+                    ctx.Entry(upit).State = System.Data.Entity.EntityState.Deleted;
 
-                    }
-                    else
-                    {
-                        ctx.Clanovi_Auth_Protocol.Add(new Clanovi_Auth_Protocol
-                        {
-                            ClanoviId = clijentAuth.ClanoviId,
-                            Auth_ProtocolId = clijentAuth.Auth_ProtocolId,
-                            podaci = clijentAuth.podaci,
-                            //odabrano = clijentAuth.odabrano
-                        });
-                    }
-                    ctx.SaveChanges();               
+                }
+                ctx.Clanovi_Auth_Protocol.Add(new Clanovi_Auth_Protocol
+                {
+                    ClanoviId = clijentAuth.ClanoviId,
+                    Auth_ProtocolId = clijentAuth.Auth_ProtocolId,
+                    podaci = clijentAuth.podaci,
+                    //odabrano = clijentAuth.odabrano
+                });
+
+                ctx.SaveChanges();
             }
         }
 
