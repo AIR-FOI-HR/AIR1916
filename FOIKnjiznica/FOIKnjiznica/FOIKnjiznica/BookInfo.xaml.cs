@@ -91,7 +91,7 @@ namespace FOIKnjiznica
                     var httpClient = new HttpClient();
                     var Json = JsonConvert.SerializeObject(new Je_Favorit() { PublikacijeId = publikacijeD.id, ClanoviId = Classes.Clanovi.id, pomocno = "null" });
                     var content = new StringContent(Json, Encoding.UTF8, "application/json");
-                    var odgovor = await httpClient.PostAsync("http://foiknjiznica2.azurewebsites.net/api/Favoriti", content);
+                    var odgovor = await httpClient.PostAsync("http://foiknjiznica2.azurewebsites.net/api/Favoriti/", content);
                 }
 
                 prvaProvjera = false ;

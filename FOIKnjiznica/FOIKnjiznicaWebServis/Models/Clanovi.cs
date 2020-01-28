@@ -24,8 +24,6 @@ namespace FOIKnjiznicaWebServis.Models
     
         public int id { get; set; }
         public string hrEduPersonUniqueID { get; set; }
-        public string ime { get; set; }
-        public string prezime { get; set; }
         public string mobitelID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
