@@ -118,7 +118,7 @@ namespace FOIKnjiznica
                     ispravnibroj = 0;
                     pinNumber.Clear();
                     PohraniPinUBazu(pin);
-                    IspisKrivo.Text = "Ispravni PIN";
+                    IspisKrivo.Text = "PIN je pohranjen";
                 }
                 else
                 {

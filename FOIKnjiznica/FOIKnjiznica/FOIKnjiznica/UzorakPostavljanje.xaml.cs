@@ -103,7 +103,7 @@ namespace FOIKnjiznica
                     ispravniBroj = 0;
                     OcistiUzorak();
                     PohraniUzorakUBazu(uzorak);
-                    Obavijest.Text = "Ispravan uzorak";
+                    Obavijest.Text = "Uzorak je pohranjen";
                 }
                 else
                 {
