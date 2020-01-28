@@ -55,6 +55,10 @@
     <Reference Include="Mono.Android" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Net.Http.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Numerics" />
@@ -88,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
+    <Compile Include="PokreniAplikacijuActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SplashActivity.cs" />
@@ -156,10 +161,6 @@
     <AndroidResource Include="Resources\drawable\Rezervirano.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\PomocniProjekt\PomocniProjekt\PomocniProjekt.csproj">
-      <Project>{2fb4ebec-20b1-4596-a00b-9e54d4be102b}</Project>
-      <Name>PomocniProjekt</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FOIKnjiznica\FOIKnjiznica.csproj">
       <Project>{ffed30d8-4d6b-472a-a1c6-90e0b9a0795a}</Project>
       <Name>FOIKnjiznica</Name>
