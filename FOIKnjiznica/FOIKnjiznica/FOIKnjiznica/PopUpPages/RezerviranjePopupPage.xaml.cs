@@ -28,12 +28,13 @@ namespace FOIKnjiznica.PopUpPages
             {
                 Naziv.Text = publikacijeD.naziv;
                 GumbRezerviraj.IsVisible = true;
-
+                GumbQRKod.IsVisible = true;
             }
             else if (publikacijeD.Vrsta == "Rezervirano")
             {
                 Naziv.Text = publikacijeD.naziv;
                 GumbRezerviraj.IsVisible = false;
+                GumbQRKod.IsVisible = false;
                 Prikaz.Text = "Odabrana kopij je rezervirana!";
                 DohvatiPublikaciju(publikacijeD.Kopija);
                 //GumbPosudi.IsVisible = true; IMPLEMENTIRAT CE SE ZA POSUDBU JOS
