@@ -172,6 +172,9 @@ namespace FOIKnjiznica
                 if (noviPinHash == staraLozinka)
                 {
                     noviPin = true;
+                    staraLozinka = null;
+                    ispravnibroj = 0;
+                    pinNumber.Clear();
                     Naslov.Text = "Unesite novi PIN";
 
                 }
@@ -193,10 +196,9 @@ namespace FOIKnjiznica
         {
             string pinHash = HashirajPin(odabraniPin);
             HttpClient httpClient = new HttpClient();
-            var Json = JsonConvert.SerializeObject(new ClanoviAuthProtokol() {ClanoviId = 5, Auth_ProtocolId = 4, podaci=pinHash});
+            var Json = JsonConvert.SerializeObject(new ClanoviAuthProtokol() {ClanoviId = Clanovi.id, Auth_ProtocolId = 4, podaci=pinHash});
             var content = new StringContent(Json, Encoding.UTF8, "application/json");
-            var odgovor = await httpClient.PostAsync(WebServisInfo.PutanjaWebServisa + "DodajPin", content);
-
+            var odgovor = await httpClient.PostAsync(WebServisInfo.PutanjaWebServisa + "DodajAuthProtocol/", content);
             App.Current.MainPage = new Profil(1);
         }
 

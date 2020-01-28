@@ -52,10 +52,13 @@ namespace FOIKnjiznica
             ProvjeriLozinke();
             if(odabir == 1)
             {
-                PinCheck.IsChecked = true;
                 lblPinCheck.Text = "Dodano";
                 CrossToastPopUp.Current.ShowCustomToast($"Uspješno ste dodali Pin opciju za bržu prijavu", "#ae2323", "White");
-            }  
+            }else if(odabir == 2)
+            {
+                lblUzorakCheck.Text = "Dodano";
+                CrossToastPopUp.Current.ShowCustomToast($"Uspješno ste dodali Uzorak opciju za bržu prijavu", "#ae2323", "White");
+            }
         }
 
         private async void KreirajStatistiku()
@@ -104,7 +107,7 @@ namespace FOIKnjiznica
 
             try
             {
-                var response = await client.GetStringAsync(WebServisInfo.PutanjaWebServisa + "DodajPin/" + Clanovi.id);
+                var response = await client.GetStringAsync(WebServisInfo.PutanjaWebServisa + "DodajAuthProtocol/" + Clanovi.id);
                 var odgovor = JsonConvert.DeserializeObject<List<Classes.ClanoviAuthProtokol>>(response);
                 listaLozinki = odgovor;
             }

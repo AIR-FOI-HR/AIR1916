@@ -8,12 +8,6 @@ using System.Web.Http;
 
 namespace FOIKnjiznicaWebServis.Controllers
 {
-    public class ClientAuth
-    {
-        public int ClanoviId { get; set; }
-        public int Auth_ProtocolId { get; set; }
-        public string podaci { get; set; }
-    }
     public class DodajPinController : ApiController
     {
         foiknjiznicaEntities db = new foiknjiznicaEntities();

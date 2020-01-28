@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FOIKnjiznica.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,8 @@ using Xamarin.Forms.Xaml;
 using FaulandCc.XF.GesturePatternView;
 using System.Security.Cryptography;
 using Xamarin.Essentials;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace FOIKnjiznica
 {
@@ -40,6 +43,7 @@ namespace FOIKnjiznica
             else
             {
                 noviUzorak = true;
+                staraLozinka = null;
                 Naslov.Text = "Unesite novi uzorak";
             }
         }
@@ -153,9 +157,14 @@ namespace FOIKnjiznica
             
         }
 
-        private void PohraniUzorakUBazu(string lozinka)
+        private async void PohraniUzorakUBazu(string lozinka)
         {
             string uzorakHash = HashirajUzorak(lozinka);
+            HttpClient httpClient = new HttpClient();
+            var Json = JsonConvert.SerializeObject(new ClanoviAuthProtokol() { ClanoviId = Clanovi.id, Auth_ProtocolId = 2, podaci = uzorakHash });
+            var content = new StringContent(Json, Encoding.UTF8, "application/json");
+            var odgovor = await httpClient.PostAsync(WebServisInfo.PutanjaWebServisa + "DodajAuthProtocol/", content);
+            App.Current.MainPage = new Profil(2);
         }
 
         private string HashirajUzorak(string uzorak)

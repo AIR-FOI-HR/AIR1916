@@ -79,6 +79,7 @@
                         <StackLayout Orientation="Horizontal">
                             <CheckBox x:Name="UzorakPotvrdeno" IsEnabled="False"/>
                             <Button Text="Uzorak"  BackgroundColor="#ae2323" TextColor="White" CornerRadius="20" Clicked="GumbUzorak" ></Button>
+                            <Label x:Name="lblUzorakCheck" TextColor="#037D16" FontSize="16" FontAttributes="Bold"  />
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <CheckBox x:Name="OtisakPotvrdeno" IsEnabled="False"/>
