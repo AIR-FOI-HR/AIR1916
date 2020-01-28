@@ -20,20 +20,25 @@ using Plugin.DeviceInfo;
 using System.Threading.Tasks;
 using System.Linq;
 
+using PCLStorage;
+using Xamarin.Forms;
+using Org.Apache.Http.Util;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Text;
+
 namespace FOIKnjiznica.Droid
 {
     [Activity(Label = "FOIKnjiznica", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        WebView webView;
-        protected override async void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
             
-
             //Inicijalizacija DeviceInfo nuget paketa
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
 
@@ -46,41 +51,9 @@ namespace FOIKnjiznica.Droid
             AnimationViewRenderer.Init();
             CachedImageRenderer.Init(true);
 
-            //Provjeravanje postojanja mobitela te otvaranje logina ukoliko id nije upisan u bazi
-            string trenutacniID = CrossDeviceInfo.Current.Id;
-            List<Classes.Mobitel> sviMobiteli = await Classes.Clanovi.DohvatiMobiteleSvihClanova();
-
-            bool postoji = false;
-            foreach (var item in sviMobiteli) 
-            {
-                if (item.MobitelId == trenutacniID)
-                {
-                    postoji = true;
-                    break;
-                }
-                else
-                {
-                    postoji = false;
-                }
-            }
-            if (postoji == true)
-            {
-                LoadApplication(new App());
-            }
-            else if (postoji == false)
-            {
-                SetContentView(Resource.Layout.WebFOIPrijava);
-                webView = FindViewById<WebView>(Resource.Id.prijavawebview);
-                webView.Settings.JavaScriptEnabled = true;
-                webView.Settings.JavaScriptCanOpenWindowsAutomatically = true;
-                webView.Settings.DomStorageEnabled = true;
-                webView.Settings.UseWideViewPort = true;
-                webView.Settings.LoadWithOverviewMode = true;
-
-                webView.SetWebViewClient(new HelloWebViewClient());
-                webView.LoadUrl("https://192.168.0.36:45455/");
-            }
+            LoadApplication(new App());
         }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -96,23 +69,6 @@ namespace FOIKnjiznica.Droid
             {
                 await PopupNavigation.Instance.PopAsync();
             }
-        }
-    }
-
-    /// <summary>
-    /// Klasa koja omogućuje otvaranje FOI prijave u Android.WebViewu.
-    /// </summary>
-    public class HelloWebViewClient : WebViewClient
-    {
-        public override bool ShouldOverrideUrlLoading(Android.Webkit.WebView view, IWebResourceRequest request)
-        {
-            view.LoadUrl(request.Url.ToString());
-            return false;
-        }
-
-        public override void OnReceivedSslError(Android.Webkit.WebView view, SslErrorHandler handler, SslError error)
-        {
-            handler.Proceed();
         }
     }
 }
