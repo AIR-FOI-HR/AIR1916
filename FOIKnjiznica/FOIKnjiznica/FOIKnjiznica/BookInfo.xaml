@@ -62,7 +62,7 @@
                                 <Label Text="Broj kopije i status:" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0" FontAttributes="Bold"/>
                                 <Label Text="{Binding Kopija}" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" TextColor="Black" FontSize="15" Grid.Column="1"/>
                                 <Image Source="{Binding Vrsta}" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="25" HeightRequest="25" Grid.Column="2"/>
-                                <Label Text="{Binding Vrsta}" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Italic" Grid.Column="3"/>
+                                <Label Text="{Binding Vrsta}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Small" FontAttributes="Italic" Grid.Column="3"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
