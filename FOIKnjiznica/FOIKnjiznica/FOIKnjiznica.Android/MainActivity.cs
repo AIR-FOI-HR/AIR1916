@@ -15,6 +15,18 @@ using Android.Net.Http;
 using Lottie.Forms.Droid;
 using Rg.Plugins.Popup.Services;
 
+using System.Collections.Generic;
+using Plugin.DeviceInfo;
+using System.Threading.Tasks;
+using System.Linq;
+
+using PCLStorage;
+using Xamarin.Forms;
+using Org.Apache.Http.Util;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Text;
+
 using Android.Util;
 using Android.Gms.Common;
 using Poz1.NFCForms.Droid;
@@ -27,7 +39,6 @@ namespace FOIKnjiznica.Droid
     [Activity(Label = "FOIKnjiznica", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        WebView webView;
         public const string TAG = "MainActivity";
         internal static readonly string CHANNEL_ID = "my_notification_channel";
         public NfcAdapter NFCdevice;
@@ -39,6 +50,9 @@ namespace FOIKnjiznica.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+            
+            //Inicijalizacija DeviceInfo nuget paketa
+            Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
 
             if (Intent.Extras != null)
             {
@@ -63,21 +77,6 @@ namespace FOIKnjiznica.Droid
             //Inicijalizacija Android Lottie nugget paketa
             AnimationViewRenderer.Init();
             CachedImageRenderer.Init(true);
-            /*
-            SetContentView(Resource.Layout.WebFOIPrijava);
-            if (true)
-            {
-                webView = FindViewById<WebView>(Resource.Id.prijavawebview);
-                webView.Settings.JavaScriptEnabled = true;
-                webView.Settings.JavaScriptCanOpenWindowsAutomatically = true;
-                webView.Settings.DomStorageEnabled = true;
-                webView.Settings.UseWideViewPort = true;
-                webView.Settings.LoadWithOverviewMode = true;
-
-                webView.SetWebViewClient(new HelloWebViewClient());
-                webView.LoadUrl("https://192.168.0.110:45455/");
-
-            }*/
 
             //Implementacija NFC-a za skeniranje publikacije
             NfcManager NfcManager = (NfcManager)Application.Context.GetSystemService(Context.NfcService);
@@ -181,20 +180,6 @@ namespace FOIKnjiznica.Droid
 
             var notificationManager = (NotificationManager)GetSystemService(NotificationService);
             notificationManager.CreateNotificationChannel(channel);
-        }
-    }
-
-    public class HelloWebViewClient : WebViewClient
-    {
-        public override bool ShouldOverrideUrlLoading(Android.Webkit.WebView view, IWebResourceRequest request)
-        {
-            view.LoadUrl(request.Url.ToString());
-            return false;
-        }
-
-        public override void OnReceivedSslError(Android.Webkit.WebView view, SslErrorHandler handler, SslError error)
-        {
-            handler.Proceed();
         }
     }
 }

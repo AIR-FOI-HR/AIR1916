@@ -23,8 +23,6 @@ namespace FOIKnjiznica
 
             BindingContext = this;
 
-            imeKorisnikaLabela.Text = Classes.Clanovi.ime;
-            prezimeKorisnikaLabela.Text = Classes.Clanovi.prezime;
             emailKorisnikaLabela.Text = Classes.Clanovi.hrEduPersonUniqueID;
             mobitelKorisnikaLabela.Text = Classes.Clanovi.mobitelID;
 
