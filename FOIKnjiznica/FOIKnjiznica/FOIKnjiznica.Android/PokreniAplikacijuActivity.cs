@@ -68,7 +68,7 @@ namespace FOIKnjiznica.Droid
                     webView.Settings.LoadWithOverviewMode = true;
 
                     webView.SetWebViewClient(new HelloWebViewClient());
-                    webView.LoadUrl("https://192.168.0.110:45455/");
+                    webView.LoadUrl("https://192.168.137.166:45455/");
 
                 });
             }
@@ -90,6 +90,19 @@ namespace FOIKnjiznica.Droid
             var Json = JsonConvert.SerializeObject(jsonValues);
             StringContent stringContent = new StringContent(Json, Encoding.UTF8, "application/json");
             var odgovor = await httpClient.PostAsync("http://foiknjiznica2.azurewebsites.net/api/FOIAutentikacija/", stringContent);
+        }
+
+        public static async Task UpisiPrijavljenogKorisnikaUClana(string mobID)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync("http://foiknjiznica2.azurewebsites.net/api/Clanovi/"+mobID);
+            var clan = JsonConvert.DeserializeObject<List<DohvaceniClan>>(response);
+            foreach(var item in clan)
+            {
+                Classes.Clanovi.id = item.id;
+                Classes.Clanovi.hrEduPersonUniqueID = item.hrEduPersonUniqueID;
+                Classes.Clanovi.mobitelID = item.mobitelID;
+            }
         }
     }
 
@@ -145,10 +158,18 @@ namespace FOIKnjiznica.Droid
             {
                 var provjeraMobId = PokreniAplikacijuActivity.MobitelID;
                 await PokreniAplikacijuActivity.UpisiKorisnikaUBazu(provjeraId, provjeraMobId);
+                await PokreniAplikacijuActivity.UpisiPrijavljenogKorisnikaUClana(provjeraMobId);
                 // "Prisila" webviewa da otvori MainActivity kako bi aplikacija nastavila s radom
                 Android.Content.Intent intent = new Android.Content.Intent(Android.App.Application.Context, typeof(MainActivity));
                 Android.App.Application.Context.StartActivity(intent);
             }
         }
+    }
+
+    public class DohvaceniClan
+    {
+        public int id { get; set; }
+        public string hrEduPersonUniqueID { get; set; }
+        public string mobitelID { get; set; }
     }
 }

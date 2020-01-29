@@ -26,17 +26,19 @@ namespace FOIKnjiznicaWebServis.Controllers
         }
 
         // GET: api/Clanovi/5
-        public object Get(int id)
+        public object Get(string id)
         {
             //Dohvacanje člana po id-u
             var upit = from Clan in db.Clanovi
-                       where Clan.id == id
+                       where Clan.mobitelID == id
                        select new
                        {
+                           Clan.id,
                            Clan.hrEduPersonUniqueID,
                            Clan.mobitelID
                        };
-            return upit;
+            var clan = upit.First();
+            return clan;
         }
 
         // POST: api/Clanovi
