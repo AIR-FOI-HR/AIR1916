@@ -1,4 +1,5 @@
-﻿// T4 code generation is enabled for model 'D:\7.semestar\AIR\FOIKnjiznica1\AIR1916\FOIKnjiznica\FOIKnjiznicaWebServis\Models\knjiznicaEntities.edmx'. 
+
+﻿// T4 code generation is enabled for model 'C:\Users\Matej\Documents\GitHub\AIR1916\FOIKnjiznica\FOIKnjiznicaWebServis\Models\knjiznicaEntities.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

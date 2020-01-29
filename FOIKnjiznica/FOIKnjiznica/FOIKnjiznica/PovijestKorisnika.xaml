@@ -104,9 +104,8 @@
                                     <ColumnDefinition Width="3*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <Label Text="{Binding nazivPublikacije }" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0"/>
-                                <Label Text="{Binding datum, StringFormat='{0:dd/MM/yy}'}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1"/>
-                                <Label Text="{Binding datum_do, StringFormat='{0:dd/MM/yy}'}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2"/>
-                                <BoxView Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="Black" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+                                    <Label Text="{Binding datum, StringFormat='{0:dd/MM/yy}'}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1"/>
+                                    <BoxView Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="Black" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "90007440838",
+    "firebase_url": "https://air-projekt-3f44f.firebaseio.com",
+    "project_id": "air-projekt-3f44f",
+    "storage_bucket": "air-projekt-3f44f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90007440838:android:bec18e08de54404f0a76c7",
+        "android_client_info": {
+          "package_name": "com.companyname.foiknjiznica"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "90007440838-btfiov1mg42a2i14mged1nrpkvffs6a0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbMmefbUOftZzFL2DNfgi8AVncm28ophE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "90007440838-btfiov1mg42a2i14mged1nrpkvffs6a0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
