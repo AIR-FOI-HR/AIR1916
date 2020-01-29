@@ -35,7 +35,7 @@
               Grid.Row="0"
               Text="FOI Knjižnica"
               TextColor="White"
-              FontSize="50"
+              FontSize="40"
               HorizontalOptions="CenterAndExpand"
               FontAttributes="Bold">
               <Label.FontFamily>

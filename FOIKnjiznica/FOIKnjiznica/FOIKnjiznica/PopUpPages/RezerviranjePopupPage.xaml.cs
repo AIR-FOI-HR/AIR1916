@@ -15,6 +15,7 @@ using System.Net.Mail;
 using Poz1.NFCForms.Abstract;
 using System.Collections.ObjectModel;
 using NdefLibrary.Ndef;
+using ZXing.Net.Mobile.Forms;
 
 namespace FOIKnjiznica.PopUpPages
 {
@@ -39,13 +40,15 @@ namespace FOIKnjiznica.PopUpPages
                 GumbRezerviraj.IsVisible = true;
                 GumbNFC.IsVisible = true;
                 device.NewTag += HandleNewTag;
+                GumbQRKod.IsVisible = true;
             }
             else if (publikacijeD.Vrsta == "Rezervirano")
             {
                 Naziv.Text = publikacijeD.naziv;
                 GumbRezerviraj.IsVisible = false;
                 GumbNFC.IsVisible = false;
-                Prikaz.Text = "Odabrana kopij je rezervirana!";
+                GumbQRKod.IsVisible = false;
+                Prikaz.Text = "Odabrana kopija je rezervirana!";
                 DohvatiPublikaciju(publikacijeD.Kopija);
             }
             else if (publikacijeD.Vrsta == "Posudeno")
@@ -53,6 +56,7 @@ namespace FOIKnjiznica.PopUpPages
                 Naziv.Text = publikacijeD.naziv;
                 GumbRezerviraj.IsVisible = false;
                 GumbNFC.IsVisible = false;
+                GumbQRKod.IsVisible = false;
                 Prikaz.Text = "Odabrana kopija je posuđena!";
                 DohvatiPublikaciju(publikacijeD.Kopija);
             }
@@ -71,7 +75,9 @@ namespace FOIKnjiznica.PopUpPages
                     convertedMessage = int.Parse(spRecord.Text);
                 }
             }
+
         }
+        
         public void PosaljiObavijestPosudeno(int idKopije)
         {
             MailMessage mail = new MailMessage();
@@ -195,6 +201,67 @@ namespace FOIKnjiznica.PopUpPages
             SmtpServer.Credentials = new System.Net.NetworkCredential("fknjiznica@gmail.com", "admin123!");
 
             SmtpServer.Send(mail);
+        }
+
+        public void PosaljiObavijestPosudeno(int idKopije)
+        {
+            MailMessage mail = new MailMessage();
+            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+            mail.From = new MailAddress(Classes.Clanovi.hrEduPersonUniqueID);
+            mail.To.Add("sdrvoderi@foi.hr");
+            mail.Subject = "Nova posudba";
+            mail.Body = $"Korisnik {Classes.Clanovi.hrEduPersonUniqueID} je upravo posudio knjigu sa identifikacijskim brojem {idKopije.ToString()} \r\n Posudba vrijedi do {DateTime.Now.AddDays(30)}";
+
+            SmtpServer.Port = 587;
+            SmtpServer.Host = "smtp.gmail.com";
+            SmtpServer.EnableSsl = true;
+            SmtpServer.UseDefaultCredentials = false;
+            SmtpServer.Credentials = new System.Net.NetworkCredential("fknjiznica@gmail.com", "admin123!");
+
+            SmtpServer.Send(mail);
+        }
+
+        private async void GumbQRKodKliknut(object sender, EventArgs e)
+        {
+            this.IsVisible = false;
+            var scan = new ZXingScannerPage();
+            await Navigation.PushAsync(scan);
+            scan.OnScanResult += (result) =>
+              {
+                  Device.BeginInvokeOnMainThread(async () =>
+                  {
+                      await Navigation.PopAsync();
+                      PovijestPublikacije novoStanjePublikacije = new PovijestPublikacije()
+                      {
+                          datum = DateTime.Now,
+                          datum_do = DateTime.Now.AddDays(30),
+                          nazivPublikacije = publikacijeD.naziv,
+                          nazivStatusa = "Posudeno",
+                          kopijaId = int.Parse(result.Text),
+                          clanoviId = Clanovi.id,
+                          vrsta_statusaId = 2
+                      };
+
+                      HttpClient client = new HttpClient();
+                      var Json = JsonConvert.SerializeObject(novoStanjePublikacije);
+                      var content = new StringContent(Json, Encoding.UTF8, "application/json");
+                      var request = await client.PutAsync(WebServisInfo.PutanjaWebServisa + "GumbRezerviraj", content);
+
+                      var response = await request.Content.ReadAsStringAsync();
+                      var publikacije = JsonConvert.DeserializeObject<List<Classes.Publikacije>>(response);
+
+                      listaSvihPublikacija = publikacije;
+                      ListaPublikacije.ItemsSource = listaSvihPublikacija;
+
+                      PosaljiObavijestPosudeno(publikacijeD.Kopija);
+
+                      MessagingCenter.Send<App>((App)Application.Current, "RezervacijaPublikacije");
+
+                      await PopupNavigation.Instance.PopAsync();
+
+                  });
+              };
         }
 
     }
