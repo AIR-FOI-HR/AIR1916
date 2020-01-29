@@ -42,13 +42,14 @@
                     <Label x:Name="Prikaz" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold, Italic" TextColor="White" FontSize="15"></Label>
                     <Button x:Name="GumbRezerviraj" IsVisible="False" Text="REZERVIRAJ" Clicked="GumbRezervirajKliknut"></Button>
                     <StackLayout>
-                       <Button BackgroundColor="Transparent" Text="&#xf029;" TextColor="White" FontSize="75" x:Name="GumbQRKod" Clicked="GumbQRKodKliknut" IsVisible="False" Margin="0, 50, 0, 0">
+                       <Button BackgroundColor="Transparent" Text="&#xf029;" TextColor="White" FontSize="75" x:Name="GumbQRKod" Clicked="GumbQRKodKliknut" IsVisible="False" Margin="0, 20, 0, 0">
                             <Button.FontFamily>
                                 <OnPlatform x:TypeArguments="x:String">
                                     <On Platform="iOS" Value="FontAwesome5Solid" />
                                     <On Platform="Android" Value="FontAwesome5Solid.otf#FontAwesome5Solid" />
                                 </OnPlatform>
                             </Button.FontFamily>
+                         <Button x:Name="GumbNFC" IsVisible="False" ImageSource="nfc.png" BackgroundColor="Transparent" WidthRequest="75" HeightRequest="75" Margin="0, 20, 0, 0"/>
                     </Button>
                         </StackLayout>
                     <StackLayout WidthRequest="75" MinimumWidthRequest="60">
