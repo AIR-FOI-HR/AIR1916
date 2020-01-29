@@ -77,25 +77,6 @@ namespace FOIKnjiznica.PopUpPages
             }
 
         }
-        
-        public void PosaljiObavijestPosudeno(int idKopije)
-        {
-            MailMessage mail = new MailMessage();
-            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-
-            mail.From = new MailAddress(Classes.Clanovi.hrEduPersonUniqueID);
-            mail.To.Add("sdrvoderi@foi.hr");
-            mail.Subject = "Nova posudba";
-            mail.Body = $"Korisnik {Classes.Clanovi.hrEduPersonUniqueID} je upravo posudio knjigu sa identifikacijskim brojem {idKopije.ToString()} \r\n Posudba vrijedi do {DateTime.Now.AddDays(30)}";
-
-            SmtpServer.Port = 587;
-            SmtpServer.Host = "smtp.gmail.com";
-            SmtpServer.EnableSsl = true;
-            SmtpServer.UseDefaultCredentials = false;
-            SmtpServer.Credentials = new System.Net.NetworkCredential("fknjiznica@gmail.com", "admin123!");
-
-            SmtpServer.Send(mail);
-        }
 
         //Fire-a event HandleNewTag koji sprema u dvije liste tehnologiju mobitela koji podržavaju NFC i za čitanje poruke sa koda
         private async void HandleNewTag(object sender, NfcFormsTag e)
