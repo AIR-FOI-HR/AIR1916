@@ -7,6 +7,9 @@
              mc:Ignorable="d"
              Title="Profil"
              x:Class="FOIKnjiznica.Profil">
+    <NavigationPage.TitleView>
+        <Image Source="help.png" WidthRequest="25" HeightRequest="25" HorizontalOptions="End" Margin="0, 0, 20, 0"/>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
         <ScrollView  Orientation="Vertical">
             <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">

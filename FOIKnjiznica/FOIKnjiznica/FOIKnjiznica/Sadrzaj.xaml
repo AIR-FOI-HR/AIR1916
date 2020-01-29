@@ -8,6 +8,9 @@
              mc:Ignorable="d"
              x:Class="FOIKnjiznica.Sadrzaj"
              Title="Sadrzaj">
+    <NavigationPage.TitleView>
+        <Image Source="help.png" WidthRequest="25" HeightRequest="25" HorizontalOptions="End" Margin="0, 0, 20, 0"/>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
         <StackLayout Margin="20">
             <StackLayout Orientation="Horizontal">

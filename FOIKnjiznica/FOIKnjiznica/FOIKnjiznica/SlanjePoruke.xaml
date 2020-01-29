@@ -5,6 +5,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="FOIKnjiznica.SlanjePoruke">
+    <NavigationPage.TitleView>
+        <Image Source="help.png" WidthRequest="25" HeightRequest="25" HorizontalOptions="End" Margin="0, 0, 20, 0"/>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
