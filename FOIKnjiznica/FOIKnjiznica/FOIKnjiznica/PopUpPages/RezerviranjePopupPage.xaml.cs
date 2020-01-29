@@ -12,6 +12,9 @@ using FOIKnjiznica.Classes;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Net.Mail;
+using Poz1.NFCForms.Abstract;
+using System.Collections.ObjectModel;
+using NdefLibrary.Ndef;
 
 namespace FOIKnjiznica.PopUpPages
 {
@@ -20,25 +23,111 @@ namespace FOIKnjiznica.PopUpPages
     {
         public static List<Classes.Publikacije> listaSvihPublikacija;
         Classes.Publikacije publikacijeD;
+        private readonly INfcForms device;
+        public int convertedMessage;
+
         public RezerviranjePopupPage(Classes.Publikacije publikacijeU)
         {
+            //Inicijalizacija NFC-a
+            device = DependencyService.Get<INfcForms>();
+
             publikacijeD = publikacijeU;
             InitializeComponent();
             if (publikacijeD.Vrsta == "Slobodno")
             {
                 Naziv.Text = publikacijeD.naziv;
                 GumbRezerviraj.IsVisible = true;
-
+                GumbNFC.IsVisible = true;
+                device.NewTag += HandleNewTag;
             }
             else if (publikacijeD.Vrsta == "Rezervirano")
             {
                 Naziv.Text = publikacijeD.naziv;
                 GumbRezerviraj.IsVisible = false;
+                GumbNFC.IsVisible = false;
                 Prikaz.Text = "Odabrana kopij je rezervirana!";
                 DohvatiPublikaciju(publikacijeD.Kopija);
-                //GumbPosudi.IsVisible = true; IMPLEMENTIRAT CE SE ZA POSUDBU JOS
+            }
+            else if (publikacijeD.Vrsta == "Posudeno")
+            {
+                Naziv.Text = publikacijeD.naziv;
+                GumbRezerviraj.IsVisible = false;
+                GumbNFC.IsVisible = false;
+                Prikaz.Text = "Odabrana kopija je posuđena!";
+                DohvatiPublikaciju(publikacijeD.Kopija);
             }
         }
+
+        //Čitanje Tag-a sa NFC-a koda koji kasnije prebacivamo u applikaciju koji nam služi
+        //za izmjenu rezerviranog u posuđeno u bazi podataka publikacije
+        private void readNDEFMEssage(NdefMessage message)
+        {
+            foreach (NdefRecord record in message)
+            {
+
+                if (record.CheckSpecializedType(false) == typeof(NdefTextRecord))
+                {
+                    var spRecord = new NdefTextRecord(record);
+                    convertedMessage = int.Parse(spRecord.Text);
+                }
+            }
+        }
+        public void PosaljiObavijestPosudeno(int idKopije)
+        {
+            MailMessage mail = new MailMessage();
+            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+            mail.From = new MailAddress(Classes.Clanovi.hrEduPersonUniqueID);
+            mail.To.Add("sdrvoderi@foi.hr");
+            mail.Subject = "Nova posudba";
+            mail.Body = $"Korisnik {Classes.Clanovi.hrEduPersonUniqueID} je upravo posudio knjigu sa identifikacijskim brojem {idKopije.ToString()} \r\n Posudba vrijedi do {DateTime.Now.AddDays(30)}";
+
+            SmtpServer.Port = 587;
+            SmtpServer.Host = "smtp.gmail.com";
+            SmtpServer.EnableSsl = true;
+            SmtpServer.UseDefaultCredentials = false;
+            SmtpServer.Credentials = new System.Net.NetworkCredential("fknjiznica@gmail.com", "admin123!");
+
+            SmtpServer.Send(mail);
+        }
+
+        //Fire-a event HandleNewTag koji sprema u dvije liste tehnologiju mobitela koji podržavaju NFC i za čitanje poruke sa koda
+        private async void HandleNewTag(object sender, NfcFormsTag e)
+        {
+            if (e.IsNdefSupported)
+            {
+                readNDEFMEssage(e.NdefMessage);
+            }
+
+            PovijestPublikacije novoStanjePublikacije = new PovijestPublikacije()
+            {
+                datum = DateTime.Now,
+                datum_do = DateTime.Now.AddDays(30),
+                nazivPublikacije = publikacijeD.naziv,
+                nazivStatusa = "Posudeno",
+                kopijaId = convertedMessage,
+                clanoviId = Clanovi.id,
+                vrsta_statusaId = 2
+            };
+
+            HttpClient client = new HttpClient();
+            var Json = JsonConvert.SerializeObject(novoStanjePublikacije);
+            var content = new StringContent(Json, Encoding.UTF8, "application/json");
+            var request = await client.PutAsync(WebServisInfo.PutanjaWebServisa + "GumbRezerviraj", content);
+
+            var response = await request.Content.ReadAsStringAsync();
+            var publikacije = JsonConvert.DeserializeObject<List<Classes.Publikacije>>(response);
+
+            listaSvihPublikacija = publikacije;
+            ListaPublikacije.ItemsSource = listaSvihPublikacija;
+
+            PosaljiObavijestPosudeno(publikacijeD.Kopija);
+
+            MessagingCenter.Send<App>((App)Application.Current, "RezervacijaPublikacije");
+
+            await PopupNavigation.Instance.PopAsync();
+        }
+
         private async void izlazak_Clicked(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PopAsync();

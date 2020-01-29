@@ -17,7 +17,10 @@ using Rg.Plugins.Popup.Services;
 
 using Android.Util;
 using Android.Gms.Common;
-
+using Poz1.NFCForms.Droid;
+using Android.Nfc;
+using Android.Content;
+using Poz1.NFCForms.Abstract;
 
 namespace FOIKnjiznica.Droid
 {
@@ -27,6 +30,9 @@ namespace FOIKnjiznica.Droid
         WebView webView;
         public const string TAG = "MainActivity";
         internal static readonly string CHANNEL_ID = "my_notification_channel";
+        public NfcAdapter NFCdevice;
+        public NfcForms x;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -72,7 +78,51 @@ namespace FOIKnjiznica.Droid
                 webView.LoadUrl("https://192.168.0.110:45455/");
 
             }*/
+
+            //Implementacija NFC-a za skeniranje publikacije
+            NfcManager NfcManager = (NfcManager)Application.Context.GetSystemService(Context.NfcService);
+            NFCdevice = NfcManager.DefaultAdapter;
+
+            Xamarin.Forms.DependencyService.Register<INfcForms,NfcForms>();
+            x = Xamarin.Forms.DependencyService.Get<INfcForms>() as NfcForms;
+
             LoadApplication(new App());
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            if (NFCdevice != null)
+            {
+                var intent = new Intent(this, GetType()).AddFlags(ActivityFlags.SingleTop);
+                NFCdevice.EnableForegroundDispatch
+                (
+                    this,
+                    PendingIntent.GetActivity(this, 0, intent, 0),
+                    new[] { new IntentFilter (NfcAdapter.ActionTechDiscovered) },
+                    new String[][] { new string[]
+                    {
+                        NFCTechs.Ndef
+                    },
+                    new string[]
+                    {
+                        NFCTechs.MifareClassic
+                    },
+                    }
+                );
+            }
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+            NFCdevice.DisableForegroundDispatch(this);
+        }
+
+        protected override void OnNewIntent(Intent intent)
+        {
+            base.OnNewIntent(intent);
+            x.OnNewIntent(this, intent);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
