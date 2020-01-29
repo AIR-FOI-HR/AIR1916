@@ -41,6 +41,16 @@
                     <Label x:Name="Naziv" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold, Italic" TextColor="White" FontSize="20"/>
                     <Label x:Name="Prikaz" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold, Italic" TextColor="White" FontSize="15"></Label>
                     <Button x:Name="GumbRezerviraj" IsVisible="False" Text="REZERVIRAJ" Clicked="GumbRezervirajKliknut"></Button>
+                    <StackLayout>
+                       <Button BackgroundColor="Transparent" Text="&#xf029;" TextColor="White" FontSize="75" x:Name="GumbQRKod" Clicked="GumbQRKodKliknut" IsVisible="False" Margin="0, 50, 0, 0">
+                            <Button.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <On Platform="iOS" Value="FontAwesome5Solid" />
+                                    <On Platform="Android" Value="FontAwesome5Solid.otf#FontAwesome5Solid" />
+                                </OnPlatform>
+                            </Button.FontFamily>
+                    </Button>
+                        </StackLayout>
                     <StackLayout WidthRequest="75" MinimumWidthRequest="60">
                         <ListView x:Name="ListaPublikacije" SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="None">
                             <ListView.ItemTemplate>
@@ -54,9 +64,9 @@
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
                                             <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1">
-                                                <Label Text="Datum rezervacije: " TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                                <Label Text="Datum od: " TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
                                                 <Label Text="{Binding GodinaOd}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                                <Label Text="Rezervacija vrijedi do: " TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                                <Label Text="Vrijedi do: " TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
                                                 <Label Text="{Binding GodinaDo}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
                                             </StackLayout>
                                         </Grid>
