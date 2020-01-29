@@ -5,15 +5,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:gesturePatternView="clr-namespace:FaulandCc.XF.GesturePatternView;assembly=FaulandCc.XF.GesturePatternView"
              mc:Ignorable="d"
-             x:Class="FOIKnjiznica.UzorakPostavljanje">
+             x:Class="UzorakModul.UzorakUI">
     <ContentPage.Content>
-            <StackLayout Orientation="Vertical" Spacing="100" Margin="30,60,30,30">
+        <StackLayout Orientation="Vertical" Spacing="100" Margin="30,60,30,30">
             <StackLayout Orientation="Vertical" VerticalOptions="Start" HorizontalOptions="CenterAndExpand">
-                    <Label x:Name="Naslov" TextColor="#FD8638"  FontSize="25" FontAttributes="Bold" />
-                    <Label x:Name="Obavijest" TextColor="#FD8638"  FontSize="15" FontAttributes="Bold" />
+                <Label x:Name="Naslov" TextColor="#FD8638"  FontSize="25" FontAttributes="Bold" />
+                <Label x:Name="Obavijest" TextColor="#FD8638"  FontSize="15" FontAttributes="Bold" />
             </StackLayout>
-                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                    <gesturePatternView:GesturePatternView x:Name="MyGesturePatternView" Grid.Row="1"
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <gesturePatternView:GesturePatternView x:Name="MyGesturePatternView" Grid.Row="1"
                                                    HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
                                                    BackgroundColor="White"
                                                    HorizontalTouchPoints="3" VerticalTouchPoints="3"
@@ -25,7 +25,7 @@
                                                    TouchPointInnerCircleStrokeWidth="50"
                                                    GesturePatternCompleted="MyGesturePatternView_OnGesturePatternCompleted"
                                                    Vibrate="False" IsTabStop="True"/>
-                </StackLayout>
             </StackLayout>
-        </ContentPage.Content>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

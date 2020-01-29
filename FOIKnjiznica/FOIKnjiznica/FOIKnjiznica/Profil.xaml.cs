@@ -171,19 +171,19 @@ namespace FOIKnjiznica
         {
             if(odabranOdabirLozinke == 4)
             {
-                App.Current.MainPage = new PinPostavljanje(true, lozinka, false);
+                //App.Current.MainPage = new PinPostavljanje(true, lozinka, false);
             }
             else
             {
                 if(lozinka == null)
                 {
-                    App.Current.MainPage = new PinPostavljanje(false, lozinka, false);
+                    //App.Current.MainPage = new PinPostavljanje(false, lozinka, false);
                 }
                 else
                 {
                     if(odabranOdabirLozinke == 2)
                     {
-                        App.Current.MainPage = new UzorakPostavljanje(false, lozinka, true);
+                        //App.Current.MainPage = new UzorakPostavljanje(false, lozinka, true);
                     }
                 }
                 
@@ -194,19 +194,19 @@ namespace FOIKnjiznica
         {
             if (odabranOdabirLozinke == 2)
             {
-                App.Current.MainPage = new UzorakPostavljanje(true, lozinka, false);
+                //App.Current.MainPage = new UzorakPostavljanje(true, lozinka, false);
             }
             else
             {
                 if(lozinka == null)
                 {
-                    App.Current.MainPage = new UzorakPostavljanje(false, lozinka, false);
+                    //App.Current.MainPage = new UzorakPostavljanje(false, lozinka, false);
                 }
                 else
                 {
                     if(odabranOdabirLozinke == 4)
                     {
-                        App.Current.MainPage = new PinPostavljanje(false, lozinka, true);
+                        //App.Current.MainPage = new PinPostavljanje(false, lozinka, true);
                     }
                 }
                 

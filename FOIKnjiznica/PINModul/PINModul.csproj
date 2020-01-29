@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991537" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InterfaceModule\InterfaceModule.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="PINUI.xaml.cs">
+      <DependentUpon>PINUI.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>

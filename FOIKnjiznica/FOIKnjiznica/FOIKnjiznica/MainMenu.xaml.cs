@@ -16,6 +16,7 @@ namespace FOIKnjiznica
         {
             //Skrivanje Navigation Bar-a sa početnog zaslona "Main Menu" koji je ujedno i root navigacije
             SetValue(NavigationPage.HasNavigationBarProperty, false);
+            
 
             InitializeComponent();
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;
