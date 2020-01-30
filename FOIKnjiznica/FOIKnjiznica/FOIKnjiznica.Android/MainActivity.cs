@@ -14,7 +14,8 @@ using Android.Net.Http;
 
 using Lottie.Forms.Droid;
 using Rg.Plugins.Popup.Services;
-
+using Plugin.CurrentActivity;
+using Plugin.Fingerprint;
 
 namespace FOIKnjiznica.Droid
 {
@@ -26,6 +27,8 @@ namespace FOIKnjiznica.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
+            CrossFingerprint.SetCurrentActivityResolver(() => CrossCurrentActivity.Current.Activity);
 
             base.OnCreate(savedInstanceState);
 

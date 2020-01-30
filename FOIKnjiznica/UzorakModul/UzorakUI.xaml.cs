@@ -15,19 +15,19 @@ namespace UzorakModul
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UzorakUI : ContentPage
     {
-        Action<Type> zatvori;
-        private SHA256 sha256;
-        private bool noviUzorak = false;
-        private string staraLozinka = "";
-        private int ispravniBroj = 0;
-        private string ponovljeniUzorak = "";
-        private bool provjeraStareLozinke;
+        public Action<Type> zatvori;
+        public SHA256 sha256;
+        public bool noviUzorak = false;
+        public string staraLozinka = "";
+        public int ispravniBroj = 0;
+        public string ponovljeniUzorak = "";
+        public bool provjeraStareLozinke;
+
+        public UzorakUI() { }
 
         public UzorakUI(string hashiraniPodatak, Action<Type> zatvaranjeUI)
         {
             InitializeComponent();
-
-            SHA256 sha256 = SHA256.Create();
 
             staraLozinka = hashiraniPodatak;
 
@@ -73,6 +73,7 @@ namespace UzorakModul
 
         private string HashirajUzorak(string uzorak)
         {
+            sha256 = SHA256.Create();
             byte[] uzorakByte = Encoding.UTF8.GetBytes(uzorak);
             byte[] izracunatiUzorakByte = sha256.ComputeHash(uzorakByte);
             string uzorakHash = Convert.ToBase64String(izracunatiUzorakByte);

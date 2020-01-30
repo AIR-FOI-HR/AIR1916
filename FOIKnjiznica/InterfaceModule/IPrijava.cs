@@ -9,6 +9,7 @@ namespace InterfaceModule
         bool StanjeZadnjePrijave { get; set; }
         string UneseniPodatak { get; set; }
         void PrijavaModulom(Action<Type,Action<Type>,string> otvaranjeUI, Action<Type> zatvaranjeUI, string HashiraniPodatak);       
+        void PrijavaModulom(Action<Type> zatvaranjeUI);       
         void PromjenaPodataka(Action<Type,Action<Type>,string> otvaranjeUI, Action<Type> zatvaranjeUI, string HashiraniPodatak);       
     }
 }

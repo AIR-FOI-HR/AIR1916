@@ -18,6 +18,11 @@ namespace PINModul
             this.StanjeZadnjePrijave = true;
         }
 
+        public void PrijavaModulom(Action<Type> zatvaranjeUI)
+        {
+            this.StanjeZadnjePrijave = false;
+        }
+
         public void PromjenaPodataka(Action<Type, Action<Type>, string> otvaranjeUI, Action<Type> zatvaranjeUI, string HashiraniPodatak)
         {
             throw new NotImplementedException();

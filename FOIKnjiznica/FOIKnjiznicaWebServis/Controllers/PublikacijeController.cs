@@ -88,6 +88,7 @@ namespace FOIKnjiznicaWebServis.Controllers
                                Vrsta = Vrsta_Statusa.naziv_vrste,
                                Kategorije = Kategorije.naziv_kategorije
                            }).OrderByDescending(x => x.Stanje).First();
+
                 if(upit != null)
                 {
                     listaStatusa.Add(upit);

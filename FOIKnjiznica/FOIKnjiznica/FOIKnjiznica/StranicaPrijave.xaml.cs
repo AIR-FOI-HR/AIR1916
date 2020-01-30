@@ -10,6 +10,7 @@ using Xamarin.Forms.Xaml;
 using InterfaceModule;
 using PINModul;
 using UzorakModul;
+using OtisakModul;
 
 namespace FOIKnjiznica
 {
@@ -34,7 +35,15 @@ namespace FOIKnjiznica
 
         public void ZatvoriStranicuModula(Type tipUI)
         {
-            Navigation.PopAsync();
+            if(tipUI == null)
+            {
+                UdiUAplikaciju();
+            }
+            else 
+            {
+                Navigation.PopAsync();
+                UdiUAplikaciju();
+            }
         }
 
         public void UdiUAplikaciju()

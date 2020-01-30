@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\FOIKnjiznicaWebServis\FOIKnjiznicaWebServis.csproj" />
     <ProjectReference Include="..\..\InterfaceModule\InterfaceModule.csproj" />
+    <ProjectReference Include="..\..\OtisakModul\OtisakModul.csproj" />
     <ProjectReference Include="..\..\PINModul\PINModul.csproj" />
     <ProjectReference Include="..\..\UzorakModul\UzorakModul.csproj" />
   </ItemGroup>
