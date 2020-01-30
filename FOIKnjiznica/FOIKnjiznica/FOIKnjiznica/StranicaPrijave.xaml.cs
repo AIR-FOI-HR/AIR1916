@@ -11,20 +11,46 @@ using InterfaceModule;
 using PINModul;
 using UzorakModul;
 using OtisakModul;
+using System.Net.Http;
+using Newtonsoft.Json;
+using FOIKnjiznica.Classes;
+using Plugin.DeviceInfo;
 
 namespace FOIKnjiznica
 {
+    public class Clan
+    {
+        public int id { get; set; }
+        public string hrEduPersonUniqueID { get; set; }
+        public string mobitelID { get; set; }
+    }
+    public class ClientAuth
+    {
+        public int ClanoviId { get; set; }
+        public int Auth_ProtocolId { get; set; }
+        public string podaci { get; set; }
+    }
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class StranicaPrijave : ContentPage
     {
         public IPrijava prijavaModularno;
+        Clan trenutniClan;
+        ClientAuth trenutanNacin;
+        public string info;
+
         public StranicaPrijave()
         {
             InitializeComponent();
 
-            prijavaModularno = new UzorakPrijava();
+            DohvatiKorisnika();       
+        }
 
-            prijavaModularno.PrijavaModulom(OtvoriStranicuModula, ZatvoriStranicuModula, "7ZRvZdLHhdkOgnxf/Yec47ScaNTIgBMHQXan5zvFi88=");
+        private void PokreniPrijavu()
+        {
+            prijavaModularno = ImplementiraniModuli.popisModula[trenutanNacin.Auth_ProtocolId.ToString()];
+
+            prijavaModularno.PrijavaModulom(OtvoriStranicuModula, ZatvoriStranicuModula, trenutanNacin.podaci);
         }
 
         public async void OtvoriStranicuModula(Type tipUI,Action<Type> zatvaranjeUI,string hashiraniPodatak)
@@ -37,13 +63,22 @@ namespace FOIKnjiznica
         {
             if(tipUI == null)
             {
+                KreirajKorisnika();
                 UdiUAplikaciju();
             }
             else 
             {
+                KreirajKorisnika();
                 Navigation.PopAsync();
                 UdiUAplikaciju();
             }
+        }
+
+        private void KreirajKorisnika()
+        {
+            Clanovi.hrEduPersonUniqueID = trenutniClan.hrEduPersonUniqueID;
+            Clanovi.id = trenutniClan.id;
+            Clanovi.mobitelID = trenutniClan.mobitelID;
         }
 
         public void UdiUAplikaciju()
@@ -54,9 +89,39 @@ namespace FOIKnjiznica
             }
         }
 
-        public void DohvatiKorisnika()
+        public async void DohvatiKorisnika()
         {
+            trenutniClan = new Clan();
+            HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync(WebServisInfo.PutanjaWebServisa + "PrijavaTrenutniClan/" + CrossDeviceInfo.Current.Id);
+            if (response.Length > 20) 
+            {
+                var publikacije = JsonConvert.DeserializeObject<List<Clan>>(response);
+                foreach (var clan in publikacije)
+                {
+                    trenutniClan.id = clan.id;
+                    trenutniClan.hrEduPersonUniqueID = clan.hrEduPersonUniqueID;
+                    trenutniClan.mobitelID = clan.mobitelID;
+                }
+                DohvatiAktivanNacinPrijave();
+            }
+            client.Dispose();
+        }
+        public async void DohvatiAktivanNacinPrijave()
+        {
+            trenutanNacin = new ClientAuth();
+            List<ClientAuth> nacinPrijave;
+            HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync(WebServisInfo.PutanjaWebServisa + "DodajAuthProtocol/" + trenutniClan.id);
+            if (response.Length > 20)
+            {
+                var publikacije = JsonConvert.DeserializeObject<List<ClientAuth>>(response);
+                nacinPrijave = publikacije;
+                trenutanNacin = nacinPrijave.First();
+                PokreniPrijavu();
+            }
 
+            client.Dispose();
         }
     }
 }

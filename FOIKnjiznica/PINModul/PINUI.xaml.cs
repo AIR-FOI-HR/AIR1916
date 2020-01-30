@@ -20,6 +20,8 @@ namespace PINModul
         private int brojac = 0;
         public string hashiraniPin;
         public Action<Type> zatvori;
+        public Action<string> vrati;
+        public string mode;
 
         public PINUI() { InitializeComponent();}
         public PINUI(string hashiraniPodatak, Action<Type> zatvaranjeUI)
@@ -28,19 +30,42 @@ namespace PINModul
             sha256 = SHA256.Create();
             hashiraniPin = hashiraniPodatak;
             zatvori = zatvaranjeUI;
-        }      
+        }
+        public PINUI(string hashiraniPodatak, Action<Type> zatvaranjeUI,Action<string> vratiUnesenuVrijednost)
+        {
+            InitializeComponent();
+            sha256 = SHA256.Create();
+            hashiraniPin = hashiraniPodatak;
+            zatvori = zatvaranjeUI;
+            vrati = vratiUnesenuVrijednost;
+            mode = "Izmjena";
+
+        }
         private void ProvjeriIspravnostUnosa()
         {
             int pin = SpojiBrojeve();
 
-            if (hashiraniPin == HashirajPin(pin)) 
+            if(hashiraniPin != null) 
             {
-                zatvori(this.GetType());
+                if (hashiraniPin == HashirajPin(pin)) 
+                {                 
+                    if(mode == "Izmjena")
+                    {
+                        vrati(hashiraniPin);
+                    }
+                    zatvori(this.GetType());
+                }
+                else
+                {
+                    Naslov.Text = "Neispravna lozinka!";
+                    NeispravnaLozinka();         
+                }
             }
             else
             {
-                Naslov.Text = "Neispravna lozinka!";
-                NeispravnaLozinka();         
+                hashiraniPin = HashirajPin(pin);
+                Naslov.Text = "Ponovite Unos";
+                NeispravnaLozinka();
             }
         }
 

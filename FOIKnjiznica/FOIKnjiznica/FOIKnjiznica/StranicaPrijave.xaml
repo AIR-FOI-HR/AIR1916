@@ -6,10 +6,8 @@
              mc:Ignorable="d"
              x:Class="FOIKnjiznica.StranicaPrijave">
     <ContentPage.Content>
-        <StackLayout>
-            <Label x:Name="porukica" Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <Image Source="icon" VerticalOptions="Center" HorizontalOptions="Center"></Image>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -91,7 +91,6 @@ namespace FOIKnjiznica
                 }
             }
         }
-
         private async void UnosPretrazivanja(object sender, TextChangedEventArgs e)
         {
             string id = search_bar.Text.ToString();
@@ -128,6 +127,12 @@ namespace FOIKnjiznica
         {
             Classes.Publikacije tappedItem = e.Item as Classes.Publikacije;
             await Navigation.PushAsync(new BookInfo(tappedItem));
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            System.Environment.Exit(0);
+            return false;
         }
     }
 }

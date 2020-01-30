@@ -69,23 +69,7 @@
                 <Label x:Name="najranijiIstekPosudbeDatum" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
                 <BoxView Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="#ae2323" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
                 <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
-                    <Label Text="Dodajte svoju lozinku za lakšu prijavu" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="24"/>
-                    <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center" Padding="0,0,20,0" Spacing="20">
-                        <StackLayout Orientation="Horizontal">
-                            <CheckBox x:Name="PinCheck" IsEnabled="False"/>
-                            <Button Text="PIN"  BackgroundColor="#ae2323" TextColor="White" CornerRadius="20" Clicked="GumbPin"></Button>
-                            <Label x:Name="lblPinCheck" TextColor="#037D16" FontSize="16" FontAttributes="Bold"  />
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <CheckBox x:Name="UzorakPotvrdeno" IsEnabled="False"/>
-                            <Button Text="Uzorak"  BackgroundColor="#ae2323" TextColor="White" CornerRadius="20" Clicked="GumbUzorak" ></Button>
-                            <Label x:Name="lblUzorakCheck" TextColor="#037D16" FontSize="16" FontAttributes="Bold"  />
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <CheckBox x:Name="OtisakPotvrdeno" IsEnabled="False"/>
-                            <Button Text="Otisak"  BackgroundColor="#ae2323" TextColor="White" CornerRadius="20"></Button>
-                        </StackLayout>
-                    </StackLayout>
+                    <Button Text="Postavke" Clicked="Button_Clicked" BackgroundColor="#ae2323" TextColor="White" CornerRadius="20"></Button>
                 </StackLayout>
                 <BoxView Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="#ae2323" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
             </StackLayout>

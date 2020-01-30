@@ -16,6 +16,7 @@ using Lottie.Forms.Droid;
 using Rg.Plugins.Popup.Services;
 using Plugin.CurrentActivity;
 using Plugin.Fingerprint;
+using Plugin.DeviceInfo;
 
 namespace FOIKnjiznica.Droid
 {

@@ -34,8 +34,6 @@ namespace FOIKnjiznica
             mobitelKorisnikaLabela.Text = Classes.Clanovi.mobitelID;
 
             KreirajStatistiku();
-            ProvjeriLozinke();
-
         }
         public Profil(int odabir)
         {
@@ -49,16 +47,6 @@ namespace FOIKnjiznica
             mobitelKorisnikaLabela.Text = Classes.Clanovi.mobitelID;
 
             KreirajStatistiku();
-            ProvjeriLozinke();
-            if(odabir == 1)
-            {
-                lblPinCheck.Text = "Dodano";
-                CrossToastPopUp.Current.ShowCustomToast($"Uspješno ste dodali Pin opciju za bržu prijavu", "#ae2323", "White");
-            }else if(odabir == 2)
-            {
-                lblUzorakCheck.Text = "Dodano";
-                CrossToastPopUp.Current.ShowCustomToast($"Uspješno ste dodali Uzorak opciju za bržu prijavu", "#ae2323", "White");
-            }
         }
 
         private async void KreirajStatistiku()
@@ -100,119 +88,16 @@ namespace FOIKnjiznica
 
 
         }
-
-        private async void ProvjeriLozinke()
-        {
-            HttpClient client = new HttpClient();
-
-            try
-            {
-                var response = await client.GetStringAsync(WebServisInfo.PutanjaWebServisa + "DodajAuthProtocol/" + Clanovi.id);
-                var odgovor = JsonConvert.DeserializeObject<List<Classes.ClanoviAuthProtokol>>(response);
-                listaLozinki = odgovor;
-            }
-            catch (Exception socketException) when (socketException is System.Net.Sockets.SocketException || socketException is HttpRequestException)
-            {
-
-            }
-            finally
-            {
-                client.Dispose();
-            }
-            if(listaLozinki != null)
-            {
-                foreach (var item in listaLozinki)
-                {
-                    authProtokol.Auth_ProtocolId = item.Auth_ProtocolId;
-                    authProtokol.podaci = item.podaci;
-                }
-
-                if (authProtokol.Auth_ProtocolId == 2)
-                {
-                    UzorakPotvrdeno.IsChecked = true;
-                    PinCheck.IsChecked = false;
-                    OtisakPotvrdeno.IsChecked = false;
-                    odabranOdabirLozinke = 2;
-                    lozinka = authProtokol.podaci;
-                }
-                else if (authProtokol.Auth_ProtocolId == 3)
-                {
-                    UzorakPotvrdeno.IsChecked = false;
-                    PinCheck.IsChecked = false;
-                    OtisakPotvrdeno.IsChecked = true;
-                    odabranOdabirLozinke = 3;
-                }
-                else if (authProtokol.Auth_ProtocolId == 4)
-                {
-                    UzorakPotvrdeno.IsChecked = false;
-                    PinCheck.IsChecked = true;
-                    OtisakPotvrdeno.IsChecked = false;
-                    odabranOdabirLozinke = 4;
-                    lozinka = authProtokol.podaci;
-                }
-            }
-            else
-            {
-                UzorakPotvrdeno.IsChecked = false;
-                PinCheck.IsChecked = false;
-                OtisakPotvrdeno.IsChecked = false;
-                odabranOdabirLozinke = 1;
-            }
-            
-            
-        }
-
         private async void GumbPovijest(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new PovijestKorisnika());
         }
 
-        private void GumbPin(object sender, EventArgs e)
+
+        public async void Button_Clicked(object sender, EventArgs e)
         {
-            if(odabranOdabirLozinke == 4)
-            {
-                //App.Current.MainPage = new PinPostavljanje(true, lozinka, false);
-            }
-            else
-            {
-                if(lozinka == null)
-                {
-                    //App.Current.MainPage = new PinPostavljanje(false, lozinka, false);
-                }
-                else
-                {
-                    if(odabranOdabirLozinke == 2)
-                    {
-                        //App.Current.MainPage = new UzorakPostavljanje(false, lozinka, true);
-                    }
-                }
-                
-            }
-            
-        }
-        private void GumbUzorak(object sender, EventArgs e)
-        {
-            if (odabranOdabirLozinke == 2)
-            {
-                //App.Current.MainPage = new UzorakPostavljanje(true, lozinka, false);
-            }
-            else
-            {
-                if(lozinka == null)
-                {
-                    //App.Current.MainPage = new UzorakPostavljanje(false, lozinka, false);
-                }
-                else
-                {
-                    if(odabranOdabirLozinke == 4)
-                    {
-                        //App.Current.MainPage = new PinPostavljanje(false, lozinka, true);
-                    }
-                }
-                
-            }
+            await Navigation.PushAsync(new PostavkePrijaveModulom());
 
         }
-
     }
 }

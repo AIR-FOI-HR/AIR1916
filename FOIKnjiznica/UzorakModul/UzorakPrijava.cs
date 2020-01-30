@@ -26,5 +26,15 @@ namespace UzorakModul
         {
             throw new NotImplementedException();
         }
+
+        public void PromjenaPodataka(Action<Type, Action<Type>, string, Action<string>> otvaranjeUI, Action<Type> zatvaranjeUI, string HashiraniPodatak)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void VratiUneseniPodatak(string proslijedeniPodatak)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

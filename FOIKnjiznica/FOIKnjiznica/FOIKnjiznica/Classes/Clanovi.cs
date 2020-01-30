@@ -9,11 +9,11 @@ namespace FOIKnjiznica.Classes
 {
     public static class Clanovi
     {
-        public static int id { get; set; } = 4;
-        public static string hrEduPersonUniqueID { get; set; } = "stiven@foi.hr";
+        public static int id { get; set; }
+        public static string hrEduPersonUniqueID { get; set; }
         public static string ime { get; set; } = "Stiven";
         public static string prezime { get; set; } = "Drvoderić";
-        public static string mobitelID { get; set; } = "00012223111223";
+        public static string mobitelID { get; set; }
         public static List<Publikacije> listaFavorita { get; set; }
 
         public async static void DohvatiFavorite()

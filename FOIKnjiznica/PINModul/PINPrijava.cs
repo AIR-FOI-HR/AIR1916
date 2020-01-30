@@ -23,9 +23,15 @@ namespace PINModul
             this.StanjeZadnjePrijave = false;
         }
 
-        public void PromjenaPodataka(Action<Type, Action<Type>, string> otvaranjeUI, Action<Type> zatvaranjeUI, string HashiraniPodatak)
+        public void PromjenaPodataka(Action<Type, Action<Type>, string, Action<string>> otvaranjeUI, Action<Type> zatvaranjeUI, string HashiraniPodatak)
         {
-            throw new NotImplementedException();
+            otvaranjeUI(typeof(PINUI), zatvaranjeUI, HashiraniPodatak,VratiUneseniPodatak);
+
+        }
+
+        public void VratiUneseniPodatak(string proslijedeniPodatak)
+        {
+            this.UneseniPodatak = proslijedeniPodatak;
         }
     }
 }

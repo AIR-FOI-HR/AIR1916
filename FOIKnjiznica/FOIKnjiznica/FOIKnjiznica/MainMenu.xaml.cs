@@ -11,7 +11,7 @@ namespace FOIKnjiznica
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainMenu : MasterDetailPage
-    {
+    {      
         public MainMenu()
         {
             //Skrivanje Navigation Bar-a sa početnog zaslona "Main Menu" koji je ujedno i root navigacije
