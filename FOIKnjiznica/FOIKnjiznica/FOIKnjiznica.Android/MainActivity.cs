@@ -79,7 +79,7 @@ namespace FOIKnjiznica.Droid
             CachedImageRenderer.Init(true);
 
             //Implementacija NFC-a za skeniranje publikacije
-            NfcManager NfcManager = (NfcManager)Application.Context.GetSystemService(Context.NfcService);
+            NfcManager NfcManager = (NfcManager)Android.App.Application.Context.GetSystemService(Context.NfcService);
             NFCdevice = NfcManager.DefaultAdapter;
 
             Xamarin.Forms.DependencyService.Register<INfcForms,NfcForms>();
