@@ -33,6 +33,7 @@ using Poz1.NFCForms.Droid;
 using Android.Nfc;
 using Android.Content;
 using Poz1.NFCForms.Abstract;
+using Android.Content;
 
 namespace FOIKnjiznica.Droid
 {
