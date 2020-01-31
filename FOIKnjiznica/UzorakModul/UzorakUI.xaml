@@ -8,13 +8,11 @@
              x:Class="UzorakModul.UzorakUI">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" Spacing="100" Margin="30,60,30,30" BackgroundColor="#ae2323">
-            <Frame BorderColor="Black" VerticalOptions="Start" HorizontalOptions="CenterAndExpand">
-                <StackLayout Orientation="Vertical" >
-                    <Label x:Name="Naslov" TextColor="White"  FontSize="25" FontAttributes="Bold" />
-                    <Label x:Name="Obavijest" TextColor="White"  FontSize="15" FontAttributes="Bold" />
-                </StackLayout>
-            </Frame>
-            <Frame BackgroundColor="White" CornerRadius="10" BorderColor="Black" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical"  HorizontalOptions="Center" VerticalOptions="Center" >
+                    <Label x:Name="Naslov" TextColor="White"  FontSize="25" FontAttributes="Bold"  HorizontalTextAlignment="Center"/>
+                    <Label x:Name="Obavijest" TextColor="White"  FontSize="15" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+            </StackLayout>
+                <Frame BackgroundColor="White" CornerRadius="10" BorderColor="Black" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                 <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                     <gesturePatternView:GesturePatternView x:Name="MyGesturePatternView" Grid.Row="1"
                                                        HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"

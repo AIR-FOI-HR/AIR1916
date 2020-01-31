@@ -16,6 +16,9 @@ namespace UzorakModul
     public partial class UzorakUI : ContentPage
     {
         public Action<Type> zatvori;
+        public Action<string> vrati;
+        public int brojacUnosa = 0;
+        public string mode;
         public SHA256 sha256;
         public bool noviUzorak = false;
         public string staraLozinka = "";
@@ -32,6 +35,18 @@ namespace UzorakModul
             staraLozinka = hashiraniPodatak;
 
             zatvori = zatvaranjeUI;
+        }
+
+        public UzorakUI(string hashiraniPodatak, Action<Type> zatvaranjeUI, Action<string> vratiUnesenuVrijednost)
+        {
+            InitializeComponent();
+
+            staraLozinka = hashiraniPodatak;
+
+            zatvori = zatvaranjeUI;
+
+            vrati = vratiUnesenuVrijednost;
+            mode = "Izmjena";
         }
 
         private void MyGesturePatternView_OnGesturePatternCompleted(object sender, GesturePatternCompletedEventArgs e)
@@ -59,16 +74,54 @@ namespace UzorakModul
         private void IspravnostStarogUzorka(string uzorak)
         {
             string noviUzorakHash = HashirajUzorak(uzorak);
-                if (noviUzorakHash == staraLozinka)
+            //if (noviUzorakHash == staraLozinka)
+            //{
+            //    zatvori(this.GetType());
+            //}
+            //else
+            //{
+            //    noviUzorak = false;
+            //    Obavijest.Text = " Uzorak je neispravan!";
+            //    OcistiUzorak();
+            //}
+            if (mode == "Izmjena")
+            {
+                brojacUnosa++;
+                if (brojacUnosa == 1)
+                {
+                    Naslov.Text = "";
+                    staraLozinka = noviUzorakHash;
+                    Obavijest.Text = "Ponovite uzorak";
+                    OcistiUzorak();
+                }
+                else if (brojacUnosa == 2)
+                {
+                    if (staraLozinka == noviUzorakHash)
+                    {
+                        vrati(staraLozinka);
+                        zatvori(this.GetType());
+                    }
+                    else
+                    {
+                        brojacUnosa = 0;
+                        Naslov.Text = "Neispravan uzorak!";
+                        Obavijest.Text = "Ponovite uzorak";
+                        OcistiUzorak();
+                    }
+                }
+            }
+            else
+            {
+                if (staraLozinka == noviUzorakHash)
                 {
                     zatvori(this.GetType());
                 }
                 else
                 {
-                    noviUzorak = false;
-                    Obavijest.Text = " Uzorak je neispravan!";
+                    Naslov.Text = "Neispravna lozinka!";
                     OcistiUzorak();
                 }
+            }
         }
 
         private string HashirajUzorak(string uzorak)

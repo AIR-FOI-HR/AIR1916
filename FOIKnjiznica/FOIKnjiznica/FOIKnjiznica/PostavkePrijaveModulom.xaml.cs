@@ -20,35 +20,39 @@ namespace FOIKnjiznica
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PostavkePrijaveModulom : ContentPage
     {
-        ClientAuth trenutanNacin;
-        IPrijava stariNacinPrijave;
+        int idModula;
         IPrijava noviNacinPrijave;
-        bool potvrdaStarihPodataka;
         public PostavkePrijaveModulom()
         {
             InitializeComponent();
-            DohvatiAktivanNacinPrijave();
         }
 
         private void PinPostavljanje(object sender, EventArgs e)
         {
-            stariNacinPrijave.PrijavaModulom(OtvoriStranicuModula, ZatvoriStranicuModula, trenutanNacin.podaci);
+            noviNacinPrijave = ImplementiraniModuli.popisModula["4"];
 
-            potvrdaStarihPodataka = stariNacinPrijave.StanjeZadnjePrijave;
+            idModula = 4;
 
-            if(potvrdaStarihPodataka == true)
-            {
-                noviNacinPrijave = ImplementiraniModuli.popisModula["4"];
-                noviNacinPrijave.PromjenaPodataka(OtvoriStranicuModulaSPotvrdom, ZatvoriStranicuModula, trenutanNacin.podaci);
-                PohraniPinUBazu(noviNacinPrijave.UneseniPodatak, 4);
-            }
+            noviNacinPrijave.PromjenaPodataka(OtvoriStranicuModulaSPotvrdom, ZatvoriStranicuModulaSPotvrdom, null);
+
         }
 
-
-        public async void OtvoriStranicuModula(Type tipUI, Action<Type> zatvaranjeUI, string hashiraniPodatak)
+        private void UzorakPostavljanje(object sender, EventArgs e)
         {
-            var args = new object[] { hashiraniPodatak, zatvaranjeUI };
-            await Navigation.PushAsync((Page)Activator.CreateInstance(tipUI, args));
+            noviNacinPrijave = ImplementiraniModuli.popisModula["2"];
+
+            idModula = 2;
+
+            noviNacinPrijave.PromjenaPodataka(OtvoriStranicuModulaSPotvrdom, ZatvoriStranicuModulaSPotvrdom, null);
+        }
+
+        private void OtisakPostavljanje(object sender, EventArgs e)
+        {
+            noviNacinPrijave = ImplementiraniModuli.popisModula["3"];
+
+            idModula = 3;
+
+            noviNacinPrijave.PromjenaPodataka(OtvoriStranicuModulaSPotvrdom, ZatvoriStranicuModulaSPotvrdom, null);
         }
 
         public async void OtvoriStranicuModulaSPotvrdom(Type tipUI, Action<Type> zatvaranjeUI, string hashiraniPodatak, Action<string> vratiPodatke)
@@ -57,42 +61,17 @@ namespace FOIKnjiznica
             await Navigation.PushAsync((Page)Activator.CreateInstance(tipUI, args));
         }
 
-        public void ZatvoriStranicuModula(Type tipUI)
+        public void ZatvoriStranicuModulaSPotvrdom(Type tipUI)
         {
             if (tipUI == null)
             {
+                PohraniPinUBazu(noviNacinPrijave.UneseniPodatak, idModula);
             }
             else
             {
+                PohraniPinUBazu(noviNacinPrijave.UneseniPodatak, idModula);
                 Navigation.PopAsync();
             }
-        }
-
-        public async void DohvatiAktivanNacinPrijave()
-        {
-            trenutanNacin = new ClientAuth();
-            List<ClientAuth> nacinPrijave;
-            HttpClient client = new HttpClient();
-            var response = await client.GetStringAsync(WebServisInfo.PutanjaWebServisa + "DodajAuthProtocol/" + Clanovi.id);
-            if (response.Length > 20)
-            {
-                var publikacije = JsonConvert.DeserializeObject<List<ClientAuth>>(response);
-                nacinPrijave = publikacije;
-                trenutanNacin = nacinPrijave.First();
-                stariNacinPrijave = ImplementiraniModuli.popisModula[trenutanNacin.Auth_ProtocolId.ToString()];
-            }
-
-            client.Dispose();
-        }
-
-        private void UzorakPostavljanje(object sender, EventArgs e)
-        {
-
-        }
-
-        private void OtisakPostavljanje(object sender, EventArgs e)
-        {
-
         }
 
         private async void PohraniPinUBazu(string odabraniPin,int idModula)
@@ -102,7 +81,6 @@ namespace FOIKnjiznica
             var Json = JsonConvert.SerializeObject(new ClanoviAuthProtokol() { ClanoviId = Clanovi.id, Auth_ProtocolId = idModula, podaci = pinHash });
             var content = new StringContent(Json, Encoding.UTF8, "application/json");
             var odgovor = await httpClient.PostAsync(WebServisInfo.PutanjaWebServisa + "DodajAuthProtocol/", content);
-            App.Current.MainPage = new Profil(1);
         }
     }
 }

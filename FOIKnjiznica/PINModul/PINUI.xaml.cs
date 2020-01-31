@@ -22,6 +22,7 @@ namespace PINModul
         public Action<Type> zatvori;
         public Action<string> vrati;
         public string mode;
+        int brojacUnosa = 0;
 
         public PINUI() { InitializeComponent();}
         public PINUI(string hashiraniPodatak, Action<Type> zatvaranjeUI)
@@ -45,27 +46,41 @@ namespace PINModul
         {
             int pin = SpojiBrojeve();
 
-            if(hashiraniPin != null) 
+            if(mode == "Izmjena")
             {
-                if (hashiraniPin == HashirajPin(pin)) 
-                {                 
-                    if(mode == "Izmjena")
+                brojacUnosa++;
+                if (brojacUnosa == 1)
+                {
+                    Naslov.Text = "";
+                    hashiraniPin = HashirajPin(pin);
+                    NeispravnaLozinka("Potvrdite unos");
+                }
+                else if(brojacUnosa == 2)
+                {
+                    if (hashiraniPin == HashirajPin(pin))
                     {
                         vrati(hashiraniPin);
+                        zatvori(this.GetType());
                     }
+                    else
+                    {
+                        brojacUnosa = 0;
+                        Naslov.Text = "Neispravna lozinka!";
+                        NeispravnaLozinka("Ponovno unesite PIN");  
+                    }
+                }
+            }
+            else
+            {
+                if (hashiraniPin == HashirajPin(pin))
+                {
                     zatvori(this.GetType());
                 }
                 else
                 {
                     Naslov.Text = "Neispravna lozinka!";
-                    NeispravnaLozinka();         
+                    NeispravnaLozinka("Ponovno unesite PIN");
                 }
-            }
-            else
-            {
-                hashiraniPin = HashirajPin(pin);
-                Naslov.Text = "Ponovite Unos";
-                NeispravnaLozinka();
             }
         }
 
@@ -175,10 +190,10 @@ namespace PINModul
         private void BtnBack(object sender, EventArgs e)
         {
         }
-        private void NeispravnaLozinka()
+        private void NeispravnaLozinka(string porukaKorisniku)
         {
             Vibration.Vibrate();
-            IspisKrivo.Text = "Vaš uneseni PIN je netočan!";
+            IspisKrivo.Text = porukaKorisniku;
             pinNumber.Clear();
             brojac = 0;
             GumbUnos1.BackgroundColor = Color.FromHex("#FFFFFF");

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using InterfaceModule;
 using Plugin.Fingerprint;
 
@@ -11,12 +12,7 @@ namespace OtisakModul
         public bool StanjeZadnjePrijave { get; set; }
         public string UneseniPodatak { get; set; }
 
-        public void PrijavaModulom(Action<Type, Action<Type>, string> otvaranjeUI, Action<Type> zatvaranjeUI, string HashiraniPodatak)
-        {
-            PrijavaModulom(zatvaranjeUI);
-        }
-
-        public async void PrijavaModulom(Action<Type> zatvaranjeUI)
+        public async void PrijavaModulom(Action<Type, Action<Type>, string> otvaranjeUI, Action<Type> zatvaranjeUI, string HashiraniPodatak)
         {
             var prijava = await CrossFingerprint.Current.AuthenticateAsync("Prislonite prst na čitač otiska!");
 
@@ -31,19 +27,24 @@ namespace OtisakModul
             }
         }
 
-        public void PromjenaPodataka(Action<Type, Action<Type>, string> otvaranjeUI, Action<Type> zatvaranjeUI, string HashiraniPodatak)
+        public async void PromjenaPodataka(Action<Type, Action<Type>, string, Action<string>> otvaranjeUI, Action<Type> zatvaranjeUI, string HashiraniPodatak)
         {
-            throw new NotImplementedException();
-        }
+            var prijava = await CrossFingerprint.Current.AuthenticateAsync("Prislonite prst na čitač otiska!");
 
-        public void PromjenaPodataka(Action<Type, Action<Type>, string, Action<string>> otvaranjeUI, Action<Type> zatvaranjeUI, string HashiraniPodatak)
-        {
-            throw new NotImplementedException();
+            if (prijava.Authenticated)
+            {
+                this.StanjeZadnjePrijave = true;
+                zatvaranjeUI(null);
+            }
+            else
+            {
+                this.StanjeZadnjePrijave = false;
+            }
         }
 
         public void VratiUneseniPodatak(string proslijedeniPodatak)
         {
-            throw new NotImplementedException();
+            this.UneseniPodatak = proslijedeniPodatak;
         }
     }
 }

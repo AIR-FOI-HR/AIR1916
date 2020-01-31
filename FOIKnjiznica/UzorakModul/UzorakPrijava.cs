@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using InterfaceModule;
 
 namespace UzorakModul
@@ -16,25 +17,14 @@ namespace UzorakModul
 
             this.StanjeZadnjePrijave = true;
         }
-
-        public void PrijavaModulom(Action<Type> zatvaranjeUI)
-        {
-            this.StanjeZadnjePrijave = false;
-        }
-
-        public void PromjenaPodataka(Action<Type, Action<Type>, string> otvaranjeUI, Action<Type> zatvaranjeUI, string HashiraniPodatak)
-        {
-            throw new NotImplementedException();
-        }
-
         public void PromjenaPodataka(Action<Type, Action<Type>, string, Action<string>> otvaranjeUI, Action<Type> zatvaranjeUI, string HashiraniPodatak)
         {
-            throw new NotImplementedException();
+            otvaranjeUI(typeof(UzorakUI), zatvaranjeUI, HashiraniPodatak, VratiUneseniPodatak);
         }
 
         public void VratiUneseniPodatak(string proslijedeniPodatak)
         {
-            throw new NotImplementedException();
+            this.UneseniPodatak = proslijedeniPodatak;
         }
     }
 }
