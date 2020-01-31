@@ -17,11 +17,11 @@ namespace FOIKnjiznica.PopUpPages
     {
         public PomocPopUpPage(string pomocNaslov, string pomocOpis)
         {
+            InitializeComponent();
             Pomoc.TextPomoc = pomocNaslov;
             lblPomoc.Text = Pomoc.TextPomoc;
             Pomoc.TextPomocOpis = pomocOpis;
             lblPomocOpis.Text = Pomoc.TextPomocOpis;
-            InitializeComponent();
         }
 
         private async void izlazak_Clicked(object sender, EventArgs e)
