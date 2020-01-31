@@ -82,7 +82,7 @@
                     </StackLayout>
                     <StackLayout Orientation="Vertical" HorizontalOptions="Center">
                         <Label Text="Postavke prijave" Padding="10,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="24"/>
-                        <Button Text="Otvori" BackgroundColor="#ae2323" TextColor="White" CornerRadius="20" WidthRequest="150"></Button>
+                        <Button Text="Postavke" Clicked="Button_Clicked" BackgroundColor="#ae2323" TextColor="White" CornerRadius="20" WidthRequest="150"></Button>
                     </StackLayout>
                 </StackLayout>
             </StackLayout>

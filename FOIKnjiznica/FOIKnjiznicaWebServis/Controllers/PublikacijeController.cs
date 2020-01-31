@@ -41,6 +41,7 @@ namespace FOIKnjiznicaWebServis.Controllers
         }
 
         // GET: api/Publikacije/5
+
       // public List<Object> Get(int id)
        public Object Get(int id)
         {

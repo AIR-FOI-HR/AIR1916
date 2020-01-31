@@ -1,5 +1,6 @@
 ﻿using FOIKnjiznica.Classes;
 using Newtonsoft.Json;
+using Plugin.Toast;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,10 @@ namespace FOIKnjiznica
     public partial class Profil : ContentPage
     {
         public StatistikaKorisnika statistikaTrenutnogKorisnika;
+        private ClanoviAuthProtokol authProtokol = new ClanoviAuthProtokol();
+        public List<ClanoviAuthProtokol> listaLozinki { get; set; }
+        private string lozinka;
+        private int odabranOdabirLozinke = 1;
         public Profil()
         {
             InitializeComponent();
@@ -27,7 +32,19 @@ namespace FOIKnjiznica
             mobitelKorisnikaLabela.Text = Classes.Clanovi.mobitelID;
 
             KreirajStatistiku();
+        }
+        public Profil(int odabir)
+        {
+            InitializeComponent();
 
+            BindingContext = this;
+
+            imeKorisnikaLabela.Text = Classes.Clanovi.ime;
+            prezimeKorisnikaLabela.Text = Classes.Clanovi.prezime;
+            emailKorisnikaLabela.Text = Classes.Clanovi.hrEduPersonUniqueID;
+            mobitelKorisnikaLabela.Text = Classes.Clanovi.mobitelID;
+
+            KreirajStatistiku();
         }
 
         private async void KreirajStatistiku()
@@ -69,11 +86,15 @@ namespace FOIKnjiznica
 
 
         }
-
         private async void GumbPovijest(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new PovijestKorisnika());
         }
+
+
+        public async void Button_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PostavkePrijaveModulom());
 
         public async void PomocKliknuta(object sender, EventArgs e)
         {

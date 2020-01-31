@@ -92,7 +92,6 @@ namespace FOIKnjiznica
                 }
             }
         }
-
         private async void UnosPretrazivanja(object sender, TextChangedEventArgs e)
         {
             string id = search_bar.Text.ToString();
@@ -131,6 +130,10 @@ namespace FOIKnjiznica
             await Navigation.PushAsync(new BookInfo(tappedItem));
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            System.Environment.Exit(0);
+            return false;
         public async void PomocKliknuta(object sender, EventArgs e)
         {
             await PopupNavigation.PushAsync(new PopUpPages.PomocPopUpPage("DOBRODOŠLI U POMOĆ ZA GLAVNU STRANICU APLIKACIJE!", "Možete izabrati knjigu koja Vam se sviđa da dobijete detaljne informacije. Za lakšu pretragu koristite naše mogućnosti filtriranja i sortiranja. Također, imate mogućnost pretrage knjige upisivanjem naziva iste ili naziva autora koristeći našu tražilicu. Ako se želite navigirati na drugu stranicu koristite izbornik u gornjem lijevom kutu."));
