@@ -39,8 +39,8 @@
                 </StackLayout>
             </Grid>
             <StackLayout>
-                <Label HorizontalOptions="Center" Padding="0,20" FontSize="Large" TextColor="White" x:Name="lblPomoc"></Label>
-                <Label HorizontalOptions="Center" FontSize="Medium" TextColor="White" x:Name="lblPomocOpis"></Label>
+                <Label HorizontalOptions="Center" Padding="0,10" FontSize="Medium" TextColor="White" x:Name="lblPomoc"></Label>
+                <Label HorizontalOptions="Center" FontSize="Small" TextColor="White" x:Name="lblPomocOpis"></Label>
             </StackLayout>
         </StackLayout>
     </Frame>

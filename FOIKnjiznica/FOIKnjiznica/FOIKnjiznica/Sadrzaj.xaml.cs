@@ -1,4 +1,5 @@
 ﻿using FOIKnjiznica.Classes;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,7 @@ namespace FOIKnjiznica
 
         public async void PomocKliknuta(object sender, EventArgs e)
         {
-
+            await PopupNavigation.PushAsync(new PopUpPages.PomocPopUpPage("DOBRODOŠLI U POMOĆ ZA PREGLED SADRŽAJA!", "Prikazan Vam je uvid u sadržaj za odabranu knjigu sa svim bitnim pojmovima koji mogu biti odlučujući za odabir knjige."));
         }
     }
 }

@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Net.Mail;
 using Plugin.Toast;
+using Rg.Plugins.Popup.Services;
 
 namespace FOIKnjiznica
 {
@@ -45,7 +46,7 @@ namespace FOIKnjiznica
 
         public async void PomocKliknuta(object sender, EventArgs e)
         {
-
+            await PopupNavigation.PushAsync(new PopUpPages.PomocPopUpPage("DOBRODOŠLI U POMOĆ ZA KONTAKTIRANJE KNJIŽNICE!", "Prikazan Vam je mini obrazac za slanje poruke. Potrebno je dodati naslov poruke te detaljan sadržaj iste u kojoj se opisuje svrha poruke. Klikom na gumb pošalji, knjižnica je kontaktirana."));
         }
 
     }

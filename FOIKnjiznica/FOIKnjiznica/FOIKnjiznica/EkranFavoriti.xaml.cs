@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,7 +39,7 @@ namespace FOIKnjiznica
 
         public async void PomocKliknuta(object sender, EventArgs e)
         {
-
+            await PopupNavigation.PushAsync(new PopUpPages.PomocPopUpPage("DOBRODOŠLI U POMOĆ ZA PREGLED FAVORITA!", "Prikazan Vam je uvid u sve vaše omiljene knjige koje ste dodali u favorite. Odabirom željene knjige dobijate detaljne informacije i istu možete maknuti iz rezervacija ili nastaviti ka posudbi ili rezervaciji ukoliko ima dostupnih kopija."));
         }
 
     }

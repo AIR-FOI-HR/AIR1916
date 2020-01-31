@@ -116,6 +116,7 @@ namespace FOIKnjiznica
 
         public async void PomocKliknuta(object sender, EventArgs e)
         {
+            await PopupNavigation.PushAsync(new PopUpPages.PomocPopUpPage("DOBRODOŠLI U POMOĆ ZA PREGLED POVIJESTI KORISNIKA!", "Prikazan Vam je uvid u sve vaše rezervacije, posudbe i vraćene knjige. Informacije su Vam prikazane po nazivu knjige, datumu kada ste istu posudili ili rezervirali te datumu kada Vam rezervacija ili posudba ističe. Kod vraćanja knjige prikazan Vam je njen naziv i kada ste istu vratili."));
 
         }
     }
