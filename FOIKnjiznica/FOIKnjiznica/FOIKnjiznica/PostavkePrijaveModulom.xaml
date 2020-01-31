@@ -7,7 +7,7 @@
              Title="Postavke prijave"
              x:Class="FOIKnjiznica.PostavkePrijaveModulom">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Margin="5, 10, 5, 10">
             <Button x:Uid="4" x:Name="ModulPin" Text="Postavi Pin" Clicked="PinPostavljanje" BackgroundColor="#ae2323" TextColor="White" CornerRadius="20"></Button>
             <Button x:Uid="2" x:Name="ModulUzorak" Text="Postavi Uzorak" Clicked="UzorakPostavljanje" BackgroundColor="#ae2323" TextColor="White" CornerRadius="20"></Button>
             <Button x:Uid="3" x:Name="ModulOtisak" Text="Postavi Otisak" Clicked="OtisakPostavljanje" BackgroundColor="#ae2323" TextColor="White" CornerRadius="20"></Button>
