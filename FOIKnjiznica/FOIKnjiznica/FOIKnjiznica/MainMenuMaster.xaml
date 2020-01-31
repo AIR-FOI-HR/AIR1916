@@ -29,13 +29,13 @@
           </Grid.RowDefinitions>  
           
           <Image Source="foi_header.jpg" Aspect="AspectFit"></Image>
-          <StackLayout Margin="0, -105, 0, 0" Grid.Row="1" Spacing="15">
+          <StackLayout Margin="0, -80, 0, 0" Grid.Row="1" Spacing="15">
           <Label
               Grid.Column="1"
               Grid.Row="0"
               Text="FOI Knjižnica"
               TextColor="White"
-              FontSize="50"
+              FontSize="40"
               HorizontalOptions="CenterAndExpand"
               FontAttributes="Bold">
               <Label.FontFamily>

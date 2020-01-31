@@ -33,7 +33,7 @@ namespace FOIKnjiznica.Droid
 
         public void OnAnimationEnd(Animator animation)
         {
-            StartActivity(new Intent(this, typeof(MainActivity)));
+            StartActivity(new Intent(this, typeof(PokreniAplikacijuActivity)));
             Finish();
         }
 

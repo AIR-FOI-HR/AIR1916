@@ -16,6 +16,7 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UzorakModul", "UzorakModul\UzorakModul.csproj", "{AF4E0BA0-3577-4088-B6CF-E5FBA64C4DAD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OtisakModul", "OtisakModul\OtisakModul.csproj", "{7D21AFB5-04E2-44B9-8E12-CA0F9AC577D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FOIKnjiznicaAzureFunkcije", "FOIKnjiznicaAzureFunkcije\FOIKnjiznicaAzureFunkcije.csproj", "{189EA841-A3A2-4E66-AE80-8BFE30A7C1EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +54,10 @@ Global
 		{7D21AFB5-04E2-44B9-8E12-CA0F9AC577D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D21AFB5-04E2-44B9-8E12-CA0F9AC577D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D21AFB5-04E2-44B9-8E12-CA0F9AC577D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{189EA841-A3A2-4E66-AE80-8BFE30A7C1EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{189EA841-A3A2-4E66-AE80-8BFE30A7C1EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{189EA841-A3A2-4E66-AE80-8BFE30A7C1EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{189EA841-A3A2-4E66-AE80-8BFE30A7C1EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

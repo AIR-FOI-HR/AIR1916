@@ -7,71 +7,84 @@
              mc:Ignorable="d"
              Title="Profil"
              x:Class="FOIKnjiznica.Profil">
+    <NavigationPage.TitleView>
+        <Image Source="help.png"  WidthRequest="25" HeightRequest="25" HorizontalOptions="End" Margin="0, 0, 20, 0">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="PomocKliknuta" NumberOfTapsRequired="1">
+                </TapGestureRecognizer>
+            </Image.GestureRecognizers>
+        </Image>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
         <ScrollView  Orientation="Vertical">
             <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
                 <!--Informacije o korisniku-->
-                <Label Text="Podaci o korisniku" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="24"/>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Ime:" Padding="10,10,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
-                    <Label x:Name="imeKorisnikaLabela" Text="" Padding="10,10,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                <Label Text="Podaci o korisniku" Padding="10,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="24"/>
+                <Frame BackgroundColor="#F3F3F3" BorderColor="DarkRed" CornerRadius="20" Margin="10, 10, 10, 10">
+                    <StackLayout Spacing="0">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="e-Mail:" Padding="0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                            <Label x:Name="emailKorisnikaLabela" Text="" Padding="0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Povezani mobitel:" Padding="0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                            <Label x:Name="mobitelKorisnikaLabela" Text="" Padding="0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <Label Text="Aktivnost korisnika" Padding="10,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="24"/>
+                <Frame BackgroundColor="#FFF3F3F3" BorderColor="DarkRed" CornerRadius="20" Margin="10, 10, 10, 10">
+                    <StackLayout Spacing="0">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Trenutni broj rezervacija:" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                            <Label x:Name="trenutniBrojRezervacija" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Trenutni broj posudbi:" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                            <Label x:Name="trenutniBrojPosudbi" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Ukupan broj rezervacija:" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                            <Label x:Name="ukupniBrojRezervacija" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Ukupan broj posudbi:" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                            <Label x:Name="ukupniBrojPosudbi" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Ukupan broj rezerviranih dana:" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                            <Label x:Name="ukupniBrojRezerviranihDana" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Ukupan broj posuđenih dana:" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                            <Label x:Name="ukupniBrojPosudenihDana" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <Label Text="Najraniji istek rezervacije" Padding="10,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="24"/>
+                <Frame BackgroundColor="#FFF3F3F3" BorderColor="DarkRed" CornerRadius="20" Margin="10, 10, 10, 10">
+                    <StackLayout Spacing="0">
+                        <Label x:Name="najranijiIstekRezervacijeNaziv" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                        <Label x:Name="najranijiIstekRezervacijeDatum" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                    </StackLayout>
+                </Frame>
+                <Label Text="Najraniji istek posudbe" Padding="10,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="24"/>
+                <Frame BackgroundColor="#FFF3F3F3" BorderColor="DarkRed" CornerRadius="20" Margin="10, 10, 10, 10">
+                    <StackLayout Spacing="0">
+                        <Label x:Name="najranijiIstekPosudbeNaziv" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                        <Label x:Name="najranijiIstekPosudbeDatum" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
+                    </StackLayout>
+                </Frame>
+                <StackLayout Orientation="Horizontal" Margin="10, 0, 0, 10">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+                        <Label Text="Povijest korisnika" Padding="10,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="24"/>
+                        <Button Text="Otvori" Clicked="GumbPovijest" BackgroundColor="#ae2323" TextColor="White" CornerRadius="20" WidthRequest="150"></Button>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+                        <Label Text="Postavke prijave" Padding="10,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="24"/>
+                        <Button Text="Postavke" Clicked="Button_Clicked" BackgroundColor="#ae2323" TextColor="White" CornerRadius="20" WidthRequest="150"></Button>
+                    </StackLayout>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Prezime:" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
-                    <Label x:Name="prezimeKorisnikaLabela" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="e-Mail:" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
-                    <Label x:Name="emailKorisnikaLabela" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Povezani mobitel:" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
-                    <Label x:Name="mobitelKorisnikaLabela" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
-                </StackLayout>
-                <BoxView Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="#ae2323" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
-                <StackLayout Orientation="Horizontal">
-                <Label Text="Povijest korisnika" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
-                    <Button Text="Otvori" Clicked="GumbPovijest" BackgroundColor="#ae2323" TextColor="White" CornerRadius="20"></Button>
-                </StackLayout>
-                <BoxView Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="#ae2323" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
-                <Label Text="Aktivnost korisnika" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="24"/>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Trenutni broj rezervacija:" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
-                    <Label x:Name="trenutniBrojRezervacija" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Trenutni broj posudbi:" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
-                    <Label x:Name="trenutniBrojPosudbi" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Ukupan broj rezervacija:" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
-                    <Label x:Name="ukupniBrojRezervacija" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Ukupan broj posudbi:" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
-                    <Label x:Name="ukupniBrojPosudbi" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Ukupan broj rezerviranih dana:" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
-                    <Label x:Name="ukupniBrojRezerviranihDana" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Ukupan broj posuđenih dana:" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
-                    <Label x:Name="ukupniBrojPosudenihDana" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
-                </StackLayout>
-                <BoxView Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="#ae2323" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
-                <Label Text="Najraniji istek rezervacije" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="24"/>
-                <Label x:Name="najranijiIstekRezervacijeNaziv" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
-                <Label x:Name="najranijiIstekRezervacijeDatum" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
-                <BoxView Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="#ae2323" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
-                <Label Text="Najraniji istek posudbe" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="24"/>
-                <Label x:Name="najranijiIstekPosudbeNaziv" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
-                <Label x:Name="najranijiIstekPosudbeDatum" Text="" Padding="10,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="Black" FontSize="16"/>
-                <BoxView Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="#ae2323" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
-                <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
-                    <Button Text="Postavke" Clicked="Button_Clicked" BackgroundColor="#ae2323" TextColor="White" CornerRadius="20"></Button>
-                </StackLayout>
-                <BoxView Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="#ae2323" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

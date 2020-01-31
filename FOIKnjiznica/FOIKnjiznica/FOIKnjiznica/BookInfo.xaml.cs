@@ -139,6 +139,9 @@ namespace FOIKnjiznica
             MessagingCenter.Send<App>((App)Application.Current, "osvjeziFavorite");
         }
 
-
+        public async void PomocKliknuta(object sender, EventArgs e)
+        {
+            await PopupNavigation.PushAsync(new PopUpPages.PomocPopUpPage("DOBRODOŠLI U POMOĆ ZA PREGLED DETALJNIH INFORMACIJA KNJIGE!", "Prikazane su Vam osnovne informacije o svakoj knjigi. Imate mogućnost pregledati sadržaj knjige ili dodati knjigu u listu favorita gdje ćete joj lako pristupiti. Odabirom jedne od kopija knjige ponuđenih u dnu možete rezervirati ili posuditi knjigu ukoliko je ona slobodna ili dobiti uvod u rezervaciju ili posudbu ako je zauzeta."));
+        }
     }
 }

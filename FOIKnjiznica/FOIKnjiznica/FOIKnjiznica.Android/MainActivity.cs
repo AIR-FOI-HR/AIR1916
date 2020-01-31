@@ -14,16 +14,41 @@ using Android.Net.Http;
 
 using Lottie.Forms.Droid;
 using Rg.Plugins.Popup.Services;
+
 using Plugin.CurrentActivity;
 using Plugin.Fingerprint;
 using Plugin.DeviceInfo;
+
+using System.Collections.Generic;
+using Plugin.DeviceInfo;
+using System.Threading.Tasks;
+using System.Linq;
+
+using PCLStorage;
+using Xamarin.Forms;
+using Org.Apache.Http.Util;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Text;
+
+using Android.Util;
+using Android.Gms.Common;
+using Poz1.NFCForms.Droid;
+using Android.Nfc;
+using Android.Content;
+using Poz1.NFCForms.Abstract;
+using Android.Content;
 
 namespace FOIKnjiznica.Droid
 {
     [Activity(Label = "FOIKnjiznica", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        WebView webView;
+        public const string TAG = "MainActivity";
+        internal static readonly string CHANNEL_ID = "my_notification_channel";
+        public NfcAdapter NFCdevice;
+        public NfcForms x;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -32,6 +57,24 @@ namespace FOIKnjiznica.Droid
             CrossFingerprint.SetCurrentActivityResolver(() => CrossCurrentActivity.Current.Activity);
 
             base.OnCreate(savedInstanceState);
+            
+            //Inicijalizacija DeviceInfo nuget paketa
+            Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
+
+            if (Intent.Extras != null)
+            {
+                foreach (var key in Intent.Extras.KeySet())
+                {
+                    if (key != null)
+                    {
+                        var value = Intent.Extras.GetString(key);
+                        Log.Debug(TAG, "Key: {0} Value: {1}", key, value);
+                    }
+                }
+            }
+
+            IsPlayServicesAvailable();
+            CreateNotificationChannel();
 
             //Inicijalizacija POPUP nugget paketa
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
@@ -41,25 +84,56 @@ namespace FOIKnjiznica.Droid
             //Inicijalizacija Android Lottie nugget paketa
             AnimationViewRenderer.Init();
             CachedImageRenderer.Init(true);
-            /*
-            SetContentView(Resource.Layout.WebFOIPrijava);
-            if (true)
-            {
-                webView = FindViewById<WebView>(Resource.Id.prijavawebview);
-                webView.Settings.JavaScriptEnabled = true;
-                webView.Settings.JavaScriptCanOpenWindowsAutomatically = true;
-                webView.Settings.DomStorageEnabled = true;
-                webView.Settings.UseWideViewPort = true;
-                webView.Settings.LoadWithOverviewMode = true;
 
-                webView.SetWebViewClient(new HelloWebViewClient());
-                webView.LoadUrl("https://192.168.0.110:45455/");
+            //Implementacija NFC-a za skeniranje publikacije
+            NfcManager NfcManager = (NfcManager)Android.App.Application.Context.GetSystemService(Context.NfcService);
+            NFCdevice = NfcManager.DefaultAdapter;
 
-            }*/
+            Xamarin.Forms.DependencyService.Register<INfcForms,NfcForms>();
+            x = Xamarin.Forms.DependencyService.Get<INfcForms>() as NfcForms;
+
             LoadApplication(new App());
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            if (NFCdevice != null)
+            {
+                var intent = new Intent(this, GetType()).AddFlags(ActivityFlags.SingleTop);
+                NFCdevice.EnableForegroundDispatch
+                (
+                    this,
+                    PendingIntent.GetActivity(this, 0, intent, 0),
+                    new[] { new IntentFilter (NfcAdapter.ActionTechDiscovered) },
+                    new String[][] { new string[]
+                    {
+                        NFCTechs.Ndef
+                    },
+                    new string[]
+                    {
+                        NFCTechs.MifareClassic
+                    },
+                    }
+                );
+            }
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+            NFCdevice.DisableForegroundDispatch(this);
+        }
+
+        protected override void OnNewIntent(Intent intent)
+        {
+            base.OnNewIntent(intent);
+            x.OnNewIntent(this, intent);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
+            ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -74,19 +148,45 @@ namespace FOIKnjiznica.Droid
                 await PopupNavigation.Instance.PopAsync();
             }
         }
-    }
 
-    public class HelloWebViewClient : WebViewClient
-    {
-        public override bool ShouldOverrideUrlLoading(Android.Webkit.WebView view, IWebResourceRequest request)
+        public bool IsPlayServicesAvailable()
         {
-            view.LoadUrl(request.Url.ToString());
-            return false;
+            int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
+            if (resultCode != ConnectionResult.Success)
+            {
+                if (GoogleApiAvailability.Instance.IsUserResolvableError(resultCode))
+                    Log.Debug(TAG, GoogleApiAvailability.Instance.GetErrorString(resultCode));
+                else
+                {
+                    Log.Debug(TAG, "This device is not supported");
+                    Finish();
+                }
+                return false;
+            }
+
+            Log.Debug(TAG, "Google Play Services is available.");
+            return true;
         }
 
-        public override void OnReceivedSslError(Android.Webkit.WebView view, SslErrorHandler handler, SslError error)
+        private void CreateNotificationChannel()
         {
-            handler.Proceed();
+            if (Build.VERSION.SdkInt < BuildVersionCodes.O)
+            {
+                // Notification channels are new in API 26 (and not a part of the
+                // support library). There is no need to create a notification
+                // channel on older versions of Android.
+                return;
+            }
+
+            var channelName = CHANNEL_ID;
+            var channelDescription = string.Empty;
+            var channel = new NotificationChannel(CHANNEL_ID, channelName, NotificationImportance.Default)
+            {
+                Description = channelDescription
+            };
+
+            var notificationManager = (NotificationManager)GetSystemService(NotificationService);
+            notificationManager.CreateNotificationChannel(channel);
         }
     }
 }
