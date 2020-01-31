@@ -17,8 +17,8 @@ namespace FOIKnjiznica.PopUpPages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PrekidRezervacijePopupPage : Rg.Plugins.Popup.Pages.PopupPage
     {
-        PovijestPublikacije rezervacija;
-        public PrekidRezervacijePopupPage(PovijestPublikacije rezerviranaPublikacija)
+        StanjePublikacije rezervacija;
+        public PrekidRezervacijePopupPage(StanjePublikacije rezerviranaPublikacija)
         {
             InitializeComponent();
 

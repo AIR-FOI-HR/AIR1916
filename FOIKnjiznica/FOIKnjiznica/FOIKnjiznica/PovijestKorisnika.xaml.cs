@@ -18,21 +18,21 @@ namespace FOIKnjiznica
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PovijestKorisnika : ContentPage
     {
-        public List<PovijestPublikacije> povijestPosudbi;
-        public List<PovijestPublikacije> povijestPosudbiRezervirano;
-        public List<PovijestPublikacije> povijestPosudbiPosudeno;
-        public List<PovijestPublikacije> povijestPosudbiVraceno;
-        public List<PovijestPublikacije> povijestPosudbiVracenoTemp;
+        public List<StanjePublikacije> povijestPosudbi;
+        public List<StanjePublikacije> povijestPosudbiRezervirano;
+        public List<StanjePublikacije> povijestPosudbiPosudeno;
+        public List<StanjePublikacije> povijestPosudbiVraceno;
+        public List<StanjePublikacije> povijestPosudbiVracenoTemp;
         public PovijestKorisnika()
         {
             InitializeComponent();
 
             BindingContext = this;
 
-            povijestPosudbiRezervirano = new List<PovijestPublikacije>();
-            povijestPosudbiVracenoTemp = new List<PovijestPublikacije>();
-            povijestPosudbiPosudeno = new List<PovijestPublikacije>();
-            povijestPosudbiVraceno = new List<PovijestPublikacije>();
+            povijestPosudbiRezervirano = new List<StanjePublikacije>();
+            povijestPosudbiVracenoTemp = new List<StanjePublikacije>();
+            povijestPosudbiPosudeno = new List<StanjePublikacije>();
+            povijestPosudbiVraceno = new List<StanjePublikacije>();
 
             DohvatiPovijest();
         }
@@ -43,7 +43,7 @@ namespace FOIKnjiznica
             povijestPosudbiPosudeno.Clear();
             povijestPosudbiVraceno.Clear();
 
-            foreach (PovijestPublikacije trenutnaPovijest in povijestPosudbi)
+            foreach (StanjePublikacije trenutnaPovijest in povijestPosudbi)
             {
                 if (trenutnaPovijest.datum_do < DateTime.Now)
                 {
@@ -72,11 +72,11 @@ namespace FOIKnjiznica
                 }
             }
 
-            povijestPosudbiRezervirano = povijestPosudbiRezervirano.OrderByDescending(stavka => stavka.datum).ToList<PovijestPublikacije>();
-            povijestPosudbiPosudeno = povijestPosudbiPosudeno.OrderByDescending(stavka => stavka.datum).ToList<PovijestPublikacije>();
+            povijestPosudbiRezervirano = povijestPosudbiRezervirano.OrderByDescending(stavka => stavka.datum).ToList<StanjePublikacije>();
+            povijestPosudbiPosudeno = povijestPosudbiPosudeno.OrderByDescending(stavka => stavka.datum).ToList<StanjePublikacije>();
 
-            povijestPosudbiVracenoTemp = povijestPosudbiVracenoTemp.OrderByDescending(stavka => stavka.datum).ToList<PovijestPublikacije>();
-            foreach (PovijestPublikacije stavkaPovijesti in povijestPosudbiVracenoTemp.ToList())
+            povijestPosudbiVracenoTemp = povijestPosudbiVracenoTemp.OrderByDescending(stavka => stavka.datum).ToList<StanjePublikacije>();
+            foreach (StanjePublikacije stavkaPovijesti in povijestPosudbiVracenoTemp.ToList())
             {
                 if(povijestPosudbiPosudeno.Exists(x => x.datum_do.Date == stavkaPovijesti.datum.Date))
                 {
@@ -93,7 +93,7 @@ namespace FOIKnjiznica
         {
             HttpClient client = new HttpClient();
             var response = await client.GetStringAsync(WebServisInfo.PutanjaWebServisa + "PovijestPosudbi/" + Clanovi.id);
-            var publikacije = JsonConvert.DeserializeObject<List<PovijestPublikacije>>(response);
+            var publikacije = JsonConvert.DeserializeObject<List<StanjePublikacije>>(response);
             povijestPosudbi = publikacije;
             client.Dispose();
 
@@ -102,7 +102,7 @@ namespace FOIKnjiznica
 
         private async void PritisakRezerviranePublikacije(object sender, ItemTappedEventArgs e)
         {
-            PovijestPublikacije pritisnutaPublikacija = e.Item as PovijestPublikacije;
+            StanjePublikacije pritisnutaPublikacija = e.Item as StanjePublikacije;
 
             if (pritisnutaPublikacija.datum_do <= DateTime.Now)
             {

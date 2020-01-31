@@ -20,7 +20,6 @@ using Plugin.Fingerprint;
 using Plugin.DeviceInfo;
 
 using System.Collections.Generic;
-using Plugin.DeviceInfo;
 using System.Threading.Tasks;
 using System.Linq;
 
@@ -37,7 +36,6 @@ using Poz1.NFCForms.Droid;
 using Android.Nfc;
 using Android.Content;
 using Poz1.NFCForms.Abstract;
-using Android.Content;
 
 namespace FOIKnjiznica.Droid
 {

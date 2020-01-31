@@ -20,27 +20,12 @@ namespace FOIKnjiznica
         public StatistikaKorisnika statistikaTrenutnogKorisnika;
         private ClanoviAuthProtokol authProtokol = new ClanoviAuthProtokol();
         public List<ClanoviAuthProtokol> listaLozinki { get; set; }
-        private string lozinka;
-        private int odabranOdabirLozinke = 1;
         public Profil()
         {
             InitializeComponent();
 
             BindingContext = this;
 
-            emailKorisnikaLabela.Text = Classes.Clanovi.hrEduPersonUniqueID;
-            mobitelKorisnikaLabela.Text = Classes.Clanovi.mobitelID;
-
-            KreirajStatistiku();
-        }
-        public Profil(int odabir)
-        {
-            InitializeComponent();
-
-            BindingContext = this;
-
-            imeKorisnikaLabela.Text = Classes.Clanovi.ime;
-            prezimeKorisnikaLabela.Text = Classes.Clanovi.prezime;
             emailKorisnikaLabela.Text = Classes.Clanovi.hrEduPersonUniqueID;
             mobitelKorisnikaLabela.Text = Classes.Clanovi.mobitelID;
 
@@ -95,7 +80,7 @@ namespace FOIKnjiznica
         public async void Button_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new PostavkePrijaveModulom());
-
+        }
         public async void PomocKliknuta(object sender, EventArgs e)
         {
             await PopupNavigation.PushAsync(new PopUpPages.PomocPopUpPage("DOBRODOŠLI U POMOĆ ZA PREGLED VAŠEG PROFILA!", "Prikazan Vam je uvid u Vaše podatke - ime, prezime, e-mail i mobitel. Prikazana je statistika korištenja aktivnosti knjižnice te je omogućen uvid u sve aktivnosti. Vidljiv je i Vaš najraniji istek rezervacije te posudbe tako da lako znate koliko vam isti još vrijede."));

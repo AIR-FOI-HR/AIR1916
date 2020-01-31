@@ -24,19 +24,13 @@ namespace FOIKnjiznica
         public string hrEduPersonUniqueID { get; set; }
         public string mobitelID { get; set; }
     }
-    public class ClientAuth
-    {
-        public int ClanoviId { get; set; }
-        public int Auth_ProtocolId { get; set; }
-        public string podaci { get; set; }
-    }
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class StranicaPrijave : ContentPage
     {
         public IPrijava prijavaModularno;
         Clan trenutniClan;
-        ClientAuth trenutanNacin;
+        ClientAuthProtocol trenutanNacin;
         public string info;
 
         public StranicaPrijave()
@@ -109,13 +103,13 @@ namespace FOIKnjiznica
         }
         public async void DohvatiAktivanNacinPrijave()
         {
-            trenutanNacin = new ClientAuth();
-            List<ClientAuth> nacinPrijave;
+            trenutanNacin = new ClientAuthProtocol();
+            List<ClientAuthProtocol> nacinPrijave;
             HttpClient client = new HttpClient();
             var response = await client.GetStringAsync(WebServisInfo.PutanjaWebServisa + "DodajAuthProtocol/" + trenutniClan.id);
             if (response.Length > 20)
             {
-                var publikacije = JsonConvert.DeserializeObject<List<ClientAuth>>(response);
+                var publikacije = JsonConvert.DeserializeObject<List<ClientAuthProtocol>>(response);
                 nacinPrijave = publikacije;
                 trenutanNacin = nacinPrijave.First();
                 PokreniPrijavu();

@@ -86,7 +86,7 @@ namespace FOIKnjiznica.PopUpPages
                 readNDEFMEssage(e.NdefMessage);
             }
 
-            PovijestPublikacije novoStanjePublikacije = new PovijestPublikacije()
+            StanjePublikacije novoStanjePublikacije = new StanjePublikacije()
             {
                 datum = DateTime.Now,
                 datum_do = DateTime.Now.AddDays(30),
@@ -140,7 +140,7 @@ namespace FOIKnjiznica.PopUpPages
 
         public async void GumbRezervirajKliknut(object sender, EventArgs e)
         {
-            PovijestPublikacije novoStanjePublikacije = new PovijestPublikacije() {datum = DateTime.Now, 
+            StanjePublikacije novoStanjePublikacije = new StanjePublikacije() {datum = DateTime.Now, 
                                                                                    datum_do = DateTime.Now.AddDays(5), 
                                                                                    nazivPublikacije = publikacijeD.naziv,
                                                                                    nazivStatusa = "Rezervirano",
@@ -213,7 +213,7 @@ namespace FOIKnjiznica.PopUpPages
                   Device.BeginInvokeOnMainThread(async () =>
                   {
                       await Navigation.PopAsync();
-                      PovijestPublikacije novoStanjePublikacije = new PovijestPublikacije()
+                      StanjePublikacije novoStanjePublikacije = new StanjePublikacije()
                       {
                           datum = DateTime.Now,
                           datum_do = DateTime.Now.AddDays(30),
