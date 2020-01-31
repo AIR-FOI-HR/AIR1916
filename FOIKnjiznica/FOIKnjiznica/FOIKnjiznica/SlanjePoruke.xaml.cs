@@ -49,5 +49,11 @@ namespace FOIKnjiznica
             await PopupNavigation.PushAsync(new PopUpPages.PomocPopUpPage("DOBRODOŠLI U POMOĆ ZA KONTAKTIRANJE KNJIŽNICE!", "Prikazan Vam je mini obrazac za slanje poruke. Potrebno je dodati naslov poruke te detaljan sadržaj iste u kojoj se opisuje svrha poruke. Klikom na gumb pošalji, knjižnica je kontaktirana."));
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            System.Environment.Exit(0);
+            return false;
+        }
+
     }
 }

@@ -76,6 +76,11 @@ namespace FOIKnjiznica
             await Navigation.PushAsync(new PovijestKorisnika());
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            System.Environment.Exit(0);
+            return false;
+        }
 
         public async void Button_Clicked(object sender, EventArgs e)
         {
