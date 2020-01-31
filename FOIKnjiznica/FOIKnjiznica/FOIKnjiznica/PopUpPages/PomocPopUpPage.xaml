@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             x:Class="FOIKnjiznica.PopUpPages.PomocPopUpPage"
+             BackgroundColor="Transparent">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation   
+                      PositionIn="Center"  
+                      PositionOut="Center"  
+                      ScaleIn="1.2"  
+                      ScaleOut="0.8"  
+                      DurationIn="400"  
+                      DurationOut="300"  
+                      EasingIn="SinOut"  
+                      EasingOut="SinIn"  
+      HasBackgroundAnimation="False"/>
+    </pages:PopupPage.Animation>
+    <Frame CornerRadius="15" Padding="10" Margin="20, 140, 20, 140" BackgroundColor="#ae2323">
+        <StackLayout>
+            <Grid Padding="5" RowSpacing="5" ColumnSpacing="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="End" Grid.Row="0" Margin="0, -15, -15, 10">
+                    <Button BackgroundColor="Transparent" Text="&#xf057;" TextColor="White" FontSize="25" WidthRequest="50" x:Name="izlazak" Clicked="izlazak_Clicked">
+                        <Button.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="iOS" Value="FontAwesome5Solid" />
+                                <On Platform="Android" Value="FontAwesome5Solid.otf#FontAwesome5Solid" />
+                            </OnPlatform>
+                        </Button.FontFamily>
+                    </Button>
+                </StackLayout>
+            </Grid>
+            <StackLayout>
+                <Label HorizontalOptions="Center" Padding="0,20" FontSize="Large" TextColor="White" x:Name="lblPomoc"></Label>
+                <Label HorizontalOptions="Center" FontSize="Medium" TextColor="White" x:Name="lblPomocOpis"></Label>
+            </StackLayout>
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>

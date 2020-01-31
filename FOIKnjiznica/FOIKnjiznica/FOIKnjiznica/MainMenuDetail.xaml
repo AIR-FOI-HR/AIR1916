@@ -7,7 +7,12 @@
              x:Class="FOIKnjiznica.MainMenuDetail"
              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
     <NavigationPage.TitleView>
-        <Image Source="help.png" WidthRequest="25" HeightRequest="25" HorizontalOptions="End" Margin="0, 0, 20, 0"/>
+        <Image Source="help.png"  WidthRequest="25" HeightRequest="25" HorizontalOptions="End" Margin="0, 0, 20, 0">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="PomocKliknuta" NumberOfTapsRequired="1">
+                </TapGestureRecognizer>
+            </Image.GestureRecognizers>
+        </Image>
     </NavigationPage.TitleView>
 
     <!-- Glavni StackLayout -->

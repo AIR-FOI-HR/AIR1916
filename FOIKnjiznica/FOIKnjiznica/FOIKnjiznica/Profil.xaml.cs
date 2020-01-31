@@ -76,5 +76,10 @@ namespace FOIKnjiznica
         {
             await Navigation.PushAsync(new PovijestKorisnika());
         }
+
+        public async void PomocKliknuta(object sender, EventArgs e)
+        {
+
+        }
     }
 }

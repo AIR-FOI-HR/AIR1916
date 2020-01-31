@@ -113,5 +113,10 @@ namespace FOIKnjiznica
                 await PopupNavigation.PushAsync(new PrekidRezervacijePopupPage(pritisnutaPublikacija));
             }
         }
+
+        public async void PomocKliknuta(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -34,5 +34,10 @@ namespace FOIKnjiznica
             string naziv = odabranaPublikacija.naziv;
             return naziv;
         }
+
+        public async void PomocKliknuta(object sender, EventArgs e)
+        {
+
+        }
     }
 }

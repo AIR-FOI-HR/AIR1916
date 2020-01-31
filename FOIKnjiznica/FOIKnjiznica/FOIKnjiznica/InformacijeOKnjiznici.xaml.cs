@@ -16,5 +16,10 @@ namespace FOIKnjiznica
         {
             InitializeComponent();
         }
+
+        public async void PomocKliknuta(object sender, EventArgs e)
+        {
+
+        }
     }
 }

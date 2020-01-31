@@ -42,5 +42,11 @@ namespace FOIKnjiznica
 
             CrossToastPopUp.Current.ShowCustomToast($"Poruka je poslana!", "#ae2323", "White");
         }
+
+        public async void PomocKliknuta(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

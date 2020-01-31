@@ -139,6 +139,9 @@ namespace FOIKnjiznica
             MessagingCenter.Send<App>((App)Application.Current, "osvjeziFavorite");
         }
 
+        public async void PomocKliknuta(object sender, EventArgs e)
+        {
 
+        }
     }
 }

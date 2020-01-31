@@ -36,5 +36,10 @@ namespace FOIKnjiznica
             await Navigation.PushAsync(new BookInfo(tappedItem));
         }
 
+        public async void PomocKliknuta(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

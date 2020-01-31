@@ -6,7 +6,12 @@
              mc:Ignorable="d"
              x:Class="FOIKnjiznica.SlanjePoruke">
     <NavigationPage.TitleView>
-        <Image Source="help.png" WidthRequest="25" HeightRequest="25" HorizontalOptions="End" Margin="0, 0, 20, 0"/>
+        <Image Source="help.png"  WidthRequest="25" HeightRequest="25" HorizontalOptions="End" Margin="0, 0, 20, 0">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="PomocKliknuta" NumberOfTapsRequired="1">
+                </TapGestureRecognizer>
+            </Image.GestureRecognizers>
+        </Image>
     </NavigationPage.TitleView>
     <ContentPage.Content>
         <Grid>
