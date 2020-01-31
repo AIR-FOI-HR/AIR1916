@@ -74,5 +74,10 @@ namespace FOIKnjiznica
         {
             await Navigation.PushAsync(new PovijestKorisnika());
         }
+
+        public async void PomocKliknuta(object sender, EventArgs e)
+        {
+            await PopupNavigation.PushAsync(new PopUpPages.PomocPopUpPage("DOBRODOŠLI U POMOĆ ZA PREGLED VAŠEG PROFILA!", "Prikazan Vam je uvid u Vaše podatke - ime, prezime, e-mail i mobitel. Prikazana je statistika korištenja aktivnosti knjižnice te je omogućen uvid u sve aktivnosti. Vidljiv je i Vaš najraniji istek rezervacije te posudbe tako da lako znate koliko vam isti još vrijede."));
+        }
     }
 }

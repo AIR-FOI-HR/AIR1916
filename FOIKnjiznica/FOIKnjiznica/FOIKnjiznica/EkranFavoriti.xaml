@@ -7,6 +7,14 @@
              mc:Ignorable="d"
              x:Class="FOIKnjiznica.EkranFavoriti"
              Title="Moji favoriti">
+    <NavigationPage.TitleView>
+        <Image Source="help.png"  WidthRequest="25" HeightRequest="25" HorizontalOptions="End" Margin="0, 0, 20, 0">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="PomocKliknuta" NumberOfTapsRequired="1">
+                </TapGestureRecognizer>
+            </Image.GestureRecognizers>
+        </Image>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
         <StackLayout WidthRequest="75" MinimumWidthRequest="60">
             <ListView x:Name="ListaPublikacije" HasUnevenRows="True" SeparatorVisibility="None" ItemTapped="OnListViewItemTapped">
