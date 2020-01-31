@@ -42,8 +42,17 @@ namespace FOIKnjiznicaWebServis.Controllers
         }
 
         // POST: api/Clanovi
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Clan poslaniClan)
         {
+            using(var context = new foiknjiznicaEntities())
+            {
+                var clan = context.Clanovi.Where(x => x.id == poslaniClan.id).FirstOrDefault();
+                if(clan != null)
+                {
+                    clan.mobitelID = null;
+                }
+                context.SaveChanges();
+            }
         }
 
         // PUT: api/Clanovi/5
@@ -54,6 +63,13 @@ namespace FOIKnjiznicaWebServis.Controllers
         // DELETE: api/Clanovi/5
         public void Delete(int id)
         {
+        }
+
+        public class Clan
+        {
+            public int id { get; set; }
+            public string hrEduPersonUniqueID { get; set; }
+            public string mobitelID { get; set; }
         }
     }
 }
