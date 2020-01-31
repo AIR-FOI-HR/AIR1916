@@ -22,5 +22,11 @@ namespace FOIKnjiznica
         {
             await PopupNavigation.PushAsync(new PopUpPages.PomocPopUpPage("DOBRODOŠLI U POMOĆ ZA INFORMACIJE O KNJIŽNICI!", "Prikazan Vam je uvid u kontakt i osnovne informacije o knjižnici sa aktivnim radnim vremenom iste. Prikazana je i lokacija na FOI-u radi lakše orjentacije."));
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            System.Environment.Exit(0);
+            return false;
+        }
     }
 }
