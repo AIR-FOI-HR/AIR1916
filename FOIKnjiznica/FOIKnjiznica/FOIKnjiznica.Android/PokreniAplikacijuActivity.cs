@@ -25,6 +25,7 @@ namespace FOIKnjiznica.Droid
         Android.Webkit.WebView webView;
         public static string UserID { get; set; }
         public static string MobitelID { get; set; }
+        public bool UpisanaPrijava { get; set; } //Koristi nam ako se korisnik registrirao (FOI prijava) ali nije upisao nacin prijave
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -40,8 +41,17 @@ namespace FOIKnjiznica.Droid
             {
                 if (item.MobitelId == PokreniAplikacijuActivity.MobitelID)
                 {
-                    postoji = true;
-                    break;
+                    //Provjeri da li korisnik ima postavljenu prijavu
+                    await ProvjeriPostavljenuPrijavuClana(item.MobitelId);
+                    if(UpisanaPrijava == false)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        postoji = true;
+                        break;
+                    }
                 }
                 else
                 {
@@ -68,7 +78,7 @@ namespace FOIKnjiznica.Droid
                     webView.Settings.LoadWithOverviewMode = true;
 
                     webView.SetWebViewClient(new HelloWebViewClient());
-                    webView.LoadUrl("https://192.168.137.166:45455/");
+                    webView.LoadUrl("https://192.168.0.35:45455/");
 
                 });
             }
@@ -96,12 +106,25 @@ namespace FOIKnjiznica.Droid
         {
             HttpClient client = new HttpClient();
             var response = await client.GetStringAsync("http://foiknjiznica2.azurewebsites.net/api/Clanovi/"+mobID);
-            var clan = JsonConvert.DeserializeObject<List<DohvaceniClan>>(response);
-            foreach(var item in clan)
+            var clan = JsonConvert.DeserializeObject<DohvaceniClan>(response);
+            Classes.Clanovi.id = clan.id;
+            Classes.Clanovi.hrEduPersonUniqueID = clan.hrEduPersonUniqueID;
+            Classes.Clanovi.mobitelID = clan.mobitelID;
+        }
+
+        public async Task ProvjeriPostavljenuPrijavuClana(string idMobitela)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync("http://foiknjiznica2.azurewebsites.net/api/Clanovi/" + idMobitela);
+            var clan = JsonConvert.DeserializeObject<DohvaceniClan>(response);
+            var response2 = await client.GetStringAsync("http://foiknjiznica2.azurewebsites.net/api/DodajAuthProtocol/" + clan.id);
+            if (response2.Length < 5)
             {
-                Classes.Clanovi.id = item.id;
-                Classes.Clanovi.hrEduPersonUniqueID = item.hrEduPersonUniqueID;
-                Classes.Clanovi.mobitelID = item.mobitelID;
+                UpisanaPrijava = false;
+            }
+            else
+            {
+                UpisanaPrijava = true;
             }
         }
     }

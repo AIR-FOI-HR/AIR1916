@@ -11,7 +11,15 @@ namespace FOIKnjiznica
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new StranicaPrijave());
+            //Provjera ako se član prijavio sa FOI prijavom da se otvori aplikacija, a ne nova prijava
+            if (Classes.Clanovi.id != 0)
+            {
+                MainPage = new NavigationPage(new MainMenu());
+            }
+            else
+            {
+                MainPage = new NavigationPage(new StranicaPrijave());
+            }
         }
 
         protected override void OnStart()
