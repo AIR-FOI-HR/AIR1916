@@ -5,8 +5,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="FOIKnjiznica.MainMenuDetail"
-             Title="Matej Lipovača">
-    
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+    <NavigationPage.TitleView>
+        <Image Source="help.png"  WidthRequest="25" HeightRequest="25" HorizontalOptions="End" Margin="0, 0, 20, 0">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="PomocKliknuta" NumberOfTapsRequired="1">
+                </TapGestureRecognizer>
+            </Image.GestureRecognizers>
+        </Image>
+    </NavigationPage.TitleView>
+
     <!-- Glavni StackLayout -->
     <StackLayout>
         
@@ -22,7 +30,7 @@
                 </Label>
             </StackLayout>
             <StackLayout Orientation="Vertical" HorizontalOptions="Center" Grid.Column="1">
-                <Entry x:Name="search_bar" Placeholder="Pretraži" WidthRequest="200"></Entry>
+                <Entry TextChanged="UnosPretrazivanja" x:Name="search_bar" Placeholder="Pretraži" WidthRequest="200"></Entry>
             </StackLayout>
         </StackLayout>
         
@@ -38,7 +46,7 @@
                 </Label>
             </StackLayout>
             <StackLayout Orientation="Vertical" HorizontalOptions="Center">
-                <Button BackgroundColor="#ae2323" Text="Sortiraj" TextColor="White" WidthRequest="100" HeightRequest="40" CornerRadius="13" x:Name="sort_button"></Button>
+                <Button BackgroundColor="#ae2323" Text="Sortiraj" TextColor="White" WidthRequest="100" HeightRequest="40" CornerRadius="13" x:Name="sort_button" Clicked="sort_button_Clicked"></Button>
             </StackLayout>
             <StackLayout Orientation="Vertical" HorizontalOptions="Center" Margin="30, 5, 0, 0">
                 <Label x:Name="filter_label" Text="&#xf0b0;" FontSize="25" HorizontalOptions="Center" TextColor="#696969">
@@ -50,20 +58,32 @@
                 </Label>
             </StackLayout>
             <StackLayout Orientation="Vertical" HorizontalOptions="Center">
-                <Button BackgroundColor="#ae2323" Text="Filtriraj" TextColor="White" WidthRequest="100" HeightRequest="40" CornerRadius="13" x:Name="filter_button"></Button>
+                <Button Clicked="filter_button_Clicked" BackgroundColor="#ae2323" Text="Filtriraj" TextColor="White" WidthRequest="100" HeightRequest="40" CornerRadius="13" x:Name="filter_button"></Button>
             </StackLayout>
         </StackLayout>
 
         <!-- Ispis publikacije na zaslon -->
-        <StackLayout VerticalOptions="CenterAndExpand" WidthRequest="75" MinimumWidthRequest="60">
-            <ListView x:Name="ListaPublikacije" HasUnevenRows="True" SeparatorVisibility="None">
+        <StackLayout WidthRequest="75" MinimumWidthRequest="60">
+            <ListView x:Name="ListaPublikacije" HasUnevenRows="True" SeparatorVisibility="None" ItemTapped="OnListViewItemTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10, 10, 10, 10">
-                                <Image Source="test.jpg" WidthRequest="90" HeightRequest="200"></Image>
-                                <Label Text="{Binding naziv}" HorizontalOptions="Center"></Label>
-                            </StackLayout>
+                            <Grid Padding="10" RowSpacing="10" ColumnSpacing="15">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <ff:CachedImage x:Name="Image" Source="{Binding slika_url}" WidthRequest="120" HeightRequest="200" HorizontalOptions="Center" VerticalOptions="Center" Margin="30, 0, 0, 0"/>
+                                <ActivityIndicator Color="OrangeRed" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" BindingContext="{x:Reference Name=Image}" />
+                                <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1">
+                                    <Label Text="{Binding naziv}" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold, Italic" TextColor="Black" FontSize="15"/>
+                                    <Label Text="{Binding Autor}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Label Text="{Binding Izdavac}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Label Text="{Binding godina_izdanja}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                </StackLayout>
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="UzorakUI.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FaulandCc.XF.GesturePatternView" Version="1.0.4" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991537" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InterfaceModule\InterfaceModule.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -18,20 +18,19 @@ namespace FOIKnjiznicaWebServis.Models
         public Clanovi()
         {
             this.Clanovi_Auth_Protocol = new HashSet<Clanovi_Auth_Protocol>();
+            this.Je_Favorit = new HashSet<Je_Favorit>();
             this.Stanje_Publikacije = new HashSet<Stanje_Publikacije>();
-            this.Publikacije = new HashSet<Publikacije>();
         }
     
+        public int id { get; set; }
         public string hrEduPersonUniqueID { get; set; }
-        public string ime { get; set; }
-        public string prezime { get; set; }
         public string mobitelID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Clanovi_Auth_Protocol> Clanovi_Auth_Protocol { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Stanje_Publikacije> Stanje_Publikacije { get; set; }
+        public virtual ICollection<Je_Favorit> Je_Favorit { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Publikacije> Publikacije { get; set; }
+        public virtual ICollection<Stanje_Publikacije> Stanje_Publikacije { get; set; }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using InterfaceModule;
+using PINModul;
 
 namespace FOIKnjiznica
 {
@@ -9,13 +11,19 @@ namespace FOIKnjiznica
         public App()
         {
             InitializeComponent();
-
-            MainPage = new NavigationPage(new MainMenu());
+            //Provjera ako se član prijavio sa FOI prijavom da se otvori aplikacija, a ne nova prijava
+            if (Classes.Clanovi.id != 0)
+            {
+                MainPage = new NavigationPage(new MainMenu());
+            }
+            else
+            {
+                MainPage = new NavigationPage(new StranicaPrijave());
+            }
         }
 
         protected override void OnStart()
         {
-            // Handle when your app starts
         }
 
         protected override void OnSleep()

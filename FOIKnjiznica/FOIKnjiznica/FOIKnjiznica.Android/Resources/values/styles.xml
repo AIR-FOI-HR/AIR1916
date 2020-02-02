@@ -22,6 +22,15 @@
     <item name="windowActionModeOverlay">true</item>
 
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
+
+    <!-- Boja za ListView-ove -->
+    <item name="android:colorActivatedHighlight">@color/ListViewHighlight</item>
+  </style>
+  <color name="ListViewHighlight">#F3F3F3</color>
+
+  <style name="Theme.Splash" parent="Theme.AppCompat.NoActionBar">
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowFullscreen">true</item>
   </style>
 
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">

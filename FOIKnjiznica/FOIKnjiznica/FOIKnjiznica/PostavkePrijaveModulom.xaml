@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="Postavke prijave"
+             x:Class="FOIKnjiznica.PostavkePrijaveModulom">
+    <ContentPage.Content>
+        <StackLayout Margin="5, 10, 5, 10">
+            <Button x:Uid="4" x:Name="ModulPin" Text="Postavi Pin" Clicked="PinPostavljanje" BackgroundColor="#ae2323" TextColor="White" CornerRadius="20"></Button>
+            <Button x:Uid="2" x:Name="ModulUzorak" Text="Postavi Uzorak" Clicked="UzorakPostavljanje" BackgroundColor="#ae2323" TextColor="White" CornerRadius="20"></Button>
+            <Button x:Uid="3" x:Name="ModulOtisak" Text="Postavi Otisak" Clicked="OtisakPostavljanje" BackgroundColor="#ae2323" TextColor="White" CornerRadius="20"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

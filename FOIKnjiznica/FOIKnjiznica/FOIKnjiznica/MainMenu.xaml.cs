@@ -11,18 +11,19 @@ namespace FOIKnjiznica
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainMenu : MasterDetailPage
-    {
+    {      
         public MainMenu()
         {
             //Skrivanje Navigation Bar-a sa početnog zaslona "Main Menu" koji je ujedno i root navigacije
             SetValue(NavigationPage.HasNavigationBarProperty, false);
+            
 
             InitializeComponent();
-            //MasterPage.ListView.ItemSelected += ListView_ItemSelected;
+            MasterPage.ListView.ItemSelected += ListView_ItemSelected;
         }
 
         //Listanje Literature za Pregled na zaslonu
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        public void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var item = e.SelectedItem as MainMenuMasterMenuItem;
             if (item == null)

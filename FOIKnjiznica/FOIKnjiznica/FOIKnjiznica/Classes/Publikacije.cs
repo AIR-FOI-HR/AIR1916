@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FOIKnjiznica.Classes
 {
-    class Publikacije
+    public class Publikacije
     {
         public int id { get; set; }
         public string naziv { get; set; }
@@ -16,6 +16,15 @@ namespace FOIKnjiznica.Classes
         public string sadrzaj { get; set; }
         public int godina_izdanja { get; set; }
         public string izdanje { get; set; }
-        public string slika_url { get; set;}
+        public string slika_url { get; set; }
+        public string Izdavac { get; set; }
+        public string Autor { get; set; }
+        public int Kopija { get; set; }
+        public string Stanje { get; set; }
+        public string Vrsta { get; set; }
+        public int Kategorija { get; set; }
+        public string GodinaOd { get; set; }
+        public string GodinaDo { get; set; }
+
     }
 }
